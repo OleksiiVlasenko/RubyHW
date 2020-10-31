@@ -37,8 +37,20 @@ def task3
       else p j
     end
   end
+
+#---------------------------------
+def task4
+  j = nil
+  @arr.size.times {|i| j=i if (@arr[i] > @arr.last && @arr[i] <@arr.first)}
+      if j == nil
+         p "[]"
+      else p j
+    end
+  end
+
+
+
+#end of class
 end
-
-
 less = My_Arr.new
-less.task3
+less.task4
