@@ -76,7 +76,11 @@ def task8
   p @arr
 end
 
+def task9
+@arr.each {|i| print @arr[i]=@arr.min if i > 0}
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task8
+less.task9
