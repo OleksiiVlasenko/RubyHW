@@ -100,7 +100,20 @@ def task14
 p @arr = @arr.push(@arr.shift)
 end
 
+def arifm?
+  return true if @arr.size < 2
+  (@arr.first..@arr.last).step((@arr.last-@arr.first)/(@arr.size-1)).to_a == @arr
+end
+
+def task15
+if arifm? == true
+  p "Arifm true"
+else p nil
+end
+end
+
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task13
+less.task15
