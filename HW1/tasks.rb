@@ -1,4 +1,4 @@
-class My_Arr
+class HW1_My_Arr
   def initialize
     @arr = (1..10).to_a
 
@@ -48,9 +48,15 @@ def task4
     end
   end
 
+def task5
+  @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
+      p @arr[i]+=@arr.first if @arr[i] %2==0
+     end
+   end
+
 
 
 #end of class
 end
-less = My_Arr.new
-less.task4
+less = HW1_My_Arr.new
+less.task5
