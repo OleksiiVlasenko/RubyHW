@@ -85,21 +85,20 @@ def task10
 end
 
 def task11
-@arr.each {|i| if i<0
-  @arr[i]=@arr.min else
-  p "There is no negative element"
-  break end}
+@arr.each {|i| print @arr[i]=@arr.min if i < 0}
 end
 
 def task12
-@arr.each {|i| if i<0
-  @arr[i]=@arr.max else
-  p "There is no negative element"
-  break end}
+@arr.each {|i| print @arr[i]=@arr.max if i < 0}
 end
+
+# def task12
+# @arr.each {|i| i < 0 ? (@arr[i]=@arr.max) : (puts "#{i} is no negative element")
+#   }
+# end
 
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task11
+less.task12
