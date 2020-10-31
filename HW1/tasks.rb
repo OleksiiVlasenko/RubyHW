@@ -1,6 +1,6 @@
 class HW1_My_Arr
   def initialize
-    @arr = (-3..10).to_a
+    @arr = (0..10).to_a
 
   end
 
@@ -92,13 +92,15 @@ def task12
 @arr.each {|i| print @arr[i]=@arr.max if i < 0}
 end
 
-# def task12
-# @arr.each {|i| i < 0 ? (@arr[i]=@arr.max) : (puts "#{i} is no negative element")
-#   }
-# end
+def task13
+p @arr = @arr.unshift(@arr.pop)
+end
 
+def task14
+p @arr = @arr.push(@arr.shift)
+end
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task12
+less.task13
