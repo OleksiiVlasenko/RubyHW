@@ -29,7 +29,16 @@ def task2
     even.each {|even| p even}
 end
 #---------------------------------
+def task3
+  j = nil
+  @arr.size.times {|i| j=i if (@arr[i] > @arr.first && @arr[i] <@arr.last)}
+      if j == nil
+         p "[]"
+      else p j
+    end
+  end
+end
 
 
 less = My_Arr.new
-less.task2
+less.task3
