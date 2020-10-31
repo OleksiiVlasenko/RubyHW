@@ -62,7 +62,14 @@ def task6
   p @arr
 end
 
+def task7
+  @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
+      @arr[i]+=@arr.last if @arr[i] %2!=0
+  end
+  p @arr
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task6
+less.task7
