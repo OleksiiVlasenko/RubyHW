@@ -80,7 +80,11 @@ def task9
 @arr.each {|i| print @arr[i]=@arr.min if i > 0}
 end
 
+def task10
+@arr.each {|i| print @arr[i]=@arr.max if i > 0}
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task9
+less.task10
