@@ -310,14 +310,24 @@ p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
 p 'interval 10..100'
 p "min element values with interval> #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.min}"
 end
+#---------------------------------
 def task48
 p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
 p 'interval 10..100'
 p "max element values with interval> #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.max}"
 end
+#---------------------------------
+def task45
+  p "Array > #{arr = [-1,-3,5,3,66,32,3,10,66,8,99]}"
+  p "Min positive el  > #{arr.select{|el| el.positive?}.min}"
+end
+#---------------------------------
+def task46
+  p "Array > #{arr = [-99,-37,-27,5,3,66,32,3,10,78,8,99]}"
+  p "Max negative el  > #{arr.select{|el| el.negative?}.max}"
 
-
+end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task48
+less.task46
