@@ -212,8 +212,12 @@ def task28
   end
 end
 #---------------------------------
-
+def task29
+arr = [1,3,66,32,3,10,8,2]
+p "before #{arr}"
+p "after #{arr.sort}"
+end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task28
+less.task29
