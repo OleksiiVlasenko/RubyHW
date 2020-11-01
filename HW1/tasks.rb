@@ -282,14 +282,17 @@ end
 end
 
 def task26
-  p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
-  p "Array : #{@arr_rnd}"
-  print ' Result '
-  p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
-  p '------------------------------------------'
+  # p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
+  # p "Array : #{@arr_rnd}"
+  # print ' Result '
+  # p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
+  # p '------------------------------------------'
 end
 
 def task27
+  p 'Дан целочисленный массив. Преобразовать его, вставив после каждого положительного элемента нулевой элемент.'
+  p "Array : #{@arr}"
+  p ' Result '
   b = []
   n = @arr.size-1
       nk = n
@@ -308,16 +311,20 @@ def task27
     for i in 1..n
     p "#{i} : #{@arr[i]}"
   end
+    p '------------------------------------------'
 end
 
 def task28
+  p 'Дан целочисленный массив. Преобразовать его, вставив после каждого отрицательного элемента нулевой элемент.'
+  p "Array : #{@arr_rnd}"
+  p ' Result '
   b = []
-  n = @arr.size-1
+  n = @arr_rnd.size-1
       nk = n
       k = 1
       for i in 1..n
-        b[k] =  @arr[i]
-        if @arr[i]<0
+        b[k] =  @arr_rnd[i]
+        if @arr_rnd[i]<0
           nk+=1
           k+=1
           b[k]=0
@@ -325,10 +332,11 @@ def task28
         k+=1
       end
       n=nk
-       @arr=b
+       @arr_rnd=b
     for i in 1..n
-    p "#{i} : #{@arr[i]}"
+    p "#{i} : #{@arr_rnd[i]}"
   end
+  p '------------------------------------------'
 end
 
 def task29
@@ -503,4 +511,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task26
+less.task28
