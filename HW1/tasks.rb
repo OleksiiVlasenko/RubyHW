@@ -225,12 +225,30 @@ def task23
   p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наиболее близок к данному числу.'
   arr_r = Array.new(10) { rand(-10.2..10.2) }
   p "Array : #{arr_r}"
+  p "R : #{r = 2.3}"
   for i in 1..arr_r.size-1
-        r = 2.3
         x = (arr_r[1]-r).abs
         n = 1
         for i in 2..arr_r.size-1
         if x > (arr_r[i]-r).abs
+        x = (arr_r[i]-r).abs
+        n = i
+        end
+      end
+    end
+    p " Result - #{arr_r[n]} "
+end
+
+def task24
+  p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наименее близок к данному числу.'
+  arr_r = Array.new(10) { rand(-10.2..10.2) }
+  p "Array : #{arr_r}"
+  p "R : #{r = 2.3}"
+  for i in 1..arr_r.size-1
+        x = (arr_r[1]-r).abs
+        n = 1
+        for i in 2..arr_r.size-1
+        if x < (arr_r[i]-r).abs
         x = (arr_r[i]-r).abs
         n = i
         end
@@ -461,4 +479,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task23
+less.task24
