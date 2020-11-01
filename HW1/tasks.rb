@@ -270,9 +270,20 @@ def task38
 p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
 p "last-max value index> #{arr.rindex(arr.max)}"
 end
+#---------------------------------
+def task39
+p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
+p "min elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| b }}"
+p "min elements  values > #{arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| a }}"
+end
 
+def task40
+p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
+p "max elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| b }}"
+p "max elements  values > #{arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| a }}"
+end
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task36
+less.task40
