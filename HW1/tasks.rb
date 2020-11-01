@@ -327,7 +327,29 @@ def task46
   p "Max negative el  > #{arr.select{|el| el.negative?}.max}"
 
 end
+#---------------------------------
+def task49
+  p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
+  min_b = arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| b }
+  p "#{min_b[0]} - elements before minimal number"
+end
+#---------------------------------
+def task50
+  p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
+  max_b = arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| b }
+  p "#{max_b[0]} - elements before maximal number"
+end
+#---------------------------------
+def task51
+  p "Array > #{arr = [5,3,66,32,1,3,99,10,66,8,1]}"
+  max_a = arr[(arr.index(arr.max))...arr.length - 1]
+  p "Count el. after max element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
+
+end
+
+
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task46
+less.task51
