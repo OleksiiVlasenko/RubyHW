@@ -173,7 +173,49 @@ def task26
   p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
 end
 
+def task27
+  b = []
+  n = @arr.size-1
+      nk = n
+      k = 1
+      for i in 1..n
+        b[k] =  @arr[i]
+        if @arr[i]>0
+          nk+=1
+          k+=1
+          b[k]=0
+        end
+        k+=1
+      end
+      n=nk
+       @arr=b
+    for i in 1..n
+    p "#{i} : #{@arr[i]}"
+  end
+end
+
+def task28
+  b = []
+  n = @arr.size-1
+      nk = n
+      k = 1
+      for i in 1..n
+        b[k] =  @arr[i]
+        if @arr[i]<0
+          nk+=1
+          k+=1
+          b[k]=0
+        end
+        k+=1
+      end
+      n=nk
+       @arr=b
+    for i in 1..n
+    p "#{i} : #{@arr[i]}"
+  end
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task26
+less.task28
