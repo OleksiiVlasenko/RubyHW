@@ -344,12 +344,16 @@ def task51
   p "Array > #{arr = [5,3,66,32,1,3,99,10,66,8,1]}"
   max_a = arr[(arr.index(arr.max))...arr.length - 1]
   p "Count el. after max element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
-
 end
-
+#---------------------------------
+def task52
+  p "Array > #{arr = [5,3,66,32,1,3,99,10,66,8,1]}"
+  max_a = arr[(arr.index(arr.min))...arr.length - 1]
+  p "Count el. after min element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
+end
 
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task51
+less.task52
