@@ -213,9 +213,15 @@ def task28
 end
 #---------------------------------
 def task29
-arr = [1,3,66,32,3,10,8,2]
-p "before #{arr}"
-p "after #{arr.sort}"
+  arr = [1,3,66,32,3,10,8,2]
+  p "before #{arr}"
+  p "after #{arr.sort}"
+end
+#---------------------------------
+def task30
+  arr = [1,3,66,32,3,10,8,2]
+  p "before #{arr}"
+  p "after #{arr.sort}"
 end
 #end of class
 end
