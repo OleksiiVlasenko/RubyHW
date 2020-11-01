@@ -214,19 +214,19 @@ end
 #---------------------------------
 def task29
   arr = [1,3,66,32,3,10,8,2]
-  p "before #{arr}"
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
   p "after #{arr.sort}"
 end
 #---------------------------------
 def task30
   arr = [1,3,66,32,3,10,8,2]
-  p "before #{arr}"
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
   p "after #{arr.sort {|f,l| l <=> f}}"
 end
 #---------------------------------
 def task31
   arr = [1,3,66,32,3,10,8,2]
-  p "before #{arr}"
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
   p "---------------------------------"
   p "index #{(0...arr.size).sort_by{ |i| arr[i] }.reverse}"
   p "val #{ arr.sort {|f,l| l <=> f}}"
@@ -235,7 +235,7 @@ end
 #---------------------------------
 def task32
   arr = [1,3,66,32,3,10,8,2]
-  p "before #{arr}"
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
   p "---------------------------------"
   p "index #{(0...arr.size).sort_by{ |i| arr[i] }}"
   p "val #{ arr.sort {|f,l| f <=> l}}"
@@ -250,10 +250,29 @@ def task34
   p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
   p "Value > #{arr.each_with_index.max} < Index"
 end
+#---------------------------------
+def task35
 
+
+end
+#---------------------------------
+def task36
+
+
+end
+#---------------------------------
+def task37
+p "Array > #{arr = [1,5,3,66,1,32,3,10,8,1]}"
+p "last-min value index > #{arr.rindex(arr.min)}"
+end
+#---------------------------------
+def task38
+p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
+p "last-max value index> #{arr.rindex(arr.max)}"
+end
 
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task34
+less.task37
