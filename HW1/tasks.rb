@@ -165,9 +165,11 @@ p "The most nearest element is -  #{@arr[n]} "
 end
 
 
-
+def task25
+  p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val > 0 }
+end
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task23
+less.task25
