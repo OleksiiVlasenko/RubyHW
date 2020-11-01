@@ -149,16 +149,16 @@ end
 
 def task23
 for i in 1..@arr.size-1
-p @arr[i]
-  end
-  p "Enter R"
-  r = gets.to_i
-  x = (@arr[1]-r).abs
-  n = 1
-  for i in 2..@arr.size-1
-  if x > (@arr[i]-r).abs
-  x = (@arr[i]-r).abs
-  n = i
+  p @arr[i]
+    end
+      p "Enter R"
+      r = gets.to_i
+      x = (@arr[1]-r).abs
+      n = 1
+      for i in 2..@arr.size-1
+      if x > (@arr[i]-r).abs
+      x = (@arr[i]-r).abs
+      n = i
   end
 end
 p "The most nearest element is -  #{@arr[n]} "
@@ -169,7 +169,11 @@ def task25
   p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val > 0 }
 end
 
+def task26
+  p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task25
+less.task26
