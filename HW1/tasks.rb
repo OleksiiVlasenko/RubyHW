@@ -47,91 +47,89 @@ def task4
       else p j
     end
   end
-
+#---------------------------------
 def task5
   @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
       @arr[i]+=@arr.first if @arr[i] %2==0
   end
   p @arr
 end
-
+#---------------------------------
 def task6
   @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
       @arr[i]+=@arr.last if @arr[i] %2==0
   end
   p @arr
 end
-
+#---------------------------------
 def task7
   @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
       @arr[i]+=@arr.last if @arr[i] %2!=0
   end
   p @arr
 end
-
+#---------------------------------
 def task8
   @arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1) do |i|
       @arr[i]+=@arr.first if @arr[i] %2!=0
   end
   p @arr
 end
-
+#---------------------------------
 def task9
 @arr.each {|i| print @arr[i]=@arr.min if i > 0}
 end
-
+#---------------------------------
 def task10
 @arr.each {|i| print @arr[i]=@arr.max if i > 0}
 end
-
+#---------------------------------
 def task11
 @arr.each {|i| print @arr[i]=@arr.min if i < 0}
 end
-
+#---------------------------------
 def task12
 @arr.each {|i| print @arr[i]=@arr.max if i < 0}
 end
-
+#---------------------------------
 def task13
 p @arr = @arr.unshift(@arr.pop)
 end
-
+#---------------------------------
 def task14
 p @arr = @arr.push(@arr.shift)
 end
-
+#---------------------------------
 def arifm?
   return true if @arr.size < 2
   (@arr.first..@arr.last).step((@arr.last-@arr.first)/(@arr.size-1)).to_a == @arr
 end
-
+#---------------------------------
 def task15
 if arifm? == true
   p "Arifm true"
 else p nil
 end
 end
-
+#---------------------------------
 def maxima(arr)
   arr.each_cons(3).each_with_object([]) do |three, memo|
     memo << three[1] if three[1] > three.first && three[1] > three.last
   end
   end
-
+  def task17
+    p maxima(@arr).max
+  end
+#---------------------------------
 def minima(arr)
     arr.each_cons(3).each_with_object([]) do |three, memo|
       memo << three[1] if three[1] < three.first && three[1] < three.last
   end
 end
-
-def task17
-  p maxima(@arr).max
-end
-
 def task18
   p minima(@arr).min
 end
-
+#---------------------------------
 def task21
   num=0
   for i in 2..@arr.size-1
@@ -146,7 +144,7 @@ def task21
       p num
   end
 end
-
+#---------------------------------
 def task23
 for i in 1..@arr.size-1
   p @arr[i]
@@ -163,16 +161,15 @@ for i in 1..@arr.size-1
 end
 p "The most nearest element is -  #{@arr[n]} "
 end
-
-
+#---------------------------------
 def task25
   p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val > 0 }
 end
-
+#---------------------------------
 def task26
   p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
 end
-
+#---------------------------------
 def task27
   b = []
   n = @arr.size-1
@@ -193,7 +190,7 @@ def task27
     p "#{i} : #{@arr[i]}"
   end
 end
-
+#---------------------------------
 def task28
   b = []
   n = @arr.size-1
@@ -214,6 +211,7 @@ def task28
     p "#{i} : #{@arr[i]}"
   end
 end
+#---------------------------------
 
 #end of class
 end
