@@ -223,7 +223,25 @@ def task30
   p "before #{arr}"
   p "after #{arr.sort {|f,l| l <=> f}}"
 end
+#---------------------------------
+def task31
+  arr = [1,3,66,32,3,10,8,2]
+  p "before #{arr}"
+  p "---------------------------------"
+  p "index #{(0...arr.size).sort_by{ |i| arr[i] }.reverse}"
+  p "val #{ arr.sort {|f,l| l <=> f}}"
+end
+
+#---------------------------------
+def task32
+  arr = [1,3,66,32,3,10,8,2]
+  p "before #{arr}"
+  p "---------------------------------"
+  p "index #{(0...arr.size).sort_by{ |i| arr[i] }}"
+  p "val #{ arr.sort {|f,l| f <=> l}}"
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task30
+less.task32
