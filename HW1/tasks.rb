@@ -117,7 +117,7 @@ def maxima(arr)
     memo << three[1] if three[1] > three.first && three[1] > three.last
   end
   end
-  def task17
+def task17
     p maxima(@arr).max
   end
 #---------------------------------
@@ -351,9 +351,14 @@ def task52
   max_a = arr[(arr.index(arr.min))...arr.length - 1]
   p "Count el. after min element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
 end
-
+#---------------------------------
+def task57
+  p "Array > #{arr = [5,3,66,-1,32,1,3,10,66,8,99,1]}"
+  min = arr.each.with_index.find_all{ |a,i| a == arr.min }.map { |a,b| b  }
+  p "index first extrim minimal #{min}"
+end
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task52
+less.task57
