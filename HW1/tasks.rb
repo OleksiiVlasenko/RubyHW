@@ -277,15 +277,24 @@ p "min elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.min }.m
 p "min elements  values > #{c = arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| a }}"
 p "min elements   count > #{c.count}"
 end
-
+#---------------------------------
 def task40
 p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
 p "max elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| b }}"
 p "max elements  values > #{c =arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| a }}"
 p "max elements   count > #{c.count}"
 end
-
+#---------------------------------
+def task41
+  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
+  p "Min even el  > #{arr.select{|el| el%2==0}.min}"
+end
+#---------------------------------
+def task42
+  p "Array > #{arr = [1,5,3,66,1,32,3,10,78,8,99,1]}"
+  p "Max even el  > #{arr.select{|el| el%2==0}.max}"
+end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task40
+less.task42
