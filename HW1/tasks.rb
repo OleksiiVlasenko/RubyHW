@@ -294,7 +294,18 @@ def task42
   p "Array > #{arr = [5,3,66,32,3,10,78,8,99]}"
   p "Min odd el  > #{arr.select{|el| el%2!=0}.min}"
 end
+#---------------------------------
+def task43
+  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
+  p "Max even el  > #{arr.select{|el| el%2==0}.max}"
+end
+#---------------------------------
+def task44
+  p "Array > #{arr = [5,3,66,32,3,10,78,8,99]}"
+  p "Max odd el  > #{arr.select{|el| el%2!=0}.max}"
+end
+
 #end of class
 end
 less = HW1_My_Arr.new
-less.task42
+less.task44
