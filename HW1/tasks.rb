@@ -100,7 +100,7 @@ end
 
 def task11
   p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение минимального.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   p 'Result'
   @arr_rnd.each {|i| print "#{@arr_rnd[i]=@arr_rnd.min}," if i < 0}
   p '------------------------------------------------'
@@ -108,7 +108,7 @@ end
 
 def task12
   p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение максимального.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   p 'Result'
   @arr_rnd.each {|i| print "#{@arr_rnd[i]=@arr_rnd.max}," if i < 0}
   p '------------------------------------------------'
@@ -148,7 +148,7 @@ end
 
 def task17
   p 'Дан целочисленный массив. Найти количество его локальных максимумов.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   print ' Result '
   maxima = []
   @arr_rnd.each_index do|i|
@@ -162,7 +162,7 @@ end
 
 def task18
   p 'Дан целочисленный массив. Найти количество его локальных минимумов.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   print ' Result '
   minima = []
   @arr_rnd.each_index do|i|
@@ -176,7 +176,7 @@ end
 
 def task19
   p 'Дан целочисленный массив. Найти максимальный из его локальных максимумов.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   print ' Result '
   maxima = []
   @arr_rnd.each_index do|i|
@@ -190,7 +190,7 @@ end
 
 def task20
   p 'Дан целочисленный массив. Найти минимальный из его локальных минимумов.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   print ' Result '
   minima = []
   @arr_rnd.each_index do|i|
@@ -283,7 +283,7 @@ end
 
 def task26
   # p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
-  # p "Array : #{@arr_rnd}"
+  # p " Array : #{@arr_rnd}"
   # print ' Result '
   # p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
   # p '------------------------------------------'
@@ -316,7 +316,7 @@ end
 
 def task28
   p 'Дан целочисленный массив. Преобразовать его, вставив после каждого отрицательного элемента нулевой элемент.'
-  p "Array : #{@arr_rnd}"
+  p " Array : #{@arr_rnd}"
   p ' Result '
   b = []
   n = @arr_rnd.size-1
@@ -340,146 +340,216 @@ def task28
 end
 
 def task29
-  arr = [1,3,66,32,3,10,8,2]
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "after #{arr.sort}"
+  p 'Дан целочисленный массив. Упорядочить его по возрастанию.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " #{@arr_rnd.sort}"
+  p '------------------------------------------'
 end
 
 def task30
-  arr = [1,3,66,32,3,10,8,2]
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "after #{arr.sort {|f,l| l <=> f}}"
+  p 'Дан целочисленный массив. Упорядочить его по убыванию.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " #{@arr_rnd.sort {|f,l| l <=> f}}"
+  p '------------------------------------------'
 end
 
 def task31
-  arr = [1,3,66,32,3,10,8,2]
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "---------------------------------"
-  p "index #{(0...arr.size).sort_by{ |i| arr[i] }.reverse}"
-  p "val #{ arr.sort {|f,l| l <=> f}}"
+  p 'Дан целочисленный массив. Вывести индексы массива в том порядке, в котором соответствующие им элементы образуют убывающую последовательность.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " index : #{(0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }.reverse}"
+  p " value : #{ @arr_rnd.sort {|f,l| l <=> f}}"
+  p '------------------------------------------'
 end
 
 
 def task32
-  arr = [1,3,66,32,3,10,8,2]
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "---------------------------------"
-  p "index #{(0...arr.size).sort_by{ |i| arr[i] }}"
-  p "val #{ arr.sort {|f,l| f <=> l}}"
+  p 'Дан целочисленный массив. Вывести индексы массива в том порядке, в котором соответствующие им элементы образуют возрастающую последовательность.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " index #{(0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }}"
+  p " value #{ @arr_rnd.sort {|f,l| f <=> l}}"
+  p '------------------------------------------'
 end
 
 def task33
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "Value > #{arr.each_with_index.min} < Index"
+  p 'Дан целочисленный массив. Найти индекс минимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p @arr_rnd.each_with_index.min
+  p 'Val Ind'
+  p '------------------------------------------'
 end
 
 def task34
-  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
-  p "Value > #{arr.each_with_index.max} < Index"
+  p 'Дан целочисленный массив. Найти индекс максимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p @arr_rnd.each_with_index.max
+  p 'Val Ind'
+  p '------------------------------------------'
 end
 
 def task35
-  p "Array > #{arr = [16,5,3,66,1,32,3,10,8,1]}"
-  p "first-min value index > #{arr.index(arr.min)}"
+  p 'Дан целочисленный массив. Найти индекс первого минимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.index(@arr_rnd.min)}"
+  p '------------------------------------------'
 end
 
 def task36
-  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
-  p "first-max value index> #{arr.index(arr.max)}"
+  p 'Дан целочисленный массив. Найти индекс первого максимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.index(@arr_rnd.max)}"
+  p '------------------------------------------'
 end
 
 def task37
-p "Array > #{arr = [1,5,3,66,1,32,3,10,8,1]}"
-p "last-min value index > #{arr.rindex(arr.min)}"
+  p 'Дан целочисленный массив. Найти индекс последнего минимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "    #{@arr_rnd.rindex(@arr_rnd.min)}"
+  p '------------------------------------------'
 end
 
 def task38
-p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
-p "last-max value index> #{arr.rindex(arr.max)}"
+  p 'Дан целочисленный массив. Найти индекс последнего максимального элемента.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.rindex(@arr_rnd.max)}"
+  p '------------------------------------------'
 end
 
 def task39
-p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
-p "min elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| b }}"
-p "min elements  values > #{c = arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| a }}"
-p "min elements   count > #{c.count}"
+  p 'Дан целочисленный массив. Найти количество минимальных элементов.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " min elements indexes > #{@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| b }}"
+  p " min elements  values > #{c = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| a }}"
+  p " min elements   count > #{c.count}"
+  p '------------------------------------------'
 end
 
 def task40
-p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
-p "max elements indexes > #{arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| b }}"
-p "max elements  values > #{c =arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| a }}"
-p "max elements   count > #{c.count}"
+  p 'Дан целочисленный массив. Найти количество максимальных элементов.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p " max elements indexes > #{@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| b }}"
+  p " max elements  values > #{c =@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| a }}"
+  p " max elements   count > #{c.count}"
+  p '------------------------------------------'
 end
 
 def task41
-  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
-  p "Min even el  > #{arr.select{|el| el%2==0}.min}"
+  p 'Дан целочисленный массив. Найти минимальный четный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el%2==0}.min}"
+  p '------------------------------------------'
 end
 
 def task42
-  p "Array > #{arr = [5,3,66,32,3,10,78,8,99]}"
-  p "Min odd el  > #{arr.select{|el| el%2!=0}.min}"
+  p 'Дан целочисленный массив. Найти минимальный нечетный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el%2!=0}.min}"
+  p '------------------------------------------'
 end
 
 def task43
-  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
-  p "Max even el  > #{arr.select{|el| el%2==0}.max}"
+  p 'Дан целочисленный массив. Найти максимальный четный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el%2==0}.max}"
+  p '------------------------------------------'
 end
 
 def task44
-  p "Array > #{arr = [5,3,66,32,3,10,78,8,99]}"
-  p "Max odd el  > #{arr.select{|el| el%2!=0}.max}"
-end
-
-def task47
-p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
-p 'interval 10..100'
-p "min element values with interval> #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.min}"
-end
-
-def task48
-p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
-p 'interval 10..100'
-p "max element values with interval> #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.max}"
+  p 'Дан целочисленный массив. Найти максимальный нечетный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el%2!=0}.max}"
+  p '------------------------------------------'
 end
 
 def task45
-  p "Array > #{arr = [-1,-3,5,3,66,32,3,10,66,8,99]}"
-  p "Min positive el  > #{arr.select{|el| el.positive?}.min}"
+  p 'Дан целочисленный массив. Найти минимальный положительный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el.positive?}.min}"
+  p '------------------------------------------'
 end
 
 def task46
-  p "Array > #{arr = [-99,-37,-27,5,3,66,32,3,10,78,8,99]}"
-  p "Max negative el  > #{arr.select{|el| el.negative?}.max}"
+  p 'Дан целочисленный массив. Найти максимальный отрицательный элемент.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  p "   #{@arr_rnd.select{|el| el.negative?}.max}"
+  p '------------------------------------------'
+end
 
+def task47
+  p 'Дан целочисленный массив и интервал a..b. Найти минимальный из элементов в этом интервале.'
+  p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
+  p 'interval 10..100'
+  p ' Result '
+  p "  #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.min}"
+  p '------------------------------------------'
+end
+
+def task48
+  p 'Дан целочисленный массив и интервал a..b. Найти максимальный из элементов в этом интервале.'
+  p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
+  p 'interval 10..100'
+  p ' Result '
+  p "   #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.max}"
+  p '------------------------------------------'
 end
 
 def task49
-  p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
-  min_b = arr.each.with_index.find_all{ |a,i| a == arr.min }.map{ |a,b| b }
-  p "#{min_b[0]} - elements before minimal number"
+  p 'Дан целочисленный массив. Найти количество элементов, расположенных перед первым минимальным.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  min_b = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| b }
+  p "   #{min_b[0]}"
+  p '------------------------------------------'
 end
 
 def task50
-  p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
-  max_b = arr.each.with_index.find_all{ |a,i| a == arr.max }.map{ |a,b| b }
-  p "#{max_b[0]} - elements before maximal number"
+  p 'Дан целочисленный массив. Найти количество элементов, расположенных перед первым максимальным.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  max_b = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| b }
+  p "   #{max_b[0]}"
+  p '------------------------------------------'
 end
 
 def task51
-  p "Array > #{arr = [5,3,66,32,1,3,99,10,66,8,1]}"
-  max_a = arr[(arr.index(arr.max))...arr.length - 1]
-  p "Count el. after max element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
+  p 'Дан целочисленный массив. Найти количество элементов, расположенных после первого максимального.'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  max_a = @arr_rnd[(@arr_rnd.index(@arr_rnd.max))...@arr_rnd.length - 1]
+  p "   #{max_a.count}"  if @arr_rnd.index(@arr_rnd.min) != @arr_rnd.length - 1
+  p '------------------------------------------'
 end
 
 def task52
-  p "Array > #{arr = [5,3,66,32,1,3,99,10,66,8,1]}"
-  max_a = arr[(arr.index(arr.min))...arr.length - 1]
-  p "Count el. after min element : #{max_a.count}"  if arr.index(arr.min) != arr.length - 1
+  p 'Дан целочисленный массив. Найти количество элементов, расположенных после первого минимального .'
+  p " Array : #{@arr_rnd}"
+  p ' Result '
+  max_a = @arr_rnd[(@arr_rnd.index(@arr_rnd.min))...@arr_rnd.length - 1]
+  p "  #{max_a.count}"  if @arr_rnd.index(@arr_rnd.min) != @arr_rnd.length - 1
+  p '------------------------------------------'
 end
 
 def task57
+  p 'Дан целочисленный массив. Найти индекс первого экстремального (то есть минимального или максимального) элемента.'
+  # p " Array : #{@arr_rnd}"
+  # p ' Result '
   ind = []
   p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
   min = arr[0]
@@ -491,10 +561,12 @@ def task57
     end
   end
   # p "index first extr. min ele. #{ind.first}"
+  p '------------------------------------------'
 end
 
 
 def task58
+  p 'ан целочисленный массив. Найти индекс последнего экстремального (то есть минимального или максимального) элемента.'
   p "Array > #{arr = [5,1,3,66,32,2,3,10,66,8,99,1]}"
   ind = []
   min = arr[0]
@@ -511,4 +583,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task28
+less.task57
