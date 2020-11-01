@@ -353,12 +353,18 @@ def task52
 end
 #---------------------------------
 def task57
-  p "Array > #{arr = [5,3,66,-1,32,1,3,10,66,8,99,1]}"
-  min = arr.each.with_index.find_all{ |a,i| a == arr.min }.map { |a,b| b  }
-  p "index first extrim minimal #{min}"
+  p "Array > #{arr = [5,3,66,32,1,3,10,66,8,99,1]}"
+  min = arr[0]
+  for i in 1..arr.size-1
+    if min>=arr[i]
+      min=arr[i]
+      p min
+      break
+    end
+  end
 end
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task57
+less.task58
