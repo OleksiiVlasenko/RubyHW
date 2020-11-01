@@ -118,12 +118,22 @@ def maxima(arr)
   end
   end
 
+def minima(arr)
+    arr.each_cons(3).each_with_object([]) do |three, memo|
+      memo << three[1] if three[1] < three.first && three[1] < three.last
+  end
+end
+
 def task17
   p maxima(@arr).max
+end
+
+def task18
+  p minima(@arr).min
 end
 
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task17
+less.task18
