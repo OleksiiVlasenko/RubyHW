@@ -237,6 +237,7 @@ def task23
       end
     end
     p " Result - #{arr_r[n]} "
+    p '------------------------------------------------'
 end
 
 def task24
@@ -255,14 +256,37 @@ def task24
       end
     end
     p " Result - #{arr_r[n]} "
+    p '------------------------------------------------'
 end
 
 def task25
-  p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val > 0 }
+  p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым положительным элементом нулевой элемент.'
+  p "Array : #{@arr}"
+  print ' Result '
+  y = []
+  b = 0
+  for i in 0..@arr.size-1
+    if @arr[i] > 0
+    y[b] = @arr[i]
+    y[b - 1] = 0
+    b+=2
+    else
+    y[b] = @arr[i]
+    b+=1
+    end
+  end
+  for i in 0..b
+     print " #{y[i]}"
+end
+  p '------------------------------------------'
 end
 
 def task26
+  p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
+  p "Array : #{@arr_rnd}"
+  print ' Result '
   p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
+  p '------------------------------------------'
 end
 
 def task27
@@ -479,4 +503,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task24
+less.task26
