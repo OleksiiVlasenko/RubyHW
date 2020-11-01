@@ -252,13 +252,13 @@ def task34
 end
 #---------------------------------
 def task35
-
-
+  p "Array > #{arr = [16,5,3,66,1,32,3,10,8,1]}"
+  p "first-min value index > #{arr.index(arr.min)}"
 end
 #---------------------------------
 def task36
-
-
+  p "Array > #{arr = [1,5,3,66,1,32,3,10,66,8,99,1]}"
+  p "first-max value index> #{arr.index(arr.max)}"
 end
 #---------------------------------
 def task37
@@ -275,4 +275,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task37
+less.task36
