@@ -132,8 +132,26 @@ def task18
   p minima(@arr).min
 end
 
+def task21
+  num=0
+  for i in 2..@arr.size
+    if i<@arr.size
+            if ((@arr[i-2]<@arr[i-1]) && !(@arr[i-1]<@arr[i]))
+              num+=1;
+            end
+        end
+    end
+    if (@arr[@arr.size-2]<@arr[@arr.size-1])
+      num+=1;
+      p num
+  end
+end
+
+
+
+
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task18
+less.task21
