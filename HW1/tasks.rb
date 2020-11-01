@@ -134,7 +134,7 @@ end
 
 def task21
   num=0
-  for i in 2..@arr.size
+  for i in 2..@arr.size-1
     if i<@arr.size
             if ((@arr[i-2]<@arr[i-1]) && !(@arr[i-1]<@arr[i]))
               num+=1;
@@ -150,8 +150,28 @@ end
 
 
 
+def task23
+for i in 1..@arr.size-1
+p @arr[i]
+  end
+  p "Enter R"
+  r = gets.to_i
+  x = (@arr[1]-r).abs
+  n = 1
+  for i in 2..@arr.size-1
+  if x > (@arr[i]-r).abs
+
+  x = (@arr[i]-r).abs
+  n = i
+  end
+end
+p "The most nearest element is -  #{@arr[n]} "
+end
+
+
+
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task21
+less.task23
