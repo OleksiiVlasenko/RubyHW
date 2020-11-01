@@ -240,8 +240,20 @@ def task32
   p "index #{(0...arr.size).sort_by{ |i| arr[i] }}"
   p "val #{ arr.sort {|f,l| f <=> l}}"
 end
+#---------------------------------
+def task33
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
+  p "Value > #{arr.each_with_index.min} < Index"
+end
+#---------------------------------
+def task34
+  p "Array > #{arr = [5,3,66,32,3,10,8,1]}"
+  p "Value > #{arr.each_with_index.max} < Index"
+end
+
+
 
 #end of class
 end
 less = HW1_My_Arr.new
-less.task32
+less.task34
