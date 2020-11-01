@@ -291,8 +291,8 @@ def task41
 end
 #---------------------------------
 def task42
-  p "Array > #{arr = [1,5,3,66,1,32,3,10,78,8,99,1]}"
-  p "Max even el  > #{arr.select{|el| el%2==0}.max}"
+  p "Array > #{arr = [5,3,66,32,3,10,78,8,99]}"
+  p "Min odd el  > #{arr.select{|el| el%2!=0}.min}"
 end
 #end of class
 end
