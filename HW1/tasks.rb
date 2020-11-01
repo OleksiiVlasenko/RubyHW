@@ -204,7 +204,7 @@ end
 
 def task21
   p 'Дан целочисленный массив. Определить количество участков, на которых его элементы монотонно возрастают.'
-  p "Array : #{@arr_rnd}"
+  p "Array : #{@arr}"
   print ' Result '
   num=0
   for i in 2..@arr.size-1
@@ -222,20 +222,21 @@ def task21
 end
 
 def task23
-for i in 1..@arr.size-1
-  p @arr[i]
+  p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наиболее близок к данному числу.'
+  arr_r = Array.new(10) { rand(-10.2..10.2) }
+  p "Array : #{arr_r}"
+  for i in 1..arr_r.size-1
+        r = 2.3
+        x = (arr_r[1]-r).abs
+        n = 1
+        for i in 2..arr_r.size-1
+        if x > (arr_r[i]-r).abs
+        x = (arr_r[i]-r).abs
+        n = i
+        end
+      end
     end
-      p "Enter R"
-      r = gets.to_i
-      x = (@arr[1]-r).abs
-      n = 1
-      for i in 2..@arr.size-1
-      if x > (@arr[i]-r).abs
-      x = (@arr[i]-r).abs
-      n = i
-  end
-end
-p "The most nearest element is -  #{@arr[n]} "
+    p " Result - #{arr_r[n]} "
 end
 
 def task25
@@ -460,4 +461,4 @@ end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task20
+less.task23
