@@ -147,9 +147,6 @@ def task21
   end
 end
 
-
-
-
 def task23
 for i in 1..@arr.size-1
 p @arr[i]
@@ -160,7 +157,6 @@ p @arr[i]
   n = 1
   for i in 2..@arr.size-1
   if x > (@arr[i]-r).abs
-
   x = (@arr[i]-r).abs
   n = i
   end
