@@ -544,27 +544,50 @@ def task66
   p '------------------------------------------'
 end
 
+def task71
+  p 'Дан целочисленный массив. Удалить все элементы, встречающиеся менее двух раз.'
+  p " Array : #{@arr_rnd}"
+  p " Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) < 2 }}"
+  p '------------------------------------------'
+end
+
+def task72
+  p 'Дан целочисленный массив. Удалить все элементы, встречающиеся более двух раз.'
+  p " Array : #{@arr_rnd}"
+  p " Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) > 2 }}"
+  p '------------------------------------------'
+end
+
+def task73
+  p 'Дан целочисленный массив. Удалить все элементы, встречающиеся ровно два раза.'
+  p " Array : #{@arr_rnd}"
+  p " Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) == 2 }}"
+  p '------------------------------------------'
+end
+
+def task74
+  p 'Дан целочисленный массив. Удалить все элементы, встречающиеся ровно три раза.'
+  p " Array : #{@arr_rnd}"
+  p " Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) == 3 }}"
+  p '------------------------------------------'
+end
+
+
 def task
   p 'Дан целочисленный массив. Найти количество элементов, между первым и последним максимальным.'
   p " Array : #{@arr_rnd}"
   p ' Result '
-
   p '------------------------------------------'
 end
 
+
+
 def result()
-self.task1
-# t = ''
-# for i in 1..58 do
-#   # ("task"+i.to_s).call
-#   t = ('task'+i.to_s).intern
-#   self.send(t)
-#   end
+self.task67
 end
 
 
 #end of class
 end
 less = HW1_My_Arr.new
-# less.task57
 less.result
