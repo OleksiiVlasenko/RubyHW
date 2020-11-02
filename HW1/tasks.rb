@@ -370,21 +370,17 @@ end
 
 def task39
   p 'Дан целочисленный массив. Найти количество минимальных элементов.'
-  p " Array : #{@arr_rnd}"
-  p ' Result '
-  p " min elements indexes > #{@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| b }}"
-  p " min elements  values > #{c = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| a }}"
-  p " min elements   count > #{c.count}"
+  p " Array #{@arr_rnd}"
+  p " Value   #{@arr_rnd.min}"
+  p " Result  #{@arr_rnd.count{|el| el == @arr_rnd.min}} "
   p '------------------------------------------'
 end
 
 def task40
   p 'Дан целочисленный массив. Найти количество максимальных элементов.'
-  p " Array : #{@arr_rnd}"
-  p ' Result '
-  p " max elements indexes > #{@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| b }}"
-  p " max elements  values > #{c =@arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| a }}"
-  p " max elements   count > #{c.count}"
+  p " Array #{@arr_rnd}"
+  p " Value   #{@arr_rnd.max}"
+  p " Result  #{@arr_rnd.count{|el| el == @arr_rnd.max}} "
   p '------------------------------------------'
 end
 
@@ -569,7 +565,7 @@ def task
 end
 
 def result()
-self.task37
+self.task40
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
