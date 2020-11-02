@@ -387,48 +387,42 @@ end
 def task41
   p 'Дан целочисленный массив. Найти минимальный четный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el%2==0}.min}"
+  p " Result  #{@arr_rnd.select{|el| el%2==0}.min}"
   p '------------------------------------------'
 end
 
 def task42
   p 'Дан целочисленный массив. Найти минимальный нечетный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el%2!=0}.min}"
+  p " Result  #{@arr_rnd.select{|el| el%2!=0}.min}"
   p '------------------------------------------'
 end
 
 def task43
   p 'Дан целочисленный массив. Найти максимальный четный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el%2==0}.max}"
+  p " Result  #{@arr_rnd.select{|el| el%2==0}.max}"
   p '------------------------------------------'
 end
 
 def task44
   p 'Дан целочисленный массив. Найти максимальный нечетный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el%2!=0}.max}"
+  p " Result  #{@arr_rnd.select{|el| el%2!=0}.max}"
   p '------------------------------------------'
 end
 
 def task45
   p 'Дан целочисленный массив. Найти минимальный положительный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el.positive?}.min}"
+  p " Result  #{@arr_rnd.select{|el| el.positive?}.min}"
   p '------------------------------------------'
 end
 
 def task46
   p 'Дан целочисленный массив. Найти максимальный отрицательный элемент.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.select{|el| el.negative?}.max}"
+  p " Result  #{@arr_rnd.select{|el| el.negative?}.max}"
   p '------------------------------------------'
 end
 
@@ -565,7 +559,7 @@ def task
 end
 
 def result()
-self.task40
+self.task43
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
