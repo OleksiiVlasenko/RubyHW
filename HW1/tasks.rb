@@ -260,32 +260,22 @@ end
 
 def task25
   p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым положительным элементом нулевой элемент.'
-  p "Array : #{@arr}"
+  p "Array : #{@arr_rnd}"
   print ' Result '
-  y = []
-  b = 0
-  for i in 0..@arr.size-1
-    if @arr[i] > 0
-    y[b] = @arr[i]
-    y[b - 1] = 0
-    b+=2
-    else
-    y[b] = @arr[i]
-    b+=1
-    end
-  end
-  for i in 0..b
-     print " #{y[i]}"
-end
+  t = []
+  t << @arr_rnd.map{|el| el > 0 ? [@arr_rnd.first, el] : el}
+  p "#{t.flatten}"
   p '------------------------------------------'
 end
 
 def task26
-  # p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
-  # p " Array : #{@arr_rnd}"
-  # print ' Result '
-  # p @arr.to_enum.with_index.reverse_each { |val, index| @arr.insert(index, 0) if val < 0 }
-  # p '------------------------------------------'
+  p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
+  p "Array : #{@arr_rnd}"
+  print ' Result '
+  t = []
+  t << @arr_rnd.map{|el| el < 0 ? [@arr_rnd.first, el] : el}
+  p "#{t.flatten}"
+  p '------------------------------------------'
 end
 
 def task27
@@ -624,7 +614,7 @@ def task
 end
 
 def result()
-self.task66
+self.task26
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
