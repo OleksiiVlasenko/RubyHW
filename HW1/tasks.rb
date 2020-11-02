@@ -129,21 +129,14 @@ def task14
   p '------------------------------------------------'
 end
 
-def arifm?
-  return true if @arr.size < 2
-  (@arr.first..@arr.last).step((@arr.last-@arr.first)/(@arr.size-1)).to_a == @arr
-end
-
-def task15
-  p 'Дан целочисленный массив. Проверить, образуют ли элементы арифметическую прогрессию. Если да, то вывести разность прогрессии, если нет - вывести nil'
-  p "Array : #{@arr}"
-  print ' Result '
-    if arifm? == true
-      p "Arifm true"
-      else p nil
-    end
-    p '------------------------------------------------'
-end
+# def task15
+#   p 'Дан целочисленный массив. Проверить, образуют ли элементы арифметическую прогрессию. Если да, то вывести разность прогрессии, если нет - вывести nil'
+#   p "Array : #{arr=[1,3,5,7,9,11,13,15,17,19]}"
+#   di = arr[1] - arr[0]
+#   arr.each_with_index{|el , i| next if i == 0; return nil if (arr[i] - arr[i-1]) != di }
+#   p "Result #{di}"
+#   p '------------------------------------------------'
+# end
 
 def task17
   p 'Дан целочисленный массив. Найти количество его локальных максимумов.'
@@ -201,24 +194,24 @@ def task20
   p '------------------------------------------------'
 end
 
-def task21
-  p 'Дан целочисленный массив. Определить количество участков, на которых его элементы монотонно возрастают.'
-  p "Array : #{@arr}"
-  print ' Result '
-  num=0
-  for i in 2..@arr.size-1
-    if i<@arr.size
-            if ((@arr[i-2]<@arr[i-1]) && !(@arr[i-1]<@arr[i]))
-              num+=1;
-            end
-        end
-    end
-    if (@arr[@arr.size-2]<@arr[@arr.size-1])
-      num+=1;
-      p num
-  end
-  p '------------------------------------------------'
-end
+# def task21
+#   p 'Дан целочисленный массив. Определить количество участков, на которых его элементы монотонно возрастают.'
+#   p "Array : #{@arr}"
+#   print ' Result '
+#   num=0
+#   for i in 2..@arr.size-1
+#     if i<@arr.size
+#             if ((@arr[i-2]<@arr[i-1]) && !(@arr[i-1]<@arr[i]))
+#               num+=1;
+#             end
+#         end
+#     end
+#     if (@arr[@arr.size-2]<@arr[@arr.size-1])
+#       num+=1;
+#       p num
+#   end
+#   p '------------------------------------------------'
+# end
 
 def task23
   p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наиболее близок к данному числу.'
@@ -280,52 +273,22 @@ end
 
 def task27
   p 'Дан целочисленный массив. Преобразовать его, вставив после каждого положительного элемента нулевой элемент.'
-  p "Array : #{@arr}"
-  p ' Result '
-  b = []
-  n = @arr.size-1
-      nk = n
-      k = 1
-      for i in 1..n
-        b[k] =  @arr[i]
-        if @arr[i]>0
-          nk+=1
-          k+=1
-          b[k]=0
-        end
-        k+=1
-      end
-      n=nk
-       @arr=b
-    for i in 1..n
-    p "#{i} : #{@arr[i]}"
-  end
+  p "Array : #{@arr_rnd}"
+  print ' Result '
+  t = []
+  t << @arr_rnd.map{|el| el> 0 ? [el ,@arr_rnd.first] : el}
+  p "#{t.flatten}"
     p '------------------------------------------'
 end
 
 def task28
   p 'Дан целочисленный массив. Преобразовать его, вставив после каждого отрицательного элемента нулевой элемент.'
-  p " Array : #{@arr_rnd}"
-  p ' Result '
-  b = []
-  n = @arr_rnd.size-1
-      nk = n
-      k = 1
-      for i in 1..n
-        b[k] =  @arr_rnd[i]
-        if @arr_rnd[i]<0
-          nk+=1
-          k+=1
-          b[k]=0
-        end
-        k+=1
-      end
-      n=nk
-       @arr_rnd=b
-    for i in 1..n
-    p "#{i} : #{@arr_rnd[i]}"
-  end
-  p '------------------------------------------'
+  p "Array : #{@arr_rnd}"
+  print ' Result '
+  t = []
+  t << @arr_rnd.map{|el| el< 0 ? [el ,@arr_rnd.first] : el}
+  p "#{t.flatten}"
+    p '------------------------------------------'
 end
 
 def task29
@@ -614,7 +577,7 @@ def task
 end
 
 def result()
-self.task14
+self.task28
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
