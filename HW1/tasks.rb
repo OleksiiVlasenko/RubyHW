@@ -85,16 +85,15 @@ end
 def task9
   p 'Дан целочисленный массив. Заменить все положительные элементы на значение минимального.'
   p "Array : #{@arr}"
-  p 'Result'
-  @arr.each {|i| print " #{@arr[i]=@arr.min}," if i > 0}
+  # p "Result  #{@arr.each {|i|  @arr[i]=@arr.min if i > 0}}"
+  p @arr.map { |e| e.positive? ? @arr.min : e }
   p '------------------------------------------------'
 end
 
 def task10
   p 'Дан целочисленный массив. Заменить все положительные элементы на значение максимального.'
   p "Array : #{@arr}"
-  p 'Result'
-  @arr.each {|i| print "#{@arr[i]=@arr.max}," if i > 0}
+  p "Result #{@arr.each {|i| @arr[i]=@arr.max if i > 0}}"
   p '------------------------------------------------'
 end
 
@@ -557,16 +556,15 @@ def task57
     if min>=arr[i]
       min=arr[i]
       ind << i
-      p ind
+      # p ind
     end
   end
-  # p "index first extr. min ele. #{ind.first}"
+  p "Result #{ind[1]}"
   p '------------------------------------------'
 end
 
-
 def task58
-  p 'ан целочисленный массив. Найти индекс последнего экстремального (то есть минимального или максимального) элемента.'
+  p 'Дан целочисленный массив. Найти индекс последнего экстремального (то есть минимального или максимального) элемента.'
   p "Array > #{arr = [5,1,3,66,32,2,3,10,66,8,99,1]}"
   ind = []
   min = arr[0]
@@ -576,11 +574,21 @@ def task58
       ind << i
     end
   end
-  p "index first extr. min ele. #{ind.last}"
+  p "Result #{ind.last}"
+  p '------------------------------------------'
 end
 
-
+def result()
+self.task57
+# t = ''
+# for i in 1..58 do
+#   # ("task"+i.to_s).call
+#   t = ('task'+i.to_s).intern
+#   self.send(t)
+#   end
+end
 #end of class
 end
 less = HW1_My_Arr.new
-less.task57
+# less.task57
+less.result
