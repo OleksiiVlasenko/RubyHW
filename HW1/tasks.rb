@@ -343,32 +343,28 @@ end
 def task35
   p 'Дан целочисленный массив. Найти индекс первого минимального элемента.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.index(@arr_rnd.min)}"
+  p " Result #{@arr_rnd.index(@arr_rnd.min)} "
   p '------------------------------------------'
 end
 
 def task36
   p 'Дан целочисленный массив. Найти индекс первого максимального элемента.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.index(@arr_rnd.max)}"
+  p " Result #{@arr_rnd.index(@arr_rnd.max)} "
   p '------------------------------------------'
 end
 
 def task37
   p 'Дан целочисленный массив. Найти индекс последнего минимального элемента.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "    #{@arr_rnd.rindex(@arr_rnd.min)}"
+  p " Result #{@arr_rnd.rindex(@arr_rnd.min)} "
   p '------------------------------------------'
 end
 
 def task38
   p 'Дан целочисленный массив. Найти индекс последнего максимального элемента.'
   p " Array : #{@arr_rnd}"
-  p ' Result '
-  p "   #{@arr_rnd.rindex(@arr_rnd.max)}"
+  p " Result #{@arr_rnd.rindex(@arr_rnd.max)} "
   p '------------------------------------------'
 end
 
@@ -573,7 +569,7 @@ def task
 end
 
 def result()
-self.task33
+self.task37
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
