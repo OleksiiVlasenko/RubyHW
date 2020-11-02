@@ -117,7 +117,7 @@ def task13
   p 'Дан целочисленный массив. Осуществить циклический сдвиг элементов массива влево на одну позицию.'
   p "Array : #{@arr}"
   print ' Result '
-  p @arr = @arr.unshift(@arr.pop)
+  p @arr.unshift(@arr.pop)
   p '------------------------------------------------'
 end
 
@@ -125,7 +125,7 @@ def task14
   p 'Дан целочисленный массив. Осуществить циклический сдвиг элементов массива вправо на одну позицию.'
   p "Array : #{@arr}"
   print ' Result '
-  p @arr = @arr.push(@arr.shift)
+  p @arr.push(@arr.shift)
   p '------------------------------------------------'
 end
 
@@ -614,7 +614,7 @@ def task
 end
 
 def result()
-self.task26
+self.task14
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
