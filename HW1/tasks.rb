@@ -7,23 +7,17 @@ class HW1_My_Arr
 def task1
   p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с четными индексами, а затем - с нечетными.'
   p "Array : #{@arr}"
-  print 'Even index :'
-  @arr.each_with_index{|val,index| print " #{val} " if (index % 2) == 0}
-  print 'Odd index :'
-  @arr.each_with_index{|val,index| print " #{val} " if (index % 2) != 0}
+  p "Even index : #{@arr.each_with_index{|val,index| p " #{val} " if (index % 2) == 0}}"
+  p "Odd index : #{@arr.each_with_index{|val,index| p " #{val} " if (index % 2) != 0}}"
   p '------------------------------------------------'
 end
 
 def task2
   p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с нечетными индексами, а затем - четными.'
   p "Array : #{@arr}"
-  even,odd = [],[]
-  @arr.each_with_index{|val,index| (index % 2)!=0 ? odd << val : even << val}
-  print 'Odd index'
-    odd.each {|odd| print " #{odd} "}
-  print 'Even index'
-    even.each {|even| print " #{even} "}
-    p '------------------------------------------------'
+  p "Odd index : #{@arr.each_with_index{|val,index| p " #{val} " if (index % 2) != 0}}"
+  p "Even index : #{@arr.each_with_index{|val,index| p " #{val} " if (index % 2) == 0}}"
+  p '------------------------------------------------'
 end
 
 def task3
@@ -559,7 +553,7 @@ def task
 end
 
 def result()
-self.task43
+self.task1
 # t = ''
 # for i in 1..58 do
 #   # ("task"+i.to_s).call
