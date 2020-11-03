@@ -3,21 +3,21 @@
 
 p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с четными индексами, а затем - с нечетными.'
 p "Array : #{@arr}"
-@arr.each_with_index{|val,index| print "#{val} " if index.even?}
-@arr.each_with_index{|val,index| print "#{val} " if index.odd?}
+@arr.each_with_index{ |val, index| print "#{val} " if index.even?}
+@arr.each_with_index{ |val, index| print "#{val} " if index.odd?}
 p 'Result'
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с нечетными индексами, а затем - четными.'
 p "Array : #{@arr}"
-@arr.each_with_index{|val,index| print "#{val} " if index.odd?}
-@arr.each_with_index{|val,index| print "#{val} " if index.even?}
+@arr.each_with_index{ |val, index| print "#{val} " if index.odd?}
+@arr.each_with_index{ |val, index| print "#{val} " if index.even?}
 p 'Result'
 p '------------------------------------------------'
 p 'Дан целочисленный массив. Вывести номер первого из тех его элементов, которые удовлетворяют двойному неравенству: A[0] < A[i] < A[-1]. Если таких элементов нет, то вывести [ ]. '
 p "Array : #{@arr}"
 j = nil
-@arr.size.times {|i| j=i if (@arr[i] > @arr.first && @arr[i] <@arr.last)}
+@arr.size.times { |i| j = i if (@arr[i] > @arr.first && @arr[i] <@arr.last) }
 if j == nil
    p '[]'
 else p "Result #{j}"
@@ -27,7 +27,7 @@ p '------------------------------------------------'
 p 'Дан целочисленный массив. Вывести номер последнего из тех его элементов, которые удовлетворяют двойному неравенству: A[0] < A[i] < A[-1]. Если таких элементов нет, то вывести [ ].'
 p "Array : #{@arr}"
 j = nil
-@arr.size.times {|i| j=i if (@arr[i] > @arr.last && @arr[i] <@arr.first)}
+@arr.size.times { |i| j = i if (@arr[i] > @arr.last && @arr[i] <@arr.first) }
 if j == nil
    p 'Result []'
 else "Result #{j}"
@@ -35,57 +35,57 @@ end
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к четным числам первый элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{arr_pr2=[1,2,3,4,5,6,7,8,9,10]}"
-arr_pr2.index(arr_pr2.first)+1.upto(arr_pr2.index(arr_pr2.last)-1){|i|arr_pr2[i]+=arr_pr2.first if arr_pr2[i].even?}
+p "Array : #{arr_pr2=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+arr_pr2.index(arr_pr2.first)+1.upto(arr_pr2.index(arr_pr2.last)-1){ |i|arr_pr2[i]+=arr_pr2.first if arr_pr2[i].even?}
 p "Result #{arr_pr2}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к четным числам последний элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{arr_pr3=[1,2,3,4,5,6,7,8,9,10]}"
-arr_pr3.index(arr_pr3.first)+1.upto(arr_pr3.index(arr_pr3.last)-1){|i|arr_pr3[i]+=arr_pr3.last if arr_pr3[i].even?}
+p "Array : #{arr_pr3=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+arr_pr3.index(arr_pr3.first)+1.upto(arr_pr3.index(arr_pr3.last)-1){ |i|arr_pr3[i]+=arr_pr3.last if arr_pr3[i].even?}
 p "Result #{arr_pr3}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к нечетным числам последний элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{arr_pr=[1,2,3,4,5,6,7,8,9,10]}"
-arr_pr.index(arr_pr.first)+1.upto(arr_pr.index(arr_pr.last)-1){|i|arr_pr[i]+=arr_pr.last if arr_pr[i].odd?}
+p "Array : #{arr_pr=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+arr_pr.index(arr_pr.first)+1.upto(arr_pr.index(arr_pr.last)-1){ |i|arr_pr[i]+=arr_pr.last if arr_pr[i].odd?}
 p "Result #{arr_pr}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к нечетным числам первый элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{arr_pr1=[1,2,3,4,5,6,7,8,9,10]}"
-arr_pr1.index(arr_pr1.first)+1.upto(arr_pr1.index(arr_pr1.last)-1){|i|arr_pr1[i]+=arr_pr1.first if arr_pr1[i].odd?}
+p "Array : #{arr_pr1=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}"
+arr_pr1.index(arr_pr1.first)+1.upto(arr_pr1.index(arr_pr1.last)-1){ |i|arr_pr1[i]+=arr_pr1.first if arr_pr1[i].odd?}
 p "Result #{arr_pr1}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все положительные элементы на значение минимального.'
-p "Array : #{arr_m1=[-1,2,3,-4,5,6]}"
+p "Array : #{arr_m1=[-1, 2, 3, -4, 5, 6]}}"
 p "Result #{arr_m1.map { |e| e.positive? ? arr_m1.min : e }}"
 p '------------------------------------------------'
 p'22222222'
 p 'Дан целочисленный массив. Заменить все положительные элементы на значение максимального.'
-p "Array : #{arr_m2=[-1,2,3,-4,5,6]}"
-p "Result #{arr_m2.map!{|el| el > 0 ? arr_m2.max : el }}"
+p "Array : #{arr_m2=[-1, 2, 3, -4, 5, 6]}}"
+p "Result #{arr_m2.map!{ |el| el > 0 ? arr_m2.max : el }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение минимального.'
-p "Array : #{arr_m3=[-1,2,3,-4,5,6]}"
+p "Array : #{arr_m3=[-1, 2, 3, -4, 5, 6]}}"
 p "Result #{arr_m3.map { |e| e.negative? ? arr_m3.min : e }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение максимального.'
-p "Array : #{arr_m4=[-1,2,3,-4,5,6]}"
+p "Array : #{arr_m4=[-1, 2, 3, -4, 5, 6]}}"
 p "Result #{arr_m4.map { |e| e.negative? ? arr_m4.max : e }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Осуществить циклический сдвиг элементов массива влево на одну позицию.'
 p "Array : #{@arr}"
-p "Result #{@arr.unshift(@arr.pop)}"
+p "Result #{@arr.unshift(@arr.pop) }"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Осуществить циклический сдвиг элементов массива вправо на одну позицию.'
 p "Array : #{@arr}"
-p "Result #{@arr.push(@arr.shift)}"
+p "Result #{@arr.push(@arr.shift) }"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество его локальных максимумов.'
@@ -140,10 +140,10 @@ p 'Дано вещественное число R и массив веществ
 arr_r = Array.new(10) { rand(0..10.2) }
 p "Array : #{arr_r}"
 p "R : #{r = 2.3}"
-arr_r.each do |i|-1
-      x = (arr_r[1]-r).abs
-      for i in 2..arr_r.size-1
-        x = (arr_r[i]-r).abs if x > (arr_r[i]-r).abs
+arr_r.each do |i| - 1
+      x = (arr_r[1] - r).abs
+      for i in 2..arr_r.size - 1
+        x = (arr_r[i] - r).abs if x > (arr_r[i] - r).abs
         @n = i
       end
 end
@@ -154,11 +154,11 @@ p 'Дано вещественное число R и массив веществ
 arr_r = Array.new(10) { rand(0..10.2) }
 p "Array : #{arr_r}"
 p "R : #{r = 2.3}"
-arr_r.each do |i|-1
-  x = (arr_r[1]-r).abs
-  for i in 2..arr_r.size-1
-    if x < (arr_r[i]-r).abs
-      x = (arr_r[i]-r).abs
+arr_r.each do |i| - 1
+  x = (arr_r[1] - r).abs
+  for i in 2..arr_r.size - 1
+    if x < (arr_r[i] - r).abs
+      x = (arr_r[i] - r).abs
       @n = i
     end
   end
@@ -168,25 +168,25 @@ p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым положительным элементом нулевой элемент.'
 p "Array : #{@arr_rnd}"
-t = [] << @arr_rnd.map{|el| el > 0 ? [@arr_rnd.first, el] : el}
+t = [] << @arr_rnd.map{ |el| el.positive? ? [@arr_rnd.first, el] : el}
 p "Result #{t.flatten}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым отрицательным элементом нулевой элемент.'
 p "Array : #{@arr_rnd}"
-t = [] << @arr_rnd.map{|el| el < 0 ? [@arr_rnd.first, el] : el}
+t = [] << @arr_rnd.map{ |el| el.negative? ? [@arr_rnd.first, el] : el}
 p "Result #{t.flatten}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, вставив после каждого положительного элемента нулевой элемент.'
 p "Array : #{@arr_rnd}"
-t = [] << @arr_rnd.map{|el| el> 0 ? [el ,@arr_rnd.first] : el}
+t = [] << @arr_rnd.map{ |el| el.positive? ? [el, @arr_rnd.first] : el}
 p "Result #{t.flatten}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, вставив после каждого отрицательного элемента нулевой элемент.'
 p "Array : #{@arr_rnd}"
-t = [] << @arr_rnd.map{|el| el< 0 ? [el ,@arr_rnd.first] : el}
+t = [] << @arr_rnd.map{ |el| el.negative? ? [el, @arr_rnd.first] : el}
 p "Result #{t.flatten}"
 p '------------------------------------------------'
 
@@ -197,116 +197,116 @@ p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Упорядочить его по убыванию.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.sort {|f,l| l <=> f}}"
+p "Result #{@arr_rnd.sort { |f, l| l <=> f}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Вывести индексы массива в том порядке, в котором соответствующие им элементы образуют убывающую последовательность.'
 p "Array : #{@arr_rnd}"
 p ' Result '
-p " index : #{(0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }.reverse}"
-p " value : #{ @arr_rnd.sort {|f,l| l <=> f}}"
+p " index : #{ (0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }.reverse}"
+p " value : #{ @arr_rnd.sort { |f, l| l <=> f}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Вывести индексы массива в том порядке, в котором соответствующие им элементы образуют возрастающую последовательность.'
 p "Array : #{@arr_rnd}"
 p ' Result '
-p " index #{(0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }}"
-p " value #{ @arr_rnd.sort {|f,l| f <=> l}}"
+p " index #{ (0...@arr_rnd.size).sort_by{ |i| @arr_rnd[i] }}"
+p " value #{ @arr_rnd.sort { |f,l| f <=> l}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс минимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.index(@arr_rnd.min)} "
+p "Result #{@arr_rnd.index(@arr_rnd.min) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс максимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.index(@arr_rnd.max)} "
+p "Result #{@arr_rnd.index(@arr_rnd.max) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс первого минимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.index(@arr_rnd.min)} "
+p "Result #{@arr_rnd.index(@arr_rnd.min) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс первого максимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.index(@arr_rnd.max)} "
+p "Result #{@arr_rnd.index(@arr_rnd.max) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс последнего минимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.rindex(@arr_rnd.min)} "
+p "Result #{@arr_rnd.rindex(@arr_rnd.min) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти индекс последнего максимального элемента.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.rindex(@arr_rnd.max)} "
+p "Result #{@arr_rnd.rindex(@arr_rnd.max) } "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество минимальных элементов.'
 p "Array #{@arr_rnd}"
 p "Value   #{@arr_rnd.min}"
-p "Result  #{@arr_rnd.count{|el| el == @arr_rnd.min}} "
+p "Result  #{@arr_rnd.count{ |el| el == @arr_rnd.min}} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество максимальных элементов.'
 p "Array #{@arr_rnd}"
 p "Value   #{@arr_rnd.max}"
-p "Result  #{@arr_rnd.count{|el| el == @arr_rnd.max}} "
+p "Result  #{@arr_rnd.count{ |el| el == @arr_rnd.max}} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти минимальный четный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.even?}.min}"
+p "Result  #{@arr_rnd.select{ |el| el.even?}.min}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти минимальный нечетный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.odd?}.min}"
+p "Result  #{@arr_rnd.select{ |el| el.odd?}.min}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти максимальный четный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.even?}.max}"
+p "Result  #{@arr_rnd.select{ |el| el.even?}.max}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти максимальный нечетный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.odd?}.max}"
+p "Result  #{@arr_rnd.select{ |el| el.odd?}.max}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти минимальный положительный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.positive?}.min}"
+p "Result  #{@arr_rnd.select{ |el| el.positive?}.min}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти максимальный отрицательный элемент.'
 p "Array : #{@arr_rnd}"
-p "Result  #{@arr_rnd.select{|el| el.negative?}.max}"
+p "Result  #{@arr_rnd.select{ |el| el.negative?}.max}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и интервал a..b. Найти минимальный из элементов в этом интервале.'
-p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
+p "Array > #{arr = [1, 5, 3, 66, 1, 99, 32, 3, 10, 66, 8, 99, 1]}"
 p 'interval 10..100'
-p "Result #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.min}"
+p "Result #{arr.each.with_index.find_all{ |a, i| a > 10 && a < 100 }.map{ |a, b| a }.min}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и интервал a..b. Найти максимальный из элементов в этом интервале.'
-p "Array > #{arr = [1,5,3,66,1,99,32,3,10,66,8,99,1]}"
+p "Array > #{arr = [1, 5, 3, 66, 1, 99, 32, 3, 10, 66, 8, 99, 1]}"
 p 'interval 10..100'
-p "Result #{arr.each.with_index.find_all{ |a,i| a>10 && a <100 }.map{ |a,b| a }.max}"
+p "Result #{arr.each.with_index.find_all{ |a, i| a > 10 && a < 100 }.map{ |a, b| a }.max}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество элементов, расположенных перед первым минимальным.'
 p "Array : #{@arr_rnd}"
-min_b = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.min }.map{ |a,b| b }
+min_b = @arr_rnd.each.with_index.find_all{ |a, i| a == @arr_rnd.min }.map{ |a, b| b }
 p "Result #{min_b[0]}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество элементов, расположенных перед первым максимальным.'
 p "Array : #{@arr_rnd}"
-max_b = @arr_rnd.each.with_index.find_all{ |a,i| a == @arr_rnd.max }.map{ |a,b| b }
+max_b = @arr_rnd.each.with_index.find_all{ |a, i| a == @arr_rnd.max }.map{ |a, b| b }
 p "Result #{max_b[0]}"
 p '------------------------------------------------'
 
@@ -323,44 +323,44 @@ p "Result #{max_a.count}"  if @arr_rnd.index(@arr_rnd.min) != @arr_rnd.length - 
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество элементов, между первым и последним минимальным.'
-p "Array :#{arr=[-1,3,4,55,2,3,-1,2]}"
-p "Result: #{(arr[arr.index(arr.min) + 1..arr.rindex(arr.min) - 1]).size} "
+p "Array :#{arr=[-1, 3, 4, 55, 2, 3, -1, 2]}"
+p "Result: #{ (arr[arr.index(arr.min) + 1..arr.rindex(arr.min) - 1]).size} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти количество элементов, между первым и последним максимальным.'
-p "Array :#{arr=[-1,3,4,55,2,3,-1,2,4,55,2]}"
-p "Result: #{(arr[arr.index(arr.max) + 1..arr.rindex(arr.max) - 1]).size} "
+p "Array :#{arr=[-1, 3, 4, 55, 2, 3, -1, 2, 4, 55, 2]}"
+p "Result: #{ (arr[arr.index(arr.max) + 1..arr.rindex(arr.max) - 1]).size} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Найти два наибольших элемента.'
-p "Array :#{arr=[-1,3,4,55,2,3,-1,2,55,33,44]}"
+p "Array :#{arr=[-1, 3, 4, 55, 2, 3, -1, 2, 55, 33, 44]}"
 t1 = [] << arr.max
-t1 << (arr.select{|el| el < arr.max }).last
+t1 << (arr.select{ |el| el < arr.max }).last
 p "Result: #{t1} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Вывести вначале все его четные элементы, а затем - нечетные.'
 p "Array : #{@arr}"
-p "Result #{@arr.select{|x| x.even?}+@arr.select{|x| x.odd?}} "
+p "Result #{@arr.select{ |x| x.even?}+@arr.select{ |x| x.odd?}} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Вывести вначале все его нечетные элементы, а затем - четные.'
 p "Array : #{@arr_rnd}"
-p "Result #{@arr.select{|x| x.odd?}+@arr.select{|x| x.even?}}"
+p "Result #{@arr.select{ |x| x.odd?}+@arr.select{ |x| x.even?}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся менее двух раз.'
-p "Array : #{arr_m2=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Array : #{arr_m2=[1, 2, 3, 4, 4, 5, 6, 7, 7, 7, 9]}"
 p "Result #{arr_m2.each { |val| arr_m2.delete(val) if arr_m2.count(val) < 2 }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся более двух раз.'
-p "Array : #{arr_b3=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Array : #{arr_b3=[1, 2, 3, 4, 4, 5, 6, 7, 7, 7, 9]}"
 p "Result #{arr_b3.each { |val| arr_b3.delete(val) if arr_b3.count(val) > 2 }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся ровно два раза.'
-p "Array : #{arr_r2=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Array : #{arr_r2=[1, 2, 3, 4, 4, 5, 6, 7, 7, 7, 9]}"
 p "Result #{arr_r2.each { |val| arr_r2.delete(val) if arr_r2.count(val) == 2 }}"
 p '------------------------------------------------'
 
@@ -372,7 +372,7 @@ p '------------------------------------------------'
 p 'Дано целое число. Найти сумму его цифр.'
 p "Value #{a = 933}"
 @summ = 0
-while a > 0 do
+while a.positive? do
   @summ += a % 10
   a = a / 10
 end
@@ -406,52 +406,52 @@ p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Если существует элемент, меньший К, то вывести true; в противном случае вывести false.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
-p "Result  #{@arr.map {| val| val<k ?  true : false}}"
+p "K = #{k = 4}"
+p "Result  #{@arr.map { | val| val < k ?  true : false}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Если существует элемент, больший К, то вывести true; в противном случае вывести false.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
-p "Result  #{@arr.map {| val| val>k ?  true : false}}"
+p "K = #{k = 4}"
+p "Result  #{@arr.map { | val| val > k ?  true : false}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Если все элементы массива меньше К, то вывести true; в противном случае вывести false.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
+p "K = #{k =4 }"
 sum = 0
-@arr.each {|i| sum+=i }
- p "Result  #{sum<k ?  true : false}"
+@arr.each { |i| sum += i }
+ p "Result  #{sum < k ?  true : false}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Если все элементы массива больше К, то вывести true; в противном случае вывести false.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
+p "K = #{k = 4}"
 sum = 0
-@arr.each {|i| sum+=i }
-p "Result  #{sum>k ?  true : false}"
+@arr.each { |i| sum += i }
+p "Result  #{sum > k ?  true : false}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Вывести количество элементов, меньших К.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
+p "K = #{k = 4}"
 m = []
-@arr.each {|i| m<<i if i<k }
+@arr.each { |i| m << i if i < k }
 p "Result #{m.size}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Вывести индекс первого элемента, большего К.'
 p "Array : #{@arr}"
-p "K = #{k=4}"
+p "K = #{k = 4}"
 m = []
-@arr.each_with_index{|val,i| m << i if val>k }
+@arr.each_with_index{ |val,i| m << i if val > k }
 p "Result #{m[0]}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив и число К. Вывести индекс последнего элемента, меньшего К'
 p "Array : #{@arr}"
-p "K = #{k=4}"
+p "K = #{k = 4}"
 m = []
-@arr.each_with_index{|val,i| m << i if val<k }
+@arr.each_with_index{ |val,i| m << i if val < k }
 p "Result #{m.last}"
 p '------------------------------------------------'
