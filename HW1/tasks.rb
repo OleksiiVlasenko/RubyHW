@@ -96,7 +96,7 @@ maxima = []
   if i != 0 && i != @arr.length - 1
   maxima <<(@arr_rnd[i]) if @arr_rnd[i - 1] < @arr_rnd[i] && @arr_rnd[i] > @arr_rnd[i + 1]
   end
-  end
+end
 p maxima.size
 p '------------------------------------------------'
 
@@ -108,7 +108,7 @@ minima = []
     if i != 0 && i != @arr.length - 1
       minima <<(@arr_rnd[i]) if @arr_rnd[i - 1] > @arr_rnd[i] && @arr_rnd[i] < @arr_rnd[i + 1]
     end
-  end
+end
 p minima.size
 p '------------------------------------------------'
 
@@ -120,7 +120,7 @@ maxima = []
     if i != 0 && i != @arr.length - 1
       maxima <<(@arr_rnd[i]) if @arr_rnd[i - 1] < @arr_rnd[i] && @arr_rnd[i] > @arr_rnd[i + 1]
     end
-  end
+end
 p maxima.max
 p '------------------------------------------------'
 
@@ -132,7 +132,7 @@ minima = []
   if i != 0 && i != @arr.length - 1
   minima <<(@arr_rnd[i]) if @arr_rnd[i - 1] > @arr_rnd[i] && @arr_rnd[i] < @arr_rnd[i + 1]
   end
-  end
+end
 p minima.min
 p '------------------------------------------------'
 
@@ -350,18 +350,18 @@ p "Result #{@arr.select{|x| x.odd?}+@arr.select{|x| x.even?}}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся менее двух раз.'
-p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) < 2 }}"
+p "Array : #{arr_m2=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Result #{arr_m2.each { |val| arr_m2.delete(val) if arr_m2.count(val) < 2 }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся более двух раз.'
-p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) > 2 }}"
+p "Array : #{arr_b3=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Result #{arr_b3.each { |val| arr_b3.delete(val) if arr_b3.count(val) > 2 }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся ровно два раза.'
-p "Array : #{@arr_rnd}"
-p "Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) == 2 }}"
+p "Array : #{arr_r2=[1,2,3,4,4,5,6,7,7,7,9]}"
+p "Result #{arr_r2.each { |val| arr_r2.delete(val) if arr_r2.count(val) == 2 }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Удалить все элементы, встречающиеся ровно три раза.'
@@ -369,7 +369,18 @@ p "Array : #{@arr_rnd}"
 p "Result #{@arr_rnd.each { |val| @arr_rnd.delete(val) if @arr_rnd.count(val) == 3 }}"
 p '------------------------------------------------'
 
-p 'Дан целочисленный массив. Найти количество элементов, между первым и последним максимальным.'
-p "Array : #{@arr_rnd}"
-p ' Result '
+p 'Дано целое число. Найти сумму его цифр.'
+p "Value #{a = 933}"
+@summ = 0
+while a > 0 do
+  @summ += a % 10
+  a = a / 10
+end
+p "Result #{@summ}"
 p '------------------------------------------------'
+
+p 'Дан целочисленный массив. Возвести в квадрат отрицательные элементы и в третью степень - положительные. Нулевые элементы - не изменять.'
+p "Array : #{@arr_rnd}"
+p "Result #{@arr_rnd.each_with_index.map { |e, i| e.negative? && i != 0 ? e**2 : e**3}}"
+p = p '------------------------------------------------'
+
