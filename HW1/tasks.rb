@@ -3,34 +3,35 @@
 
 p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с четными индексами, а затем - с нечетными.'
 p "Array : #{@arr}"
-p "Even index : #{@arr.each_with_index{|val,index| p " #{val} " if index.even?}}"
-p "Odd index : #{@arr.each_with_index{|val,index| p " #{val} " if index.odd?}}"
+@arr.each_with_index{|val,index| print "#{val} " if index.even?}
+@arr.each_with_index{|val,index| print "#{val} " if index.odd?}
+p 'Result'
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Необходимо вывести вначале его элементы с нечетными индексами, а затем - четными.'
 p "Array : #{@arr}"
-p "Odd index : #{@arr.each_with_index{|val,index| p " #{val} " if index.odd?}}"
-p "Even index : #{@arr.each_with_index{|val,index| p " #{val} " if index.even?}}"
-
+@arr.each_with_index{|val,index| print "#{val} " if index.odd?}
+@arr.each_with_index{|val,index| print "#{val} " if index.even?}
+p 'Result'
 p '------------------------------------------------'
 p 'Дан целочисленный массив. Вывести номер первого из тех его элементов, которые удовлетворяют двойному неравенству: A[0] < A[i] < A[-1]. Если таких элементов нет, то вывести [ ]. '
 p "Array : #{@arr}"
 j = nil
 @arr.size.times {|i| j=i if (@arr[i] > @arr.first && @arr[i] <@arr.last)}
-    if j == nil
-       p "[]"
-    else p "Result #{j}"
-  end
+if j == nil
+   p '[]'
+else p "Result #{j}"
+end
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Вывести номер последнего из тех его элементов, которые удовлетворяют двойному неравенству: A[0] < A[i] < A[-1]. Если таких элементов нет, то вывести [ ].'
 p "Array : #{@arr}"
 j = nil
 @arr.size.times {|i| j=i if (@arr[i] > @arr.last && @arr[i] <@arr.first)}
-    if j == nil
-       p "Result []"
-    else "Result #{j}"
-  end
+if j == nil
+   p 'Result []'
+else "Result #{j}"
+end
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к четным числам первый элемент. Первый и последний элементы массива не изменять.'
@@ -94,7 +95,7 @@ maxima = []
 @arr_rnd.each_index do|i|
   if i != 0 && i != @arr.length - 1
   maxima <<(@arr_rnd[i]) if @arr_rnd[i - 1] < @arr_rnd[i] && @arr_rnd[i] > @arr_rnd[i + 1]
-    end
+  end
   end
 p maxima.size
 p '------------------------------------------------'
@@ -130,43 +131,39 @@ minima = []
 @arr_rnd.each_index do|i|
   if i != 0 && i != @arr.length - 1
   minima <<(@arr_rnd[i]) if @arr_rnd[i - 1] > @arr_rnd[i] && @arr_rnd[i] < @arr_rnd[i + 1]
-    end
+  end
   end
 p minima.min
 p '------------------------------------------------'
 
 p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наиболее близок к данному числу.'
-arr_r = Array.new(10) { rand(-10.2..10.2) }
+arr_r = Array.new(10) { rand(0..10.2) }
 p "Array : #{arr_r}"
 p "R : #{r = 2.3}"
-for i in 1..arr_r.size-1
+arr_r.each do |i|-1
       x = (arr_r[1]-r).abs
-      n = 1
-    for i in 2..arr_r.size-1
-      if x > (arr_r[i]-r).abs
-      x = (arr_r[i]-r).abs
-      n = i
+      for i in 2..arr_r.size-1
+        x = (arr_r[i]-r).abs if x > (arr_r[i]-r).abs
+        @n = i
       end
-    end
-  end
-p "Result - #{arr_r[n]} "
+end
+p "Result - #{arr_r[@n]} "
 p '------------------------------------------------'
 
 p 'Дано вещественное число R и массив вещественных чисел. Найти элемент массива, который наименее близок к данному числу.'
-arr_r = Array.new(10) { rand(-10.2..10.2) }
+arr_r = Array.new(10) { rand(0..10.2) }
 p "Array : #{arr_r}"
 p "R : #{r = 2.3}"
-for i in 1..arr_r.size-1
-      x = (arr_r[1]-r).abs
-      n = 1
-    for i in 2..arr_r.size-1
-      if x < (arr_r[i]-r).abs
+arr_r.each do |i|-1
+  x = (arr_r[1]-r).abs
+  for i in 2..arr_r.size-1
+    if x < (arr_r[i]-r).abs
       x = (arr_r[i]-r).abs
-      n = i
-      end
+      @n = i
     end
   end
-p "Result - #{arr_r[n]} "
+end
+p " Result - #{arr_r[@n]} "
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, вставив перед каждым положительным элементом нулевой элемент.'
