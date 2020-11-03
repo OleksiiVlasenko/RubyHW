@@ -35,47 +35,47 @@ end
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к четным числам первый элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{@arr}"
-@arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1){|i|@arr[i]+=@arr.first if @arr[i].even?}
-p "Result #{@arr}"
+p "Array : #{arr_pr2=[1,2,3,4,5,6,7,8,9,10]}"
+arr_pr2.index(arr_pr2.first)+1.upto(arr_pr2.index(arr_pr2.last)-1){|i|arr_pr2[i]+=arr_pr2.first if arr_pr2[i].even?}
+p "Result #{arr_pr2}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к четным числам последний элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{@arr}"
-@arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1){|i|@arr[i]+=@arr.last if @arr[i].even?}
-p "Result #{@arr}"
+p "Array : #{arr_pr3=[1,2,3,4,5,6,7,8,9,10]}"
+arr_pr3.index(arr_pr3.first)+1.upto(arr_pr3.index(arr_pr3.last)-1){|i|arr_pr3[i]+=arr_pr3.last if arr_pr3[i].even?}
+p "Result #{arr_pr3}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к нечетным числам последний элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{@arr}"
-@arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1){|i|@arr[i]+=@arr.last if @arr[i].odd?}
-p "Result #{@arr}"
+p "Array : #{arr_pr=[1,2,3,4,5,6,7,8,9,10]}"
+arr_pr.index(arr_pr.first)+1.upto(arr_pr.index(arr_pr.last)-1){|i|arr_pr[i]+=arr_pr.last if arr_pr[i].odd?}
+p "Result #{arr_pr}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Преобразовать его, прибавив к нечетным числам первый элемент. Первый и последний элементы массива не изменять.'
-p "Array : #{@arr}"
-@arr.index(@arr.first)+1.upto(@arr.index(@arr.last)-1){|i|@arr[i]+=@arr.first if @arr[i].odd?}
-p "Result #{@arr}"
+p "Array : #{arr_pr1=[1,2,3,4,5,6,7,8,9,10]}"
+arr_pr1.index(arr_pr1.first)+1.upto(arr_pr1.index(arr_pr1.last)-1){|i|arr_pr1[i]+=arr_pr1.first if arr_pr1[i].odd?}
+p "Result #{arr_pr1}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все положительные элементы на значение минимального.'
-p "Array : #{@arr}"
-p "Result #{@arr.map { |e| e.positive? ? @arr.min : e }}"
+p "Array : #{arr_m1=[-1,2,3,-4,5,6]}"
+p "Result #{arr_m1.map { |e| e.positive? ? arr_m1.min : e }}"
 p '------------------------------------------------'
-
+p'22222222'
 p 'Дан целочисленный массив. Заменить все положительные элементы на значение максимального.'
-p "Array : #{@arr}"
-p "Result #{@arr.map!{|el| el > 0 ? @arr.max : el }}"
+p "Array : #{arr_m2=[-1,2,3,-4,5,6]}"
+p "Result #{arr_m2.map!{|el| el > 0 ? arr_m2.max : el }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение минимального.'
-p "Array : #{@arr}"
-p "Result #{@arr.map { |e| e.negative? ? @arr.min : e }}"
+p "Array : #{arr_m3=[-1,2,3,-4,5,6]}"
+p "Result #{arr_m3.map { |e| e.negative? ? arr_m3.min : e }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Заменить все отрицательные элементы на значение максимального.'
-p "Array : #{@arr}"
-p "Result #{@arr.map { |e| e.negative? ? @arr.max : e }}"
+p "Array : #{arr_m4=[-1,2,3,-4,5,6]}"
+p "Result #{arr_m4.map { |e| e.negative? ? arr_m4.max : e }}"
 p '------------------------------------------------'
 
 p 'Дан целочисленный массив. Осуществить циклический сдвиг элементов массива влево на одну позицию.'
@@ -384,3 +384,22 @@ p "Array : #{@arr_rnd}"
 p "Result #{@arr_rnd.each_with_index.map { |e, i| e.negative? && i != 0 ? e**2 : e**3}}"
 p = p '------------------------------------------------'
 
+p 'Дан целочисленный массив. Найти все четные элементы.'
+p "Array : #{@arr}"
+p "Result  #{@arr.each.find_all{ |value| value.even?}}"
+p '------------------------------------------------'
+
+p 'Дан целочисленный массив. Найти количество четных элементов.'
+p "Array : #{@arr}"
+p "Result  #{@arr.each.find_all{ |value| value.even?}.size}"
+p '------------------------------------------------'
+
+p 'Дан целочисленный массив. Найти все нечетные элементы.'
+p "Array : #{@arr}"
+p "Result  #{@arr.each.find_all{ |value| value.odd?}}"
+p '------------------------------------------------'
+
+p 'Дан целочисленный массив. Найти количество нечетных элементов.'
+p "Array : #{@arr}"
+p "Result  #{@arr.each.find_all{ |value| value.odd?}.size}"
+p '------------------------------------------------'
