@@ -40,6 +40,7 @@ class Pet
 
   def time_pass
     if @hunger >= 0
+
     @hunger -= 1
     @happy -= 1
     @cleanliness +=1
@@ -51,8 +52,7 @@ class Pet
       p "** #{@name} почав їсти ваші шнурки на взутті, треба нагально покормити"
     end
     die
-    end
-  private :time_pass
+  end
 
   def timeToSleep
     p "** #{@name} солодко засипа у вас на руках ..."
@@ -108,38 +108,54 @@ class Pet
       p "** #{@name} я не хочу в туалет"
     end
   end
-
-  def start(choise)
-    case choise
-    when 'start'
-      p 'start'
-    end
+  def sport
+    @happy += 2
+    @hunger -= 2
   end
+  def swim
+    @happy +=2
+    @hunger
+  end
+  def comands
+    puts 'Комманды:'
+    puts 'play(+2 щастя -2 бажання поїсти)'
+    puts 'eat(+2 ситності)'
+    puts 'sport(+2 щастя -2 ситності)'
+    puts 'walk(+2 щастя -1 ситності)'
+    puts 'swim(+5 щастя -2 ситності)'
+    puts 'watch(Проспати цілий день)'
+    print 'Один день (-3 щастя -3 ситності '
+
+  end
+
+  def start()
+    command = ''
+    until command == exit
+      command = gets.chomp
+      case command
+      when 1
+        p 'start'
+      when 2
+      p 'start'
+
+      end
+    end
+    end
+
 
   def die
     p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝" if @hunger <= 0
   end
-  private :die
+
 
   def kill
     @hunger = 0
     die
   end
 
-
+  private :die, :walk, :kill, :happy?, :poop?, :toilet, :status, :hunger?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
 end
 
 
 dragon = Pet.new('Nickson', 'Dog', 'Oleksii')
-dragon.walk
-dragon.timeToSleep
-dragon.walk
-dragon.status
-dragon.walk
-dragon.walk
-dragon.status
-dragon.play
-dragon.kill
-
-
-
+dragon.start
