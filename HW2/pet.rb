@@ -7,7 +7,7 @@ class Pet
     @hunger = 10      # рівень голоду
     @happy = 10       # рівень щастя
     @asleep = false   # стан тваринки спить, не спить
-    @cleanliness = 10 # рівень чистоти
+    @cleanliness = 10 # рівень бажання сходити до туалету
     p " - Вітаю мій господарю, мене звати #{@name}, хочу нагадати що я видатна тваринка із сімейства #{@type}"
   end
 
@@ -39,9 +39,19 @@ class Pet
   end
 
   def time_pass
+    if @hunger >= 0
     @hunger -= 1
     @happy -= 1
-  end
+    @cleanliness +=1
+    else
+      if @asleep
+        @asleep = false
+        p "** #{@name} прокидаеться "
+      end
+      p "** #{@name} почав їсти ваші шнурки на взутті, треба нагально покормити"
+    end
+    die
+    end
   private :time_pass
 
   def timeToSleep
@@ -69,22 +79,22 @@ class Pet
 
   def play
     if happy?
-    rnd = rand(3)
-    case rnd
-    when 0
-      p "** #{@name} грається з м'ячиком"
-    when 1
-      p "** #{@name} став пілотом справжнього літака"
-    when 2
-      p "** #{@name} покоряє вершину гори на подвір'ї"
-    else
-      p ' - Я не буду з тобою більше гуляти!'
-    end
-    @happy +=2
+      rnd = rand(3)
+      case rnd
+      when 0
+        p "** #{@name} грається з м'ячиком"
+      when 1
+        p "** #{@name} став пілотом справжнього літака"
+      when 2
+        p "** #{@name} покоряє вершину гори на подвір'ї"
+      else
+        p ' - Я не буду з тобою більше гуляти!'
+      end
+      @happy +=2
     else
       p "** #{@name} я не хочу гратися"
     end
-    end
+  end
 
   def poop?
     @hunger <= 7
@@ -93,14 +103,11 @@ class Pet
   def toilet
     if poop?
       p "** #{@name} сходив в туалет"
-    @cleanliness -= 1
+      @cleanliness -= 1
     else
       p "** #{@name} я не хочу в туалет"
     end
   end
-
-
-
 
   def start(choise)
     case choise
@@ -108,6 +115,14 @@ class Pet
       p 'start'
     end
   end
+
+  def die
+    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝" if @hunger < 0
+  end
+  private :die
+
+
+
 
 end
 
