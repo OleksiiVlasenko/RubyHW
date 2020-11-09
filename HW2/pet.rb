@@ -68,7 +68,7 @@ class Pet
   end
 
   def play
-    @happy +=2
+    if happy?
     rnd = rand(3)
     case rnd
     when 0
@@ -80,11 +80,33 @@ class Pet
     else
       p ' - Я не буду з тобою більше гуляти!'
     end
+    @happy +=2
+    else
+      p "** #{@name} я не хочу гратися"
+    end
+    end
+
+  def poop?
+    @hunger <= 7
   end
 
   def toilet
-    p "** #{@name} сходив в туалет"
+    if poop?
+      p "** #{@name} сходив в туалет"
     @cleanliness -= 1
+    else
+      p "** #{@name} я не хочу в туалет"
+    end
+  end
+
+
+
+
+  def start(choise)
+    case choise
+    when 'start'
+      p 'start'
+    end
   end
 
 end
@@ -95,6 +117,7 @@ dragon.walk
 dragon.timeToSleep
 dragon.walk
 dragon.status
+dragon.walk
 dragon.walk
 dragon.status
 dragon.play
