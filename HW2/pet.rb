@@ -117,17 +117,20 @@ class Pet
   end
 
   def die
-    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝" if @hunger < 0
+    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝" if @hunger <= 0
   end
   private :die
 
-
+  def kill
+    @hunger = 0
+    die
+  end
 
 
 end
 
 
-dragon = Pet.new('Richard', 'Dog', 'Oleksii')
+dragon = Pet.new('Nickson', 'Dog', 'Oleksii')
 dragon.walk
 dragon.timeToSleep
 dragon.walk
@@ -136,7 +139,7 @@ dragon.walk
 dragon.walk
 dragon.status
 dragon.play
-
+dragon.kill
 
 
 
