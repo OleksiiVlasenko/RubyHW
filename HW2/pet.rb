@@ -125,9 +125,15 @@ class Pet
     puts 'swim(+5 щастя -2 ситності)'
     puts 'watch(Проспати цілий день)'
     print 'Один день (-3 щастя -3 ситності '
-
   end
 
+  def help
+    puts 'Щоб почати грати напишіть start'
+    puts 'Спочатку у вашої тваринки: '
+    puts '10 ситності'
+    puts '10 щастя'
+    comands
+  end
   def start()
     command = ''
     until command == exit
