@@ -1,54 +1,21 @@
 # frozen_string_literal: true
+
 require_relative 'pet_methods'
 class Pet
 
   def initialize(name, type, owner)
-    @name = name      # ім'я
-    @type = type      # клас тваринки
-    @owner = owner    # власник тваринки
-    @hunger = 10      # рівень голоду
-    @happy = 10       # рівень щастя
-    @asleep = false   # стан тваринки спить, не спить
-    @cleanliness = 0 # рівень бажання сходити до туалету
-    @live = 2
+    @name = name      # name
+    @type = type      # animal type
+    @owner = owner    # animal owner
+    @hunger = 10      # hungry lvl
+    @happy = 10       # happy lvl
+    @asleep = false   # asleep status
+    @cleanliness = 0  # toilet lvl
+    @live = 2         # lives
     help
     pet_comand
     start
   end
-
-  def time_pass
-    if @hunger >= 0
-      @hunger -= 1
-      @happy -= 1
-      @cleanliness += 1
-    else
-      asleep_f if @asleep
-      @live -=1
-      p "** #{@name} втратив одне життя" if @live == 1
-      p "** #{@name} втратив останнє життя" if @live.zero?
-      p "** #{@name} треба нагально покормити, бо помре" if @live.zero?
-    end
-    if @cleanliness >= 10
-      @cleanliness = 0
-      p "** #{@name} раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
-    end
-    asleep_f if hungry?
-    rnd = rand(3)
-    case rnd
-    when 0
-      p "** #{@name} я хочу їсти" if @hunger.positive?
-    when 1
-      p "** #{@name} пюрешечки да с котлеткой би ...." if @hunger.positive?
-    when 2
-      p "** #{@name} накорми мене ..." if @hunger.positive?
-    else
-      p ' - Я не буду з тобою більше гуляти!'
-    end
-    die
-    angry
-  end
-
-
 
   def pet_comand
     p '------------------------------------------------------------------'
@@ -76,12 +43,10 @@ class Pet
     p '| Спочатку у вашої тваринки: '
     p '| 10 ситності'
     p '| 10 щастя'
-
   end
 
-
   def start
-    command = ''
+    command = 1
     until command == '0'
       die if @hunger <= 0
       command = gets.chomp.downcase
@@ -118,10 +83,7 @@ class Pet
     end
   end
 
-
-
-  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed,
-          :play, :asleep_f, :sport, :swim, :new_pet, :start, :help, :pet_comand, :kill
+  private :start, :pet_comand, :help
 end
 
 dragon = Pet.new('Nickson', 'Dog', 'Oleksii')
