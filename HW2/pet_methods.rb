@@ -146,6 +146,7 @@ def kill
   @live = 0
   die
 end
+
 def sport
   time_pass
   @happy += 2
@@ -157,8 +158,6 @@ def swim
   @happy += 3
   @hunger -= 2
 end
-
-private
 
 def walk
   time_pass

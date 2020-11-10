@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'pet_methods'
+
 class Pet
 
   def initialize(name, type, owner)
