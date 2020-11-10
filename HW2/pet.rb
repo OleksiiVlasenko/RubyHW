@@ -59,18 +59,18 @@ class Pet
       else nil
     end
   end
-  def time_pass
 
+  def time_pass
     if @hunger >= 0
-    @hunger -= 1
-    @happy -= 1
-    @cleanliness +=1
+      @hunger -= 1
+      @happy -= 1
+      @cleanliness += 1
     else
       asleep_f if @asleep
       @live -=1
       p "** #{@name} втратив одне життя" if @live == 1
-      p "** #{@name} втратив останнє життя" if @live == 0
-      p "** #{@name} треба нагально покормити, бо помре" if @live != 0
+      p "** #{@name} втратив останнє життя" if @live.zero?
+      p "** #{@name} треба нагально покормити, бо помре" if @live.zero?
     end
     if @cleanliness >= 10
       @cleanliness = 0
@@ -80,11 +80,11 @@ class Pet
     rnd = rand(3)
     case rnd
     when 0
-      p "** #{@name} я хочу їсти" if @hunger > 0
+      p "** #{@name} я хочу їсти" if @hunger.positive?
     when 1
-      p "** #{@name} пюрешечки да с котлеткой би ...." if @hunger > 0
+      p "** #{@name} пюрешечки да с котлеткой би ...." if @hunger.positive?
     when 2
-      p "** #{@name} накорми мене ..." if @hunger > 0
+      p "** #{@name} накорми мене ..." if @hunger.positive?
     else
       p ' - Я не буду з тобою більше гуляти!'
     end
@@ -106,6 +106,7 @@ class Pet
       p "** #{@name} повільно відкрива оч відкрива очі ."
     end
   end
+
   def angry
     rnd_h = rand(3)
     rnd = rand(3)
@@ -119,8 +120,7 @@ class Pet
     else
       p ' - Я не буду з тобою більше гуляти!'
     end
-    end
-
+  end
 
   def hungry?
     @hunger < 5 ? true : false
@@ -164,16 +164,19 @@ class Pet
       p "** #{@name} я скоро захочу в туалет"
     end
   end
+
   def sport
     time_pass
     @happy += 2
     @hunger -= 2
   end
+
   def swim
     time_pass
     @happy += 3
     @hunger -= 2
   end
+
   def pet_comand
     p '------------------------------------------------------------------'
     p '| Комманды:'
@@ -192,6 +195,7 @@ class Pet
     p '| 12 Список команд'
     p '| Введіть номер команди (тільки цифру)'
   end
+
   def help
     p '| ----------------------------------------------------------------'
     p '| Щоб почати грати напишіть номер команди яку ви хочете виконати'
@@ -248,15 +252,15 @@ class Pet
   end
 
   def die
-    if @live ==0
+    if @live.zero?
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
       exit
     end
   end
 
-  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed, :play, :asleep_f, :sport, :swim, :new_pet, :start, :help, :pet_comand
+  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed,
+          :play, :asleep_f, :sport, :swim, :new_pet, :start, :help, :pet_comand
 end
-
 
 dragon = Pet.new('Nickson', 'Dog', 'Oleksii')
