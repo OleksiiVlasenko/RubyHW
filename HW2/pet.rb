@@ -8,6 +8,7 @@ class Pet
     @happy = 10       # рівень щастя
     @asleep = false   # стан тваринки спить, не спить
     @cleanliness = 10 # рівень бажання сходити до туалету
+    @live = true
     help
     comands
     start
@@ -15,9 +16,9 @@ class Pet
 
   def status
     p "Статус #{@type} : #{@name}"
-    p "Голод : #{@hunger}"
-    p "Щастя : #{@happy}"
-    p "Туалет: #{@cleanliness}"
+    p "Ситність : #{@hunger}"
+    p "Щастя    : #{@happy}"
+    p "Туалет   : #{@cleanliness}"
   end
 
   def walk
@@ -99,7 +100,8 @@ class Pet
       else
         p ' - Я не буду з тобою більше гуляти!'
       end
-      @happy +=2
+      @happy += 2
+      @hunger -= 2
     else
       p "** #{@name} я не хочу гратися"
     end
@@ -112,8 +114,8 @@ class Pet
   def toilet
     if poop?
       p "** #{@name} сходив в туалет"
-      @cleanliness -= 1
-      @hunger -=1
+      @cleanliness = 0
+      @hunger -= 2
     else
       p "** #{@name} я не хочу в туалет"
     end
@@ -129,14 +131,20 @@ class Pet
   def comands
     p '-----------------------------------------------'
     p 'Комманды:'
-    p 'play(+2 щастя -2 бажання поїсти)'
-    p 'eat(+2 ситності)'
-    p 'sport(+2 щастя -2 ситності)'
-    p 'walk(+2 щастя -1 ситності)'
-    p 'swim(+5 щастя -2 ситності)'
-    p 'watch(Проспати цілий день)'
-    p 'Один день (-3 щастя -3 ситності '
-    p 'Введіть номер команди'
+    p '0 Вийти з гри'
+    p '1 Привітатись'
+    p '2 бавитись(+2 щастя -2 бажання поїсти)'
+    p '3 їсти (+2 ситності)'
+    p '4 займатись різними видами спорту(+2 щастя -2 ситності)'
+    p '5 прогулюватись(+2 щастя -1 ситності)'
+    p '6 плавати(+5 щастя -2 ситності)'
+    p '7 нічого не робити (Проспати цілий день-3 щастя -3 ситності)'
+    p '8 вивести в туалет (0 туалет -2 ситності)'
+    p '9 поспати '
+    p '10 Стан тваринки '
+    p '11 Вбити тваринку'
+    p '12 Список команд'
+    p 'Введіть номер команди (тільки цифру)'
   end
   def help
     p '-----------------------------------------------'
@@ -156,22 +164,37 @@ class Pet
     while true
       if @hunger <= 0
         die
+        @live = false
         break
       end
 
       command = gets.chomp.downcase
       case command
-      when '5'
-        feed
-      when '2'
-        walk
-      when '3'
-        toilet
-      when '4'
-        status
       when '1'
+        new_pet
+      when '2'
+        play
+      when '3'
+        feed
+      when '4'
+        sport
+      when '5'
+        walk
+      when '6'
+        swim
+      when '7'
+        time_pass
+      when '8'
+        toilet
+      when '9'
+        timeToSleep
+      when '10'
+        status
+      when '11'
+        kill
+      when '12'
         comands
-      when 'exit'
+      when '0'
         break
       else
         p "sorry, i don't know this command: #{command}"
@@ -179,15 +202,13 @@ class Pet
     end
   end
 
-
   def die
     p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
   end
 
-
   def kill
-    @hunger = 0
-    die if @hunger <= 0
+    die
+    @live = false
   end
   private :die, :walk, :kill, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
 end
