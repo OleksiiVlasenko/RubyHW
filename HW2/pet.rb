@@ -45,6 +45,7 @@ class Pet
     p "** #{@name} ммм, дуже смачно"
     toilet
   end
+
   def asleep_f
     @asleep = false
     rnd = rand(3)
@@ -55,6 +56,7 @@ class Pet
       p "** #{@name} підійшов по ближче і дивиться вам в очі" if @live != 0
     when 2
       p "** #{@name} почина відкривати очі після короткого сну" if @live != 0
+      else nil
     end
   end
   def time_pass
@@ -90,7 +92,7 @@ class Pet
     angry
   end
 
-  def timeToSleep
+  def timetosleep
     p "** #{@name} солодко засипа у вас на руках ..."
     @asleep = true
     2.times do
@@ -230,7 +232,7 @@ class Pet
       when '8'
         toilet
       when '9'
-        timeToSleep
+        timetosleep
       when '10'
         status
       when '11'
@@ -253,7 +255,7 @@ class Pet
     end
   end
 
-  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play, :asleep_f, :sport, :swim, :new_pet, :start, :help, :pet_comand
+  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed, :play, :asleep_f, :sport, :swim, :new_pet, :start, :help, :pet_comand
 end
 
 
