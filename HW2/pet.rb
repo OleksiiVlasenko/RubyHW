@@ -7,10 +7,10 @@ class Pet
     @hunger = 10      # рівень голоду
     @happy = 10       # рівень щастя
     @asleep = false   # стан тваринки спить, не спить
-    @cleanliness = 10 # рівень бажання сходити до туалету
+    @cleanliness = 0 # рівень бажання сходити до туалету
     @live = true
     help
-    comands
+    pet_comand
     start
   end
 
@@ -41,12 +41,23 @@ class Pet
     @hunger += 2
     @cleanliness += 2
     p "** #{@name} ммм, дуже смачно"
+    toilet
   end
   def asleep_f
     @asleep = false
-    p "** #{@name} невпинно дивиться на вас "
+    rnd = rand(3)
+    case rnd
+    when 0
+      p "** #{@name} невпинно дивиться на вас"
+    when 1
+      p "** #{@name} підійшов по ближче і дивиться вам в очі"
+    when 2
+      p "** #{@name} вкусик вас за вухо"
+
+    end
   end
   def time_pass
+    die
     if @hunger >= 0
     @hunger -= 1
     @happy -= 1
@@ -61,7 +72,17 @@ class Pet
       p "** #{@name} раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
     end
     asleep_f if hungry?
-    p "** #{@name} я хочу їсти!!!"
+    rnd = rand(3)
+    case rnd
+    when 0
+      p "** #{@name} я хочу їсти"
+    when 1
+      p "** #{@name} пюрешечки да с котлеткой би ...."
+    when 2
+      p "** #{@name} накорми мене ..."
+    else
+      p ' - Я не буду з тобою більше гуляти!'
+    end
   end
 
   def timeToSleep
@@ -88,6 +109,7 @@ class Pet
   end
 
   def play
+    time_pass
     if happy?
       rnd = rand(3)
       case rnd
@@ -108,27 +130,29 @@ class Pet
   end
 
   def poop?
-    @cleanliness >= 7
+    @cleanliness >= 10
   end
 
   def toilet
     if poop?
-      p "** #{@name} сходив в туалет"
+      p "** #{@name} упс, сходив в куточку в туалет"
       @cleanliness = 0
       @hunger -= 2
     else
-      p "** #{@name} я не хочу в туалет"
+      p "** #{@name} я скоро захочу в туалет"
     end
   end
   def sport
+    time_pass
     @happy += 2
     @hunger -= 2
   end
   def swim
+    time_pass
     @happy += 3
     @hunger -= 2
   end
-  def comands
+  def pet_comand
     p '-----------------------------------------------'
     p 'Комманды:'
     p '0 Вийти з гри'
@@ -148,7 +172,8 @@ class Pet
   end
   def help
     p '-----------------------------------------------'
-    p 'Щоб почати грати напишіть start'
+    p 'Щоб почати грати напишіть номер команди яку ви хочете виконати'
+    p 'Ваша тваринка, хотіти'
     p 'Спочатку у вашої тваринки: '
     p '10 ситності'
     p '10 щастя'
@@ -160,12 +185,10 @@ class Pet
   end
 
   def start
-
-    while true
+    command = ''
+    until command == '0'
       if @hunger <= 0
         die
-        @live = false
-        break
       end
 
       command = gets.chomp.downcase
@@ -191,11 +214,11 @@ class Pet
       when '10'
         status
       when '11'
-        kill
+        die
       when '12'
-        comands
+        pet_comand
       when '0'
-        break
+        exit
       else
         p "sorry, i don't know this command: #{command}"
       end
@@ -203,14 +226,13 @@ class Pet
   end
 
   def die
+    if @happy.negative?
     p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
+    exit
+    end
   end
 
-  def kill
-    die
-    @live = false
-  end
-  private :die, :walk, :kill, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
+  private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
 end
 
 
