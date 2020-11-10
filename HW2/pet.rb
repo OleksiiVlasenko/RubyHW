@@ -8,13 +8,16 @@ class Pet
     @happy = 10       # рівень щастя
     @asleep = false   # стан тваринки спить, не спить
     @cleanliness = 10 # рівень бажання сходити до туалету
-    p " - Вітаю мій господарю, мене звати #{@name}, хочу нагадати що я видатна тваринка із сімейства #{@type}"
+    help
+    comands
+    start
   end
 
   def status
     p "Статус #{@type} : #{@name}"
     p "Голод : #{@hunger}"
     p "Щастя : #{@happy}"
+    p "Туалет: #{@cleanliness}"
   end
 
   def walk
@@ -35,23 +38,29 @@ class Pet
 
   def feed
     @hunger += 1
-    toilet if feed && @hunger >= 7
+    @cleanliness +=1
+    p "** #{@namee} ммм, дуже смачно"
   end
-
+  def asleep_f
+    @asleep = false
+    p "** #{@name} невпинно дивиться на вас "
+  end
   def time_pass
     if @hunger >= 0
-
     @hunger -= 1
     @happy -= 1
     @cleanliness +=1
     else
-      if @asleep
-        @asleep = false
-        p "** #{@name} прокидаеться "
-      end
+      asleep_f if @asleep
       p "** #{@name} почав їсти ваші шнурки на взутті, треба нагально покормити"
+      exit
     end
-    die
+    if @cleanliness >= 10
+      @cleanliness = 0
+      p "** #{@name} раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
+    end
+    asleep_f if hungry?
+    p "** #{@name} я хочу їсти!!!"
   end
 
   def timeToSleep
@@ -69,7 +78,7 @@ class Pet
     end
   end
 
-  def hunger?
+  def hungry?
     @hunger < 5 ? true : false
   end
 
@@ -97,13 +106,14 @@ class Pet
   end
 
   def poop?
-    @hunger <= 7
+    @cleanliness >= 7
   end
 
   def toilet
     if poop?
       p "** #{@name} сходив в туалет"
       @cleanliness -= 1
+      @hunger -=1
     else
       p "** #{@name} я не хочу в туалет"
     end
@@ -117,49 +127,69 @@ class Pet
     @hunger
   end
   def comands
-    puts 'Комманды:'
-    puts 'play(+2 щастя -2 бажання поїсти)'
-    puts 'eat(+2 ситності)'
-    puts 'sport(+2 щастя -2 ситності)'
-    puts 'walk(+2 щастя -1 ситності)'
-    puts 'swim(+5 щастя -2 ситності)'
-    puts 'watch(Проспати цілий день)'
-    print 'Один день (-3 щастя -3 ситності '
+    p '-----------------------------------------------'
+    p 'Комманды:'
+    p 'play(+2 щастя -2 бажання поїсти)'
+    p 'eat(+2 ситності)'
+    p 'sport(+2 щастя -2 ситності)'
+    p 'walk(+2 щастя -1 ситності)'
+    p 'swim(+5 щастя -2 ситності)'
+    p 'watch(Проспати цілий день)'
+    p 'Один день (-3 щастя -3 ситності '
+    p 'Введіть номер команди'
   end
-
   def help
-    puts 'Щоб почати грати напишіть start'
-    puts 'Спочатку у вашої тваринки: '
-    puts '10 ситності'
-    puts '10 щастя'
-    comands
-  end
-  def start()
-    command = ''
-    until command == exit
-      command = gets.chomp
-      case command
-      when 1
-        p 'start'
-      when 2
-      p 'start'
+    p '-----------------------------------------------'
+    p 'Щоб почати грати напишіть start'
+    p 'Спочатку у вашої тваринки: '
+    p '10 ситності'
+    p '10 щастя'
 
+  end
+
+  def new_pet
+    p " - Вітаю мій господарю, мене звати #{@name}, хочу нагадати що я видатна тваринка із сімейства #{@type}"
+  end
+
+  def start
+
+    while true
+      if @hunger <= 0
+        die
+        break
+      end
+
+      command = gets.chomp.downcase
+      case command
+      when '5'
+        feed
+      when '2'
+        walk
+      when '3'
+        toilet
+      when '4'
+        status
+      when '1'
+        comands
+      when 'exit'
+        break
+      else
+        p "sorry, i don't know this command: #{command}"
       end
     end
-    end
+  end
 
 
   def die
-    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝" if @hunger <= 0
+    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
   end
 
 
   def kill
     @hunger = 0
-    die
+    die if @hunger <= 0
   end
-
-  private :die, :walk, :kill, :happy?, :poop?, :toilet, :status, :hunger?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
+  private :die, :walk, :kill, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timeToSleep, :time_pass, :feed, :play
 end
 
 
