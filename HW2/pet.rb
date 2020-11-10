@@ -16,10 +16,11 @@ class Pet
   end
 
   def status
-    p "Статус #{@type} : #{@name}"
-    p "Ситність : #{@hunger}"
-    p "Щастя    : #{@happy}"
-    p "Туалет   : #{@cleanliness}"
+    p "Статус #{@type}  #{@name}"
+    p "Ситність    : #{@hunger}"
+    p "Щастя       : #{@happy}"
+    p "Туалет      : #{@cleanliness}"
+    p "К-ть життів : #{@live}"
   end
 
   def walk
@@ -53,8 +54,7 @@ class Pet
     when 1
       p "** #{@name} підійшов по ближче і дивиться вам в очі" if @live != 0
     when 2
-      p "** #{@name} вкусик вас за вухо" if @live != 0
-
+      p "** #{@name} почина відкривати очі після короткого сну" if @live != 0
     end
   end
   def time_pass
@@ -87,6 +87,7 @@ class Pet
       p ' - Я не буду з тобою більше гуляти!'
     end
     die
+    angry
   end
 
   def timeToSleep
@@ -103,6 +104,21 @@ class Pet
       p "** #{@name} повільно відкрива оч відкрива очі ."
     end
   end
+  def angry
+    rnd_h = rand(3)
+    rnd = rand(3)
+    case rnd
+    when 0
+      p "** #{@name} розізлився на вас" if @happy <5 && rnd == rnd_h
+    when 1
+      p "** #{@name} вкусив вас " if @happy <3 && rnd == rnd_h
+    when 2
+      p "** #{@name} спробував на вас напасти" if @happy <2 && rnd == rnd_h
+    else
+      p ' - Я не буду з тобою більше гуляти!'
+    end
+    end
+
 
   def hungry?
     @hunger < 5 ? true : false
