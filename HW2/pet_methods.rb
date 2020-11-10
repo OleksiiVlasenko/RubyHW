@@ -22,26 +22,30 @@ def time_pass
     @cleanliness = 0
     p "** #{@name} раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
   end
-  asleep_f if hungry?
-  rnd = rand(3)
-  case rnd
-  when 0
-    p "** #{@name} я хочу їсти" if @hunger.positive?
-  when 1
-    p "** #{@name} пюрешечки да с котлеткой би ...." if @hunger.positive?
-  when 2
-    p "** #{@name} накорми мене ..." if @hunger.positive?
-  else
-    p ' - Я не буду з тобою більше гуляти!'
+  if hungry?
+    asleep_f
+    rnd = rand(3)
+    case rnd
+    when 0
+      p "** #{@name} я хочу їсти" if @live != 0
+    when 1
+      p "** #{@name} пюрешечки да с котлеткой би ...." if @live != 0
+    when 2
+      p "** #{@name} накорми мене ..." if @live != 0
+    else
+      p ' - Я не буду з тобою більше гуляти!'
+    end
   end
   die
   angry
+  love
+  toilet if @cleanliness >= 8
 end
 def feed
   @hunger += 2
   @cleanliness += 2
   p "** #{@name} ммм, дуже смачно"
-  toilet
+  time_pass
 end
 
 def asleep_f
@@ -72,7 +76,19 @@ def timetosleep
     p "** #{@name} повільно відкрива оч відкрива очі ."
   end
 end
-
+def love
+  rnd = rand(5)
+  case rnd
+  when 0
+    p "** #{@name} обнімає вас" if @happy > 8
+  when 1
+    p "** #{@name} любить вас " if @happy < 9
+  when 2
+    p "** #{@name} в душі вас нечаїть" if @happy < 10
+  else
+    p ' - Я не буду з тобою більше гуляти!'
+  end
+end
 def angry
   rnd = rand(6)
   case rnd
@@ -126,7 +142,7 @@ def toilet
     @cleanliness = 0
     @hunger -= 2
   else
-    p "** #{@name} я скоро захочу в туалет"
+    p "** #{@name} Дякую, але я ще не дуже хочу в туалет"
   end
 end
 
