@@ -9,7 +9,7 @@ class Menu
     new_pet
 
     while true
-    command = gets.strip.downcase
+      command = gets.strip.downcase
       case command
       when '1'
         @pet.mining
@@ -42,18 +42,14 @@ class Menu
       when '0'
         exit
       else
-        p "Вибачте, спробуйте заново"
-        new_pet
+        p 'Вибачте, спробуйте заново'
       end
-    p "Привіт я #{@type} і мене звати #{@pet.name}."
-    @pet.help
-    @pet.pet_comand
     end
-
   end
 
   def new_pet
-    p 'Як буде звати вашу тваринку ? '
+    until @type == 'dog' || @type == 'cat'
+      p 'Як буде звати вашу тваринку ? '
     @name = gets.chomp
     p 'Напишіть dog чи cat'
     @type = gets.chomp.downcase
@@ -64,8 +60,11 @@ class Menu
     else
       p 'Не знаю такої тваринки'
     end
-  end
-
+    end
+    p "Привіт я #{@type} і мене звати #{@pet.name}."
+    @pet.help
+    @pet.pet_comand
+    end
 end
 
 Menu.new.start
