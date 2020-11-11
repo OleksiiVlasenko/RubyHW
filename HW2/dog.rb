@@ -4,4 +4,7 @@ class Dog < Pet
     super
   end
 
+  def say
+    p "**#{name} wuff wuff, arrr arr"
+  end
 end

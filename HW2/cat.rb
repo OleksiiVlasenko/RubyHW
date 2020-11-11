@@ -4,5 +4,7 @@ class Cat < Pet
     super
     @life = 10
   end
-
+  def say
+    p "**#{name} meow meow, murf murf"
+  end
 end

@@ -55,10 +55,15 @@ class Pet
     p "К-ть життів : #{@life}"
     p "Золота      : #{@money}"
   end
+
   def mining
     gold = rand(1..5)
     p "#{@name} заробляє #{gold} золота на майнінгу"
     @money += gold
+  end
+
+  def say
+    "**#{name} привіт як у тебя справи?"
   end
 
   def casino
