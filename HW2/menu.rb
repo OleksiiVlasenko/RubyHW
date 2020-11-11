@@ -44,6 +44,7 @@ class Menu
   end
 
   def new_pet
+    @pet.help
     p 'Як буде звати вашу тваринку ? '
     name = gets.chomp
     p 'Напишіть dog чи cat'
@@ -56,7 +57,7 @@ class Menu
       p = p 'Не знаю такої тваринки'
     end
     p "Привіт я #{type} і мене звати #{@pet.name}."
-    @pet.help
+
     @pet.pet_comand
   end
 
