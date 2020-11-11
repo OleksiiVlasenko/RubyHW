@@ -79,6 +79,10 @@ def timetosleep
     @asleep = false
     p "** #{@name} повільно відкрива оч відкрива очі ."
   end
+  @water -= 4
+  @happy -= 4
+  @hunger -= 4
+  @cleanliness -= 4
 end
 
 def love
@@ -170,11 +174,13 @@ end
 
 def sport
   time_pass
+  p "**#{@name} займається спортом"
   @happy += 4
 end
 
 def swim
   time_pass
+  p "**#{@name} плаває в басейні"
   @happy += 5
 end
 
