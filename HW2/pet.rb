@@ -60,6 +60,29 @@ class Pet
     p "#{@name} заробляє #{gold} золота на майнінгу"
     @money += gold
   end
+
+  def casino
+    p " - ⒸⒶⓈⒾⓃⓄ - "
+    p "У вас на рахунку : #{@money}"
+    bet = rand(-10..10)
+    p "Ставка : #{bet}"
+    if @money.zero? && @money.negative?
+      p "У вас #{@name} немає золота щоб робити ставку"
+    else
+      if bet.positive?
+        p " - ⓌⒾⓃ - Ви вийграли #{bet} золота"
+        @money += bet
+        p "У вас на рахунку : #{@money}"
+        p "Щоб продовжити грати напишіть 13, загальний список команд 12"
+        elseif bet.negative?
+        p " - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
+        @money -=  bet.abs
+        p "У вас на рахунку : #{@money}"
+        p "Щоб продовжити грати напишіть 13, загальний список команд 12"
+      end
+    end
+  end
+
   def time_pass
     if @hunger >= 0
       @hunger -= 2
