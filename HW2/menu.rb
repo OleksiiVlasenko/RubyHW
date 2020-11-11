@@ -9,7 +9,7 @@ class Menu
     new_pet
 
     while true
-    command = gets.chomp.downcase
+    command = gets.strip.downcase
       case command
       when '1'
         @pet.mining
@@ -42,27 +42,28 @@ class Menu
       when '0'
         exit
       else
-        p "Вибачте, але цієї команди не існує: #{command}, напишіть 12 щоб дізнатись список команд"
+        p "Вибачте, спробуйте заново"
+        new_pet
       end
+    p "Привіт я #{@type} і мене звати #{@pet.name}."
+    @pet.help
+    @pet.pet_comand
     end
+
   end
 
   def new_pet
-
     p 'Як буде звати вашу тваринку ? '
-    name = gets.chomp
+    @name = gets.chomp
     p 'Напишіть dog чи cat'
-    type = gets.chomp.downcase
-    if type == 'dog'
-      @pet = Dog.new(name)
-    elsif type == 'cat'
-      @pet = Cat.new(name)
+    @type = gets.chomp.downcase
+    if @type == 'dog'
+      @pet = Dog.new(@name)
+    elsif @type == 'cat'
+      @pet = Cat.new(@name)
     else
-      p = p 'Не знаю такої тваринки'
+      p 'Не знаю такої тваринки'
     end
-    p "Привіт я #{type} і мене звати #{@pet.name}."
-    @pet.help
-    @pet.pet_comand
   end
 
 end
