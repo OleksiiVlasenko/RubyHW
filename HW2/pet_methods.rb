@@ -1,6 +1,7 @@
 def status
   p "Статус #{@type}  #{@name}"
   p "Ситність    : #{@hunger}"
+  p "Вода        : #{@water}"
   p "Щастя       : #{@happy}"
   p "Туалет      : #{@cleanliness}"
   p "К-ть життів : #{@live}"
@@ -8,9 +9,10 @@ end
 
 def time_pass
   if @hunger >= 0
-    @hunger -= 1
-    @happy -= 1
-    @cleanliness += 1
+    @hunger -= 2
+    @happy -= 2
+    @water -= 2
+    @cleanliness += 2
   else
     asleep_f if @asleep
     @live -= 1
@@ -33,7 +35,7 @@ def time_pass
     when 2
       p "** #{@name} накорми мене ..." if @live != 0
     else
-      p ' - Я не буду з тобою більше гуляти!'
+      p ' - я скоро захочу їсти!'
     end
   end
   die
@@ -41,11 +43,13 @@ def time_pass
   love
   toilet if @cleanliness >= 8
 end
+
 def feed
   @hunger += 2
+  @water += 2
   @cleanliness += 2
   p "** #{@name} ммм, дуже смачно"
-  time_pass
+  toilet if @cleanliness >= 8
 end
 
 def asleep_f
@@ -76,19 +80,21 @@ def timetosleep
     p "** #{@name} повільно відкрива оч відкрива очі ."
   end
 end
+
 def love
   rnd = rand(5)
   case rnd
   when 0
     p "** #{@name} обнімає вас" if @happy > 8
   when 1
-    p "** #{@name} любить вас " if @happy < 9
+    p "** #{@name} любить вас " if @happy > 9
   when 2
-    p "** #{@name} в душі вас нечаїть" if @happy < 10
+    p "** #{@name} в душі вас нечаїть" if @happy > 10
   else
-    p ' - Я не буду з тобою більше гуляти!'
+    @asleep = false
   end
 end
+
 def angry
   rnd = rand(6)
   case rnd
@@ -99,7 +105,7 @@ def angry
   when 2
     p "** #{@name} спробував на вас напасти" if @happy < 2
   else
-    p ' - Я не буду з тобою більше гуляти!'
+    @asleep = false
   end
 end
 
@@ -112,7 +118,6 @@ def happy?
 end
 
 def play
-  time_pass
   if happy?
     rnd = rand(3)
     case rnd
@@ -123,26 +128,26 @@ def play
     when 2
       p "** #{@name} покоряє вершину гори на подвір'ї"
     else
-      p ' - Я не буду з тобою більше гуляти!'
+      p ' - Я трохи хочу відпочити!'
     end
-    @happy += 2
-    @hunger -= 2
+    time_pass
   else
-    p "** #{@name} я не хочу гратися"
+    p "** #{@name} ще не має бажання гратись"
   end
 end
 
 def poop?
-  @cleanliness >= 10
+  @cleanliness >= 6
 end
 
 def toilet
   if poop?
     p "** #{@name} упс, сходив в куточку в туалет"
     @cleanliness = 0
-    @hunger -= 2
+    @hunger -= 1
+    @water -= 1
   else
-    p "** #{@name} Дякую, але я ще не дуже хочу в туалет"
+    p "** #{@name} скоро захоче в туалет ..."
   end
 end
 
@@ -165,14 +170,12 @@ end
 
 def sport
   time_pass
-  @happy += 2
-  @hunger -= 2
+  @happy += 4
 end
 
 def swim
   time_pass
-  @happy += 3
-  @hunger -= 2
+  @happy += 5
 end
 
 def walk
@@ -187,7 +190,7 @@ def walk
   when 2
     p ' - А вчора ми гуляли довше!'
   else
-    p ' - Я не буду з тобою більше гуляти!'
+    p ' - щось не хочеться!'
   end
 end
 
