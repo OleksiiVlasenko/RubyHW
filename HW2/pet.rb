@@ -155,7 +155,6 @@ class Pet
         p '|Ситність| - я скоро захочу їсти!'
       end
     end
-
     die
     angry
     lvlup
@@ -168,8 +167,8 @@ class Pet
     @hunger += 2
     @water += 2
     @cleanliness += 2
-    p "|Ситність| #{@name} поїв, ммм, дуже смачно"
     toilet if @cleanliness >= 8
+    p "|Ситність| #{@name} поїв, ммм, дуже смачно"
     inform
   end
 
