@@ -12,6 +12,8 @@ class Pet
     @life = 2         # lives
     @water = 10       # water lvl
     @money = 0
+    @lvl = 0
+    @exp = 0
   end
 
   def pet_comand
@@ -47,10 +49,14 @@ class Pet
     p '| 0 туалет'
     p "| #{@life} життя(ів)"
     p '| 0 золота'
+    p '| 0 рівень'
+    p '| 0 досвіду'
   end
 
   def status
     p "Статус      : #{@name}"
+    p "Рівень      : #{@lvl}"
+    p "Досвід      : #{@expir}"
     p "Ситність    : #{@hunger}"
     p "Вода        : #{@water}"
     p "Щастя       : #{@happy}"
@@ -60,6 +66,13 @@ class Pet
     p 'Введіть команду (загальний список команд 12)'
   end
 
+  def lvlup
+    if @exp >= 100
+      @lvl += 1
+      @exp = 0
+      p "**#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
+    end
+  end
   def mining
     gold = rand(1..5)
     p "#{@name} заробляє #{gold} золота на майнінгу"
