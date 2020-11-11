@@ -117,6 +117,13 @@ class Pet
     end
   end
 
+  def lose_life
+    @life -= 1
+    p "** #{@name} втратив одне життя" if @life != 1
+    p "** #{@name} треба нагально покормити, бо помре" if @life == 1
+    p "** #{@name} втратив останнє життя" if @life.zero?
+  end
+
   def time_pass
     if @hunger >= 0
       @hunger -= 2
@@ -131,14 +138,6 @@ class Pet
       @cleanliness = 0
       p "** #{@name} раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
     end
-
-    def lose_life
-      @life -= 1
-      p "** #{@name} втратив одне життя" if @life != 1
-      p "** #{@name} треба нагально покормити, бо помре" if @life == 1
-      p "** #{@name} втратив останнє життя" if @life.zero?
-    end
-
     if hungry?
       asleep_f
       rnd = rand(3)
@@ -153,6 +152,7 @@ class Pet
         p ' - я скоро захочу їсти!'
       end
     end
+    inform
     die
     angry
     lvlup
@@ -166,7 +166,7 @@ class Pet
     @cleanliness += 2
     p "** #{@name} поїв, ммм, дуже смачно"
     toilet if @cleanliness >= 8
-    p 'Введіть команду (загальний список команд 12)'
+    inform
   end
 
   def asleep_f
@@ -178,7 +178,7 @@ class Pet
     when 1
       p "** #{@name} підійшов по ближче і дивиться вам в очі" if @life != 0
     when 2
-      p "** #{@name} почина відкривати очі після короткого сну" if @life != 0
+      p "** #{@name} сидить сумує ... " if @life != 0
     else nil
     end
   end
@@ -200,7 +200,7 @@ class Pet
     @happy -= 4
     @hunger -= 4
     @cleanliness -= 4
-    p 'Введіть команду (загальний список команд 12)'
+    inform
   end
 
   def love
@@ -257,7 +257,6 @@ class Pet
     else
       p "** #{@name} ще не має бажання гратись"
     end
-    p 'Введіть команду (загальний список команд 12)'
   end
 
   def poop?
@@ -273,7 +272,7 @@ class Pet
     else
       p "** #{@name} скоро захоче в туалет ..."
     end
-    p 'Введіть команду (загальний список команд 12)'
+    inform
   end
 
   def die
@@ -289,24 +288,25 @@ class Pet
     die
   end
 
+  def inform
+    p 'Введіть команду (загальний список команд 12)'
+  end
+
   def sport
-    time_pass
     p "**#{@name} займається спортом"
     @happy += 4
     @exp += 10
-    p 'Введіть команду (загальний список команд 12)'
+    time_pass
   end
 
   def swim
-    time_pass
     p "**#{@name} плаває в басейні"
     @happy += 5
     @exp += 10
-    p 'Введіть команду (загальний список команд 12)'
+    time_pass
   end
 
   def walk
-    time_pass
     @exp += 10
     rnd = rand(3)
     p "** #{@name} пішов гуляти на вулицю ..."
@@ -320,7 +320,7 @@ class Pet
     else
       p ' - щось не хочеться!'
     end
-    p 'Введіть команду (загальний список команд 12)'
+    time_pass
   end
 
   private :time_pass
