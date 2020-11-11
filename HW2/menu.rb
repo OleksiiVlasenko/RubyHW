@@ -50,19 +50,19 @@ class Menu
 
   def new_pet
     until @type == 'dog' || @type == 'cat'
-      p 'Як буде звати вашу тваринку ? '
+      p 'Як Ви хочете назвати вашу тваринку ? '
       @name = gets.chomp
-      p 'Напишіть dog чи cat'
+      p 'Напишіть dog або cat, щоб вибрати ким хочете грати.'
       @type = gets.chomp.downcase
       if @type == 'dog'
         @pet = Dog.new(@name)
       elsif @type == 'cat'
         @pet = Cat.new(@name)
       else
-        p 'Не знаю такої тваринки'
+        p 'Вибачте але я не знаю такої тваринки, спробуйте ще раз!'
       end
     end
-    p "Привіт я #{@type} і мене звати #{@pet.name}."
+    p "Привіт друже, я самий найкращий #{@type} і мене звати #{@pet.name}."
     @pet.help
     @pet.pet_comand
     end
