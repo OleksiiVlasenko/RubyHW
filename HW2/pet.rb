@@ -46,6 +46,7 @@ class Pet
     p '| 10 щастя'
     p '| 0 туалет'
     p "| #{@life} життя(ів)"
+    p '| 0 золота'
   end
 
   def status
@@ -178,11 +179,11 @@ class Pet
     rnd = rand(5)
     case rnd
     when 0
-      p "** #{@name} обнімає вас" if @happy > 8
+      p "** #{@name} дуже щасливий і обнімає вас" if @happy > 8
     when 1
-      p "** #{@name} любить вас " if @happy > 9
+      p "** #{@name} дуже щасливий і любить вас " if @happy > 9
     when 2
-      p "** #{@name} в душі вас нечаїть" if @happy > 10
+      p "** #{@name} душі в вас нечаїть" if @happy > 10
     else
       @asleep = false
     end

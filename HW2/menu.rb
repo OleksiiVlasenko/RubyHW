@@ -6,7 +6,6 @@ require_relative 'cat'
 class Menu
   def start
     new_pet
-
     loop do
       command = gets.strip.downcase
       case command
