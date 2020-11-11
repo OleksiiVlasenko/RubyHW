@@ -289,11 +289,10 @@ class Pet
     else
       p ' - щось не хочеться!'
     end
-    p 'Введіть команду (загальний список команд 12)'p 'Введіть команду (загальний список команд 12)'
+    p 'Введіть команду (загальний список команд 12)'
   end
 
-  # private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed,
-  #         :play, :asleep_f, :sport, :swim, :kill, :pet_comand, :help
+  private :time_pass
 
 end
 
