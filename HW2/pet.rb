@@ -76,22 +76,22 @@ class Pet
     p ' - ⒸⒶⓈⒾⓃⓄ - '
     p "У вас на рахунку : #{@money}"
     bet = rand(-10..10)
-    if @money.zero?
-      p "У вас #{@name} немає золота щоб робити ставку"
-    else
+    if !@money.zero? && !@money.negative?
       p "Ставка : #{bet}"
       if bet.positive?
         p " - ⓌⒾⓃ - Ви вийграли #{bet} золота"
         @money += bet
         p "У вас на рахунку: #{@money}"
         p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
-        else
-          p " - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
-          @money -=  bet.abs
-          p "У вас на рахунку: #{@money}" if @money.positive?
-          p "Ви взяли в кредит: #{@money}" if @money.negative?
-          p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
+      else
+        p " - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
+        @money -= bet.abs
+        p "У вас на рахунку: #{@money}" if @money.positive?
+        p "Ви взяли в кредит: #{@money}" if @money.negative?
+        p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
       end
+    else
+      p "У вас #{@name} немає золота щоб робити ставку"
     end
   end
 
