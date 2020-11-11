@@ -12,7 +12,7 @@ class Pet
     @happy = 10       # happy lvl
     @asleep = false   # asleep status
     @cleanliness = 0  # toilet lvl
-    @live = 2         # lives
+    @life = 2         # lives
     @water = 10       # water lvl
     help
     pet_comand
@@ -33,7 +33,7 @@ class Pet
     p '| 8 вивести в туалет (0 туалет -1 ситності -2 води)'
     p '| 9 проспати цілий день (-4 щастя -4 ситності -4 води +4 туалет)'
     p '| 10 Стан тваринки '
-    p '| 11 Вбити тваринку'
+    p '| 11 Вбити тваринку (cheats)'
     p '| 12 Список команд'
     p '| Введіть номер команди (тільки цифру)'
   end

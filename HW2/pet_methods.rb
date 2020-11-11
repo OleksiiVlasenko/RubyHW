@@ -4,7 +4,7 @@ def status
   p "Вода        : #{@water}"
   p "Щастя       : #{@happy}"
   p "Туалет      : #{@cleanliness}"
-  p "К-ть життів : #{@live}"
+  p "К-ть життів : #{@life}"
 end
 
 def time_pass
@@ -15,10 +15,10 @@ def time_pass
     @cleanliness += 2
   else
     asleep_f if @asleep
-    @live -= 1
-    p "** #{@name} втратив одне життя" if @live == 1
-    p "** #{@name} втратив останнє життя" if @live.zero?
-    p "** #{@name} треба нагально покормити, бо помре" if @live.zero?
+    @life -= 1
+    p "** #{@name} втратив одне життя" if @life == 1
+    p "** #{@name} втратив останнє життя" if @life.zero?
+    p "** #{@name} треба нагально покормити, бо помре" if @life.zero?
   end
   if @cleanliness >= 10
     @cleanliness = 0
@@ -29,11 +29,11 @@ def time_pass
     rnd = rand(3)
     case rnd
     when 0
-      p "** #{@name} я хочу їсти" if @live != 0
+      p "** #{@name} я хочу їсти" if @life != 0
     when 1
-      p "** #{@name} пюрешечки да с котлеткой би ...." if @live != 0
+      p "** #{@name} пюрешечки да с котлеткой би ...." if @life != 0
     when 2
-      p "** #{@name} накорми мене ..." if @live != 0
+      p "** #{@name} накорми мене ..." if @life != 0
     else
       p ' - я скоро захочу їсти!'
     end
@@ -57,11 +57,11 @@ def asleep_f
   rnd = rand(3)
   case rnd
   when 0
-    p "** #{@name} невпинно дивиться на вас" if @live != 0
+    p "** #{@name} невпинно дивиться на вас" if @life != 0
   when 1
-    p "** #{@name} підійшов по ближче і дивиться вам в очі" if @live != 0
+    p "** #{@name} підійшов по ближче і дивиться вам в очі" if @life != 0
   when 2
-    p "** #{@name} почина відкривати очі після короткого сну" if @live != 0
+    p "** #{@name} почина відкривати очі після короткого сну" if @life != 0
   else nil
   end
 end
@@ -160,7 +160,7 @@ def new_pet
 end
 
 def die
-  if @live.zero?
+  if @life.zero?
     p "『RɨP』〘#{@name}♔〙"
     p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
     exit
@@ -168,7 +168,7 @@ def die
 end
 
 def kill
-  @live = 0
+  @life = 0
   die
 end
 
