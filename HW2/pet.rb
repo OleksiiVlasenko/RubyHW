@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'pet_methods'
-
 class Pet
   attr_accessor :name
 

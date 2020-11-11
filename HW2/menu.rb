@@ -1,7 +1,7 @@
 require_relative 'pet'
 require_relative 'dog'
 require_relative 'cat'
-require_relative 'pet_methods'
+
 
 class Menu
 
