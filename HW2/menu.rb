@@ -12,7 +12,7 @@ class Menu
     command = gets.chomp.downcase
       case command
       when '1'
-        "Hi"
+        @pet.mining
       when '2'
         @pet.play
       when '3'
@@ -44,7 +44,7 @@ class Menu
   end
 
   def new_pet
-    @pet.help
+
     p 'Як буде звати вашу тваринку ? '
     name = gets.chomp
     p 'Напишіть dog чи cat'
@@ -57,7 +57,7 @@ class Menu
       p = p 'Не знаю такої тваринки'
     end
     p "Привіт я #{type} і мене звати #{@pet.name}."
-
+    @pet.help
     @pet.pet_comand
   end
 
