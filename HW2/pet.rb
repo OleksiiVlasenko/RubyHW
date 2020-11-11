@@ -74,7 +74,7 @@ class Pet
   end
 
   def lvlup
-    if @exp >= 100
+    unless @exp <= 100
       @lvl += 1
       @exp = 0
       p "**#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
@@ -145,19 +145,20 @@ class Pet
       when 0
         p "** #{@name} я хочу їсти" if @life != 0
       when 1
-        p "** #{@name} пюрешечки да с котлеткой би ...." if @life != 0
+        p "** #{@name} накорми мене, пюрешечки да с котлеткой би ...." if @life != 0
       when 2
-        p "** #{@name} накорми мене ..." if @life != 0
+        p "** #{@name} накорми мене, бо з'їм тебе в ночі..." if @life != 0
       else
         p ' - я скоро захочу їсти!'
       end
     end
-    inform
+
     die
     angry
     lvlup
     love
     toilet if @cleanliness >= 8
+    inform
   end
 
   def feed
@@ -185,6 +186,10 @@ class Pet
 
   def timetosleep
     p "** #{@name} солодко засипа у вас на руках ..."
+    @water -= 4
+    @happy -= 4
+    @hunger -= 4
+    @cleanliness += 4
     @asleep = true
     2.times do
       time_pass if @asleep
@@ -196,11 +201,6 @@ class Pet
       @asleep = false
       p "** #{@name} повільно відкрива оч відкрива очі ."
     end
-    @water -= 4
-    @happy -= 4
-    @hunger -= 4
-    @cleanliness -= 4
-    inform
   end
 
   def love
@@ -232,11 +232,11 @@ class Pet
   end
 
   def hungry?
-    @hunger < 5 ? true : false
+    @hunger < 3 ? true : false
   end
 
   def happy?
-    @happy < 5 ? true : false
+    @hunger > 3 ? true : false
   end
 
   def play
@@ -253,9 +253,11 @@ class Pet
         p ' - Я трохи хочу відпочити!'
       end
       time_pass
+      @happy += 4
       @exp += 10
     else
       p "** #{@name} ще не має бажання гратись"
+      inform
     end
   end
 
@@ -272,11 +274,11 @@ class Pet
     else
       p "** #{@name} скоро захоче в туалет ..."
     end
-    inform
   end
 
   def die
-    if @life.zero?
+    if @life.zero? || @happy <= 0
+      status
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
       exit
