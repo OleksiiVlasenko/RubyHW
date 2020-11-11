@@ -56,12 +56,14 @@ class Pet
     p "Туалет      : #{@cleanliness}"
     p "К-ть життів : #{@life}"
     p "Золота      : #{@money}"
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def mining
     gold = rand(1..5)
     p "#{@name} заробляє #{gold} золота на майнінгу"
     @money += gold
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def say
@@ -72,20 +74,23 @@ class Pet
   def casino
     p " - ⒸⒶⓈⒾⓃⓄ - "
     p "У вас на рахунку : #{@money}"
+
     bet = rand(-10..10)
-    p "Ставка : #{bet}"
-    if @money.zero? && @money.negative?
+
+    if @money.zero?
       p "У вас #{@name} немає золота щоб робити ставку"
     else
+      p "Ставка : #{bet}"
       if bet.positive?
         p " - ⓌⒾⓃ - Ви вийграли #{bet} золота"
         @money += bet
-        p "У вас на рахунку : #{@money}"
+        p "У вас на рахунку: #{@money}"
         p "Щоб продовжити грати напишіть 13, загальний список команд 12"
-        else bet.negative?
+        else
         p " - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
         @money -=  bet.abs
-        p "У вас на рахунку : #{@money}"
+        p "У вас на рахунку: #{@money}" if @money.positive?
+        p "Ви взяли в кредит: #{@money}" if @money.negative?
         p "Щоб продовжити грати напишіть 13, загальний список команд 12"
       end
     end
@@ -132,8 +137,9 @@ class Pet
     @hunger += 2
     @water += 2
     @cleanliness += 2
-    p "** #{@name} ммм, дуже смачно"
+    p "** #{@name} поїв, ммм, дуже смачно"
     toilet if @cleanliness >= 8
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def asleep_f
@@ -167,6 +173,7 @@ class Pet
     @happy -= 4
     @hunger -= 4
     @cleanliness -= 4
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def love
@@ -222,6 +229,7 @@ class Pet
     else
       p "** #{@name} ще не має бажання гратись"
     end
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def poop?
@@ -237,6 +245,7 @@ class Pet
     else
       p "** #{@name} скоро захоче в туалет ..."
     end
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def die
@@ -256,12 +265,14 @@ class Pet
     time_pass
     p "**#{@name} займається спортом"
     @happy += 4
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def swim
     time_pass
     p "**#{@name} плаває в басейні"
     @happy += 5
+    p 'Введіть команду (загальний список команд 12)'
   end
 
   def walk
@@ -278,6 +289,7 @@ class Pet
     else
       p ' - щось не хочеться!'
     end
+    p 'Введіть команду (загальний список команд 12)'p 'Введіть команду (загальний список команд 12)'
   end
 
   # private :die, :walk, :happy?, :poop?, :toilet, :status, :hungry?, :poop?, :status, :timetosleep, :time_pass, :feed,

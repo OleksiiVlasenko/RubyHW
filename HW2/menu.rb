@@ -4,11 +4,10 @@ require_relative 'cat'
 
 
 class Menu
-
   def start
     new_pet
 
-    while true
+    loop do
       command = gets.strip.downcase
       case command
       when '1'
@@ -42,7 +41,7 @@ class Menu
       when '0'
         exit
       else
-        p 'Вибачте, спробуйте заново'
+        p 'Вибачте, спробуйте заново команду (загальний список команд 12)'
       end
     end
   end
@@ -50,16 +49,16 @@ class Menu
   def new_pet
     until @type == 'dog' || @type == 'cat'
       p 'Як буде звати вашу тваринку ? '
-    @name = gets.chomp
-    p 'Напишіть dog чи cat'
-    @type = gets.chomp.downcase
-    if @type == 'dog'
-      @pet = Dog.new(@name)
-    elsif @type == 'cat'
-      @pet = Cat.new(@name)
-    else
-      p 'Не знаю такої тваринки'
-    end
+      @name = gets.chomp
+      p 'Напишіть dog чи cat'
+      @type = gets.chomp.downcase
+      if @type == 'dog'
+        @pet = Dog.new(@name)
+      elsif @type == 'cat'
+        @pet = Cat.new(@name)
+      else
+        p 'Не знаю такої тваринки'
+      end
     end
     p "Привіт я #{@type} і мене звати #{@pet.name}."
     @pet.help
