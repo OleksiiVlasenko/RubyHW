@@ -6,5 +6,6 @@ class Dog < Pet
 
   def say
     p "**#{name} wuff wuff, arrr arr"
+    super
   end
 end

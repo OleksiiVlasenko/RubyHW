@@ -37,6 +37,8 @@ class Menu
         @pet.pet_comand
       when '13'
         @pet.casino
+      when '14'
+        @pet.say
       when '0'
         exit
       else

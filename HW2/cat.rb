@@ -6,5 +6,6 @@ class Cat < Pet
   end
   def say
     p "**#{name} meow meow, murf murf"
+    super
   end
 end
