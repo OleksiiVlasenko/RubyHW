@@ -23,7 +23,7 @@ class Menu
       when '6'
         @pet.swim
       when '7'
-        p "#{@pet.time_pass} **#{@name} проспав цілий день."
+        p "#{@pet.send(:time_pass)} **#{@name} проспав цілий день."
       when '8'
         @pet.toilet
       when '9'
