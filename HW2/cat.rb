@@ -1,7 +1,8 @@
 class Cat < Pet
 
-def initialize
-  super
-end
+  def initialize(name)
+    super
+    @life = 10
+  end
 
 end

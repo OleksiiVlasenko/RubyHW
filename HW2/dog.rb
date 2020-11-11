@@ -1,6 +1,6 @@
 class Dog < Pet
 
-  def initialize
+  def initialize(name)
     super
   end
 
