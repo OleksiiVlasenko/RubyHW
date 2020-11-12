@@ -1,6 +1,7 @@
 class Dog < Pet
   def initialize(name)
     super
+    @name = name
   end
 
   def say
