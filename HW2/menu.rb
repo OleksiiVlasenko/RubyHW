@@ -52,7 +52,7 @@ class Menu
     until @type == 'dog' || @type == 'cat'
       p 'Як Ви хочете назвати вашу тваринку ? '
       @name = gets.chomp
-      p 'Напишіть dog або cat, щоб вибрати ким хочете грати.'
+      p 'Напишіть Dog або Cat, щоб вибрати ким хочете грати.'
       @type = gets.chomp.downcase
       if @type == 'dog'
         @pet = Dog.new(@name)
