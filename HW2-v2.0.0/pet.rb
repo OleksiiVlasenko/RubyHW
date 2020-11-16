@@ -73,26 +73,26 @@ class Pet
     p "Щастя       : #{@happy}"
     p "Туалет      : #{@cleanliness}"
     p "Життя       : #{@life}"
-    p "Золота      : #{@money}"
+    p "Золото      : #{@money}"
     p 'Введіть команду (загальний список команд 12)'
   end
 
-  def create_html(filename = 'index.html')
-    @content = "<div>
-          <p>Імя: #{@name}</p>
-          <p>Рівень: #{@lvl}</p>
-          <p>Досвід: #{@exp}</p>
-          <p>Ситність: #{@hunger}</p>
-          <p>Вода: #{@water}</p>
-          <p>Щастя: #{@happy}</p>
-          <p>Туалет: #{@cleanliness}</p>
-          <p>Життя: #{@life}</p>
-          <p>Золото: #{@money}</p>
+  def push_html(filename = 'index.html')
+    content = "
+       <div>
+          <p>Імя #{@name}</p>
+          <p>Рівень #{@lvl}</p>
+          <p>Досвід #{@exp}</p>
+          <p>Ситність #{@hunger}</p>
+          <p>Вода #{@water}</p>
+          <p>Щастя #{@happy}</p>
+          <p>Туалет #{@cleanliness}</p>
+          <p>Життя #{@life}</p>
+          <p>Золото #{@money}</p>
         <br>
       </div>"
-
-
-    ContenToHtml.new.create_html(@content, filename)
+    ContenToHtml.new.update(content, filename) if File.exist?(filename)
+    ContenToHtml.new.create_html(content, filename) unless File.exist?(filename)
   end
 
   def lvlup

@@ -11,10 +11,10 @@ class Menu
       case command
       when '1'
         @pet.mining
-        @pet.create_html
+        @pet.push_html
       when '2'
         @pet.play
-        @pet.create_html
+        @pet.push_html
       when '3'
         @pet.feed
       when '4'
