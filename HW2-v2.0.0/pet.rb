@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'cont_to_html'
 
 class Pet
   attr_accessor :name
@@ -76,6 +77,24 @@ class Pet
     p 'Введіть команду (загальний список команд 12)'
   end
 
+  def create_html(filename = 'index.html')
+    @content = "<div>
+          <p>Імя: #{@name}</p>
+          <p>Рівень: #{@lvl}</p>
+          <p>Досвід: #{@exp}</p>
+          <p>Ситність: #{@hunger}</p>
+          <p>Вода: #{@water}</p>
+          <p>Щастя: #{@happy}</p>
+          <p>Туалет: #{@cleanliness}</p>
+          <p>Життя: #{@life}</p>
+          <p>Золото: #{@money}</p>
+        <br>
+      </div>"
+
+
+    ContenToHtml.new.create_html(@content, filename)
+  end
+
   def lvlup
     if @exp >= 100
       @lvl += 1
@@ -90,6 +109,7 @@ class Pet
     @money += gold
     @exp += 10
     p 'Введіть команду (загальний список команд 12)'
+
   end
 
   def say
@@ -326,6 +346,10 @@ class Pet
     end
     time_pass
   end
+
+
+
+
 
   private :time_pass
 end
