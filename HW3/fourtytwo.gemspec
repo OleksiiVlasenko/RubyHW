@@ -8,6 +8,6 @@ Gem::Specification.new do |spec|
   spec.description   = 'HW3 hometask hem'
   spec.homepage      = "TODO: Put your gem's website or public repo URL here."
   spec.license       = 'MIT'
-  spec.files         = ["lib/Fourtytwo.rb"]
+  spec.files         = ["lib/fourtytwo.rb"]
   spec.homepage      =  'https://rubygems.org/'
 end
