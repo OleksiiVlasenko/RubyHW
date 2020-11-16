@@ -92,7 +92,7 @@ class Pet
         <br>
       </div>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
-    ContenToHtml.new.create_html(content, filename) unless File.exist?(filename)
+    ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
   end
 
   def lvlup
