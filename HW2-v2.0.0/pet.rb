@@ -80,18 +80,40 @@ class Pet
 
   def push_html(filename = 'index.html')
     content = "
-       <div>
-          <p>Імя #{@name} #{@emoji}</p>
-          <p>Рівень #{@lvl}</p>
-          <p>Досвід #{@exp}</p>
-          <p>Ситність #{@hunger}</p>
-          <p>Вода #{@water}</p>
-          <p>Щастя #{@happy} </p>
-          <p>Туалет #{@cleanliness}</p>
-          <p>Життя #{@life}</p>
-          <p>Золото #{@money}</p>
-        <br>
-      </div>"
+    <style>
+	/* Стили таблицы (IKSWEB) */
+	table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
+	table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+	table.iksweb td{font-size:13px;color:#354251;}
+	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
+	table.iksweb tr:hover td{color:#354251;cursor:default;}
+</style>
+    <center>
+    <table class=""iksweb"">
+	<tbody>І'мя  #{@name} #{@emoji}
+		<tr>
+			<td>Рівень</td>
+			<td>Досвід</td>
+			<td>Ситність</td>
+			<td>Вода</td>
+			<td>Щастя</td>
+			<td>Туалет</td>
+			<td>Життя</td>
+			<td>Золото</td>
+		</tr>
+		<tr>
+			<td>#{@lvl}</td>
+			<td>#{@exp}</td>
+			<td>#{@hunger}</td>
+			<td>#{@water}</td>
+			<td>#{@happy}</td>
+			<td>#{@cleanliness}</td>
+			<td>#{@life}</td>
+			<td>#{@money}</td>
+		</tr>
+	</tbody>
+</table>
+</center>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
 
