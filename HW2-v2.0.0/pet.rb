@@ -84,17 +84,16 @@ class Pet
   def push_html(filename = 'index.html')
     content = "
     <style>
-	/* Стили таблицы (IKSWEB) */
-	table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
-	table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
-	table.iksweb td{font-size:13px;color:#354251;}
-	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #910dbd;}	table.iksweb tr:hover{background-color:#e4e685}
-	table.iksweb tr:hover td{color:#354251;cursor:default;}
+    /* Стили таблицы (IKSWEB) */
+    table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
+    table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
+    table.iksweb td{font-size:13px;color:#354251;}
+    table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #910dbd;}	table.iksweb tr:hover{background-color:#e4e685}
+    table.iksweb tr:hover td{color:#354251;cursor:default;}
     </style>
-    <center>
-  <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
+    <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
+    <p>Мене звати <b>#{@name}</b>, Я - #{@emoji}</p>
     <table class=""iksweb"">
-	<p>Мене звати <b>#{@name}</b>, Я - #{@emoji}</p>
 		<tr>
 			<td>Рівень</td>
 			<td>Досвід</td>
@@ -115,11 +114,9 @@ class Pet
 			<td>#{@life}</td>
 			<td>#{@money}</td>
 		</tr>
-</table>
-</center>"
+    </table>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
-
   end
 
   def lvlup
@@ -380,10 +377,6 @@ class Pet
     end
     time_pass
   end
-
-
-
-
 
   private :time_pass
 end
