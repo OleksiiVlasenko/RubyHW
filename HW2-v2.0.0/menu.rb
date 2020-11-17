@@ -1,7 +1,7 @@
 require_relative 'pet'
 require_relative 'dog'
 require_relative 'cat'
-
+require 'cont_to_html'
 
 class Menu
   def start
@@ -56,6 +56,8 @@ class Menu
       when '15'
         @pet.help
         @pet.push_html
+      when 'html'
+        ContenToHtml.new.open_html
       when '0'
         exit
       else

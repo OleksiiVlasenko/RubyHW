@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 require 'cont_to_html'
 
+
 class Pet
   attr_accessor :name
 
@@ -25,6 +26,7 @@ class Pet
     p '| 5 гуляти | 6 плавати | 7 нічого не робити | 8 сходити в туалет | '
     p '| 9 проспати цілий день | 10 Статус тваринки | 11 Вбивти тваринку |'
     p '| 12 список команд | 13 Гра ⒸⒶⓈⒾⓃⓄ | 14 Попестити | 15 Допомога'
+    p '| Напишіть html щоб відкрити в браузері'
     p '| Введіть номер команди і натисніть Enter (тільки цифру)'
   end
 
@@ -62,6 +64,7 @@ class Pet
     p '| 13 Гра ⒸⒶⓈⒾⓃⓄ'
     p '| 14 Попестити +1 щастя'
     p '| 15 Інформація по грі'
+    p '| Напишіть html щоб відкрити в браузері'
     p 'Введіть номер команди і натисніть enter'
   end
 
@@ -85,12 +88,13 @@ class Pet
 	table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
 	table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
 	table.iksweb td{font-size:13px;color:#354251;}
-	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #354251;}	table.iksweb tr:hover{background-color:#f9fafb}
+	table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #910dbd;}	table.iksweb tr:hover{background-color:#e4e685}
 	table.iksweb tr:hover td{color:#354251;cursor:default;}
-</style>
+    </style>
     <center>
+  <h1>Гра Тамагочі from RubyCops</h1>
     <table class=""iksweb"">
-	<tbody>І'мя  #{@name} #{@emoji}
+	<tbody>Мене звати <b>#{@name}</b>, Я - #{@emoji}
 		<tr>
 			<td>Рівень</td>
 			<td>Досвід</td>
@@ -103,6 +107,16 @@ class Pet
 		</tr>
 		<tr>
 			<td>#{@lvl}</td>
+			<td>#{@exp}</td>
+			<td>#{@hunger}</td>
+			<td>#{@water}</td>
+			<td>#{@happy}</td>
+			<td>#{@cleanliness}</td>
+			<td>#{@life}</td>
+			<td>#{@money}</td>
+		</tr>
+<tr>
+			<td><input type=""button"" value=""Проверить"" onclick=""#{}""></td>
 			<td>#{@exp}</td>
 			<td>#{@hunger}</td>
 			<td>#{@water}</td>
