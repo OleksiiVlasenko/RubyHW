@@ -11,7 +11,7 @@ class Pet
     @happy = 10       # happy lvl
     @asleep = false   # asleep status
     @cleanliness = 0  # toilet lvl
-    @life = 2         # lives
+    @life = 1         # lives
     @water = 10       # water lvl
     @money = 0
     @lvl = 0
@@ -92,9 +92,9 @@ class Pet
 	table.iksweb tr:hover td{color:#354251;cursor:default;}
     </style>
     <center>
-  <h1>Гра Тамагочі from RubyCops</h1>
+  <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
     <table class=""iksweb"">
-	<tbody>Мене звати <b>#{@name}</b>, Я - #{@emoji}
+	<p>Мене звати <b>#{@name}</b>, Я - #{@emoji}</p>
 		<tr>
 			<td>Рівень</td>
 			<td>Досвід</td>
@@ -115,17 +115,6 @@ class Pet
 			<td>#{@life}</td>
 			<td>#{@money}</td>
 		</tr>
-<tr>
-			<td><input type=""button"" value=""Проверить"" onclick=""#{}""></td>
-			<td>#{@exp}</td>
-			<td>#{@hunger}</td>
-			<td>#{@water}</td>
-			<td>#{@happy}</td>
-			<td>#{@cleanliness}</td>
-			<td>#{@life}</td>
-			<td>#{@money}</td>
-		</tr>
-	</tbody>
 </table>
 </center>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
@@ -179,7 +168,7 @@ class Pet
   end
 
   def emoji
-    @happy >= 5 ? @emoji = '&#128513;' : @emoji = '&#128553;'
+    @happy >= 5 ? @emoji = '&#x1f601;' : @emoji = '&#128553;'
   end
 
   def lose_life
