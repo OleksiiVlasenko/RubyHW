@@ -15,7 +15,7 @@ class Pet
     @money = 0
     @lvl = 0
     @exp = 0
-    @emoji
+    @emoji = ''
   end
 
   def pet_comand
@@ -81,21 +81,20 @@ class Pet
   def push_html(filename = 'index.html')
     content = "
        <div>
-          <p>Імя #{@name}</p>
+          <p>Імя #{@name} #{@emoji}</p>
           <p>Рівень #{@lvl}</p>
           <p>Досвід #{@exp}</p>
           <p>Ситність #{@hunger}</p>
           <p>Вода #{@water}</p>
-          <p>Щастя #{@happy} #{@emoji}</p>
+          <p>Щастя #{@happy} </p>
           <p>Туалет #{@cleanliness}</p>
           <p>Життя #{@life}</p>
           <p>Золото #{@money}</p>
-
         <br>
       </div>"
-
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
+
   end
 
   def lvlup
@@ -144,9 +143,9 @@ class Pet
   end
 
   def emoji
-    # emoji = '&#128513;'
-    @happy > 5 ? @emoji = '&#128513;' : @emoji = '&#128545;;'
+    @happy >= 5 ? @emoji = '&#128513;' : @emoji = '&#128553;'
   end
+
   def lose_life
     @life -= 1
     p "|Життя| #{@name}  втратив одне життя" if @life != 1
@@ -308,6 +307,8 @@ class Pet
 
   def die
     if @life.zero? || @happy <= 0
+      @emoji = '&#128565;'
+      push_html
       status
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"

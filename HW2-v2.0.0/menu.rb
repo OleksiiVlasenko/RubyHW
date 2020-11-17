@@ -6,6 +6,8 @@ require_relative 'cat'
 class Menu
   def start
     new_pet
+    @pet.emoji
+    @pet.push_html
     loop do
       command = gets.strip.downcase
       case command
@@ -79,7 +81,7 @@ class Menu
     p "Привіт друже, я самий найкращий #{@type} і мене звати #{@pet.name}."
     @pet.help
     @pet.pet_comand
-    end
+  end
 end
 
 Menu.new.start
