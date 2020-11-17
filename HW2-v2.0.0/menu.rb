@@ -17,31 +17,43 @@ class Menu
         @pet.push_html
       when '3'
         @pet.feed
+        @pet.push_html
       when '4'
         @pet.sport
+        @pet.push_html
       when '5'
         @pet.walk
+        @pet.push_html
       when '6'
         @pet.swim
+        @pet.push_html
       when '7'
         p "**#{@name} проспав цілий день."
         @pet.send(:time_pass)
+        @pet.push_html
       when '8'
         @pet.toilet
+        @pet.push_html
       when '9'
         @pet.timetosleep
+        @pet.push_html
       when '10'
         @pet.status
+        @pet.push_html
       when '11'
         @pet.kill
+        @pet.push_html
       when '12'
         @pet.pet_comand
       when '13'
         @pet.casino
+        @pet.push_html
       when '14'
         @pet.say
+        @pet.push_html
       when '15'
         @pet.help
+        @pet.push_html
       when '0'
         exit
       else

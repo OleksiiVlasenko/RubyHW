@@ -15,6 +15,7 @@ class Pet
     @money = 0
     @lvl = 0
     @exp = 0
+    @emoji
   end
 
   def pet_comand
@@ -85,12 +86,14 @@ class Pet
           <p>Досвід #{@exp}</p>
           <p>Ситність #{@hunger}</p>
           <p>Вода #{@water}</p>
-          <p>Щастя #{@happy}</p>
+          <p>Щастя #{@happy} #{@emoji}</p>
           <p>Туалет #{@cleanliness}</p>
           <p>Життя #{@life}</p>
           <p>Золото #{@money}</p>
+
         <br>
       </div>"
+
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
   end
@@ -140,6 +143,10 @@ class Pet
     end
   end
 
+  def emoji
+    # emoji = '&#128513;'
+    @happy > 5 ? @emoji = '&#128513;' : @emoji = '&#128545;;'
+  end
   def lose_life
     @life -= 1
     p "|Життя| #{@name}  втратив одне життя" if @life != 1
@@ -181,6 +188,7 @@ class Pet
     love
     toilet if @cleanliness >= 8
     inform
+    emoji
   end
 
   def feed
