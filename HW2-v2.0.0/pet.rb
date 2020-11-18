@@ -377,6 +377,5 @@ class Pet
     end
     time_pass
   end
-
   private :time_pass
 end
