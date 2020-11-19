@@ -1,7 +1,6 @@
 require_relative 'pet'
 require_relative 'dog'
 require_relative 'cat'
-require 'cont_to_html'
 
 class Menu
   def start

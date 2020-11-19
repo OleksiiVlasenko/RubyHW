@@ -92,7 +92,7 @@ class Pet
     table.iksweb tr:hover td{color:#354251;cursor:default;}
     </style>
     <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
-    <p>Мене звати <b>#{@name}</b>, Я - #{@emoji}</p>
+    <p>Мене звати <b>#{@name}</b> і мій стан - #{@emoji}</p>
     <table class=""iksweb"">
 		<tr>
 			<td>Рівень</td>
@@ -114,7 +114,9 @@ class Pet
 			<td>#{@life}</td>
 			<td>#{@money}</td>
 		</tr>
-    </table>"
+    </table>
+    <p> Щоб погратись зі мною виконуй команди в консолі </p>
+    <h6> Повністю браузерна версія планується в наступному оновленні :) </h6>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
   end
