@@ -13,6 +13,7 @@ class Menu
       when '1'
         @pet.mining
         @pet.push_html
+        @pet.
       when '2'
         @pet.play
         @pet.push_html

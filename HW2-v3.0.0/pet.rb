@@ -3,7 +3,7 @@ require 'cont_to_html'
 
 
 class Pet
-  attr_accessor :name
+  attr_accessor :name, :hunger, :happy, :asleep, :cleanliness, :life, :water, :money, :lvl, :exp, :emoji
 
   def initialize(name)
     @name = name      # name
