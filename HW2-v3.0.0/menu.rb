@@ -13,7 +13,6 @@ class Menu
       when '1'
         @pet.mining
         @pet.push_html
-        @pet.
       when '2'
         @pet.play
         @pet.push_html
@@ -58,6 +57,9 @@ class Menu
         @pet.push_html
       when 'html'
         ContenToHtml.new.open_html
+      when 'char'
+        @pet.super_change_char
+        @pet.push_html
       when '0'
         exit
       else

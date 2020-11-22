@@ -81,6 +81,64 @@ class Pet
     p 'Введіть команду (загальний список команд 12)'
   end
 
+  def super_change_char
+    p 'Ви хочете змінити характеристику'
+    char = gets.strip.downcase
+    case char
+    when 'name'
+      @name = ask_val
+      inform
+    when 'lvl'
+      @lvl = ask_val
+      inform
+    when 'exp'
+      @exp = ask_val
+      inform
+    when 'hunger'
+      @hunger = ask_val
+      inform
+    when 'water'
+      @water = ask_val
+      inform
+    when 'happy'
+      @happy = ask_val
+      inform
+    when 'cleanliness'
+      @cleanliness = ask_val
+      inform
+    when 'life'
+      @life = ask_val
+      inform
+    when 'money'
+      @money = ask_val
+      inform
+    when 'reset'
+      char_reset
+      inform
+    else
+      p 'Вибачте, спробуйте заново команду (загальний список команд 12)'
+    end
+  end
+
+  def ask_val
+    p 'Введіть значення на яке хочете змінити'
+    return val = gets.strip.downcase
+  end
+
+  def char_reset
+    @hunger = 10
+    @happy = 10
+    @asleep = false
+    @cleanliness = 0
+    @life = 1
+    @water = 10
+    @money = 0
+    @lvl = 0
+    @exp = 0
+    @emoji = ''
+    p 'Характеристики були змінені на дефолтні'
+  end
+
   def push_html(filename = 'index.html')
     content = "
     <style>
@@ -118,7 +176,7 @@ class Pet
     <p> Щоб погратись зі мною виконуй команди в консолі </p>
     <h6> Повністю браузерна версія планується в наступному оновленні :) </h6>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
-    ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
+    ContenToHtml.new.create_html(content, true, filename) unless File.exist?(filename)
   end
 
   def lvlup
