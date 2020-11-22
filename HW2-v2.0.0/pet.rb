@@ -233,7 +233,8 @@ class Pet
       p "** #{@name} підійшов по ближче і дивиться вам в очі" if @life != 0
     when 2
       p "** #{@name} сидить сумує ... " if @life != 0
-    else @asleep = true
+    else
+      @asleep = true
     end
   end
 
