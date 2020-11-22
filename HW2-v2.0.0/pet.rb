@@ -167,7 +167,7 @@ class Pet
   end
 
   def emoji
-    @happy >= 5 ? @emoji = '&#x1f601;' : @emoji = '&#128553;'
+    @emoji = @happy >= 5 ? '&#x1f601;' : '&#128553;'
   end
 
   def lose_life
