@@ -1,7 +1,10 @@
 ---
 guest:
   password: guest
+  role: 1
 admin:
   password: admin
+  role: 2
 super_admin:
   password: 12345
+  role: 3

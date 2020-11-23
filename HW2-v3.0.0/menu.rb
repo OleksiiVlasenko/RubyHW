@@ -7,8 +7,12 @@ require_relative 'users/superadmin'
 class Setting
   CONFIG_FILE = 'settings.yml'
   class << self
-    def get(key)
+    def get_pass(key)
       load_settings[key.to_s]['password']
+    end
+
+    def get_role(key)
+      load_settings[key.to_s]['role']
     end
 
     def load_settings
@@ -29,9 +33,9 @@ class Menu
   end
 
   def init_user
-    guest = Setting.get('guest')
-    admin = Setting.get('admin')
-    super_admin = Setting.get('super_admin').to_s
+    guest = Setting.get_pass('guest')
+    admin = Setting.get_pass('admin')
+    super_admin = Setting.get_pass('super_admin').to_s
     until @user == 'guest' || @user == 'admin' || @user == 'super'
       p 'Введіть один із доступних логінів super(superadmin), admin, guest? '
       @user = gets.chomp
