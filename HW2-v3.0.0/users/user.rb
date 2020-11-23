@@ -1,7 +1,7 @@
 require_relative '../pet'
 require_relative '../dog'
 require_relative '../cat'
-require '../menu'
+
 
 class User
 

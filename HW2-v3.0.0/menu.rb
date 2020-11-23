@@ -52,4 +52,4 @@ class Menu
   end
 end
 
-Menu.new.init_user
+Menu.new.start
