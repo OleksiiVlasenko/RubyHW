@@ -120,6 +120,18 @@ class Pet
     end
   end
 
+  def admin_change_char
+    p 'Ви хочете змінити характеристику'
+    char = gets.strip.downcase
+    case char
+    when 'name'
+      @name = ask_val
+      inform
+    else
+      p 'Вибачте, спробуйте заново команду (загальний список команд 12)'
+    end
+  end
+
   def ask_val
     p 'Введіть значення на яке хочете змінити'
     return val = gets.strip.downcase
