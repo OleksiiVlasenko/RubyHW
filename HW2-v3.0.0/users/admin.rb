@@ -3,6 +3,7 @@ require_relative '../menu'
 class Admin
 
   def start
+    p "Welcome, you are loggened as Admin"
     new_pet
     @pet.emoji
     @pet.push_html

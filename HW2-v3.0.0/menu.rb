@@ -34,12 +34,12 @@ class Menu
   end
 
   def init_user
-    until @user == '1' || @user == 'admin' || @user == 'super'
+    until @user == 'guest' || @user == 'admin' || @user == 'super'
       p 'Введіть один із доступних логінів super(superadmin), admin, guest? '
       @user = gets.chomp
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
-      if @user == '1' && @pass == '1'
+      if @user == 'guest' && @pass == 'guest'
         @guest = User.new.start
       elsif @user == 'admin' && @pass == 'admin'
         @super = SuperAdmin.new.start

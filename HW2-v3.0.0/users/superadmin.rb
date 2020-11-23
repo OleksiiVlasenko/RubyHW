@@ -3,6 +3,7 @@ require_relative '../menu'
 class SuperAdmin
 
   def start
+    p "Welcome, you are loggened as SuperAdmin"
     new_pet
     @pet.emoji
     @pet.push_html

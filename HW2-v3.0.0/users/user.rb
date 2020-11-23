@@ -1,10 +1,12 @@
 require_relative '../pet'
 require_relative '../dog'
 require_relative '../cat'
+require '../menu'
 
 class User
 
   def start
+    p "Welcome, you are loggened as Guest"
     new_pet
     @pet.emoji
     @pet.push_html
