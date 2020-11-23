@@ -1,14 +1,12 @@
+# frozen_string_literal: true
 require 'yaml'
 require_relative 'users/user'
 require_relative 'users/admin'
 require_relative 'users/superadmin'
 
 class Setting
-
   CONFIG_FILE = 'settings.yml'
-
   class << self
-
     def get(key)
       load_settings[key.to_s]['password']
     end
@@ -18,13 +16,10 @@ class Setting
     end
 
     private
-
     def file_path
       "users/#{CONFIG_FILE}"
     end
-
   end
-
 end
 
 class Menu

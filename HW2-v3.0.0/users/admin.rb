@@ -43,9 +43,6 @@ class Admin
       when '10'
         @pet.status
         @pet.push_html
-      when '11'
-        @pet.kill
-        @pet.push_html
       when '12'
         @pet.pet_comand
       when '13'
