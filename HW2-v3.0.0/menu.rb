@@ -1,6 +1,31 @@
 require_relative 'pet'
 require_relative 'dog'
 require_relative 'cat'
+require 'yaml'
+
+class Setting
+
+  CONFIG_FILE = 'settings.yml'
+
+  class << self
+
+    def get(key)
+      load_settings[key.to_s]['value']
+    end
+
+    def load_settings
+      @config ||= YAML.load(File.read(file_path))
+    end
+
+    private
+
+    def file_path
+      "config/#{CONFIG_FILE}"
+    end
+
+  end
+
+end
 
 class Menu
   def start
