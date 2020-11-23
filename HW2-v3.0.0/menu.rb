@@ -10,7 +10,7 @@ class Setting
   class << self
 
     def get(key)
-      load_settings[key.to_s]['value']
+      load_settings[key.to_s]['password']
     end
 
     def load_settings
@@ -20,7 +20,7 @@ class Setting
     private
 
     def file_path
-      "config/#{CONFIG_FILE}"
+      "users/#{CONFIG_FILE}"
     end
 
   end
@@ -34,16 +34,19 @@ class Menu
   end
 
   def init_user
+    guest = Setting.get('guest')
+    admin = Setting.get('admin')
+    super_admin = Setting.get('super_admin').to_s
     until @user == 'guest' || @user == 'admin' || @user == 'super'
       p 'Введіть один із доступних логінів super(superadmin), admin, guest? '
       @user = gets.chomp
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
-      if @user == 'guest' && @pass == 'guest'
+      if @user == 'guest' && @pass == guest
         @guest = User.new.start
-      elsif @user == 'admin' && @pass == 'admin'
+      elsif @user == 'admin' && @pass == admin
         @super = SuperAdmin.new.start
-      elsif @user == 'super' && @pass == 'super'
+      elsif @user == 'super' && @pass == super_admin
         @super = SuperAdmin.new.start
       else
         p 'Вибачте спробуйте ще!'

@@ -1,0 +1,7 @@
+---
+guest:
+  password: guest
+admin:
+  password: admin
+super_admin:
+  password: 12345
