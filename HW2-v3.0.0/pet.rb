@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 require 'cont_to_html'
-
+require 'yaml'
 
 class Pet
   attr_accessor :name, :hunger, :happy, :asleep, :cleanliness, :life, :water, :money, :lvl, :exp, :emoji
@@ -17,6 +17,21 @@ class Pet
     @lvl = 0
     @exp = 0
     @emoji = ''
+  end
+
+  def save_to_yaml
+    yaml_db = { name: @name,
+                hunger: @hunger,
+                happy: @happy,
+                asleep: @asleep,
+                cleanliness: @cleanliness,
+                life: @life,
+                water: @water,
+                money: @money,
+                lvl: @lvl,
+                exp: @exp,
+                emoji: @emoji }
+    File.open("pet.yml", "w") { |file| file.write(yaml_db.to_yaml) }
   end
 
   def pet_comand
@@ -189,6 +204,7 @@ class Pet
     <h6> Повністю браузерна версія планується в наступному оновленні :) </h6>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content, true, filename) unless File.exist?(filename)
+    save_to_yaml
   end
 
   def lvlup
