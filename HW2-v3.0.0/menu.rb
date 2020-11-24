@@ -3,28 +3,7 @@ require 'yaml'
 require_relative 'users/user'
 require_relative 'users/admin'
 require_relative 'users/superadmin'
-
-class Setting
-  CONFIG_FILE = 'settings.yml'
-  class << self
-    def get_pass(key)
-      load_settings[key.to_s]['password']
-    end
-
-    def get_role(key)
-      load_settings[key.to_s]['role']
-    end
-
-    def load_settings
-      @config ||= YAML.load(File.read(file_path))
-    end
-
-    private
-    def file_path
-      "users/#{CONFIG_FILE}"
-    end
-  end
-end
+require_relative 'yaml_db'
 
 class Menu
 
