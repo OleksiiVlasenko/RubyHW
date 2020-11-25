@@ -31,7 +31,7 @@ class Pet
                 lvl: @lvl,
                 exp: @exp,
                 emoji: @emoji }
-    File.open("pet.yml", "w") { |file| file.write(yaml_db.to_yaml) }
+    File.open("db/pet.yml", "w") { |file| file.write(yaml_db.to_yaml) }
   end
 
   def pet_comand

@@ -29,7 +29,7 @@ class Setting
 
     private
     def file_path
-      "users/#{CONFIG_FILE}"
+      "db/#{CONFIG_FILE}"
     end
   end
 end
