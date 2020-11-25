@@ -300,10 +300,19 @@ class Pet
     emoji
   end
 
+  def set_change(param, value)
+    if param.between?(0, 100)
+       param + value
+    elsif param > 0
+      param = 0
+    else param = 100
+  end
+  end
+
   def feed
-    @hunger += 2
-    @water += 2
-    @cleanliness += 2
+    @hunger = set_change(@hunger, 2)
+    @water = set_change(@water, 2)
+    @cleanliness = set_change(@cleanliness, 2)
     toilet if @cleanliness >= 8
     p "|Ситність| #{@name} поїв, ммм, дуже смачно"
     inform
