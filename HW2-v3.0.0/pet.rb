@@ -333,10 +333,10 @@ class Pet
 
   def timetosleep
     p "** #{@name} солодко засипа у вас на руках ..."
-    @water -= 4
-    @happy -= 4
-    @hunger -= 4
-    @cleanliness += 4
+    @water = set_change(@water, -4)
+    @happy = set_change(@happy, -4)
+    @hunger = set_change(@hunger, -4)
+    @cleanliness = set_change(@cleanliness, +4)
     @asleep = true
     time_pass
     2.times do
@@ -402,7 +402,7 @@ class Pet
         p ' - Я трохи хочу відпочити!'
       end
       time_pass
-      @happy += 4
+      @happy = set_change(@happy, +4)
       @exp += 10
     else
       p "|Щастя| #{@name} ще не має бажання гратись"
@@ -418,8 +418,8 @@ class Pet
     if poop?
       p "|Туалет| #{@name} упс, сходив в куточку в туалет"
       @cleanliness = 0
-      @hunger -= 1
-      @water -= 1
+      @hunger = set_change(@hunger, -1)
+      @water = set_change(@water, -1)
     else
       p "|Туалет| #{@name} скоро захоче в туалет ..."
     end
@@ -447,14 +447,14 @@ class Pet
 
   def sport
     p "|Щастя| #{@name} займається спортом"
-    @happy += 4
+    @happy = set_change(@happy, + 4)
     @exp += 10
     time_pass
   end
 
   def swim
     p "|Щастя| #{@name} плаває в басейні"
-    @happy += 5
+    @happy = set_change(@happy, + 5)
     @exp += 10
     time_pass
   end
