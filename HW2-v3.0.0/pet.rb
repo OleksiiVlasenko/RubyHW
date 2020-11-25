@@ -149,7 +149,7 @@ class Pet
 
   def ask_val
     p 'Введіть значення на яке хочете змінити'
-    return val = gets.strip.downcase
+    val = gets.strip.downcase
   end
 
   def char_reset
@@ -209,7 +209,7 @@ class Pet
 
   def lvlup
     if @exp >= 100
-      @lvl += 1
+      @lvl = set_change(@lvl, 1)
       @exp = 0
       p "|Рівень| **#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
     end
@@ -218,15 +218,14 @@ class Pet
   def mining
     gold = rand(1..5)
     p "|Золото| #{@name} заробляє #{gold} золота на майнінгу"
-    @money += gold
-    @exp += 10
+    @money = set_change(@money, gold)
+    @exp = set_change(@exp, 10)
     p 'Введіть команду (загальний список команд 12)'
-
   end
 
   def say
-    "**#{name} привіт як у тебя справи?"
-    @happy += 1
+    p "**#{name} привіт як у тебя справи?"
+    @happy = set_change(@happy, 1)
   end
 
   def casino
@@ -265,10 +264,10 @@ class Pet
 
   def time_pass
     if @hunger >= 0
-      @hunger -= 2
-      @happy -= 2
-      @water -= 2
-      @cleanliness += 2
+      @hunger = set_change(@hunger, -2)
+      @happy = set_change(@happy, -2)
+      @water = set_change(@water, -2)
+      @cleanliness = set_change(@cleanliness, 2)
     else
       asleep_f if @asleep
       lose_life
@@ -301,12 +300,11 @@ class Pet
   end
 
   def set_change(param, value)
-    if param.between?(0, 100)
-       param + value
-    elsif param > 0
-      param = 0
-    else param = 100
-  end
+    if param >= 1
+      param.between?(0, 90) ? param + value : 100
+    else
+      param >= 1 ? param + value : 0
+    end
   end
 
   def feed
