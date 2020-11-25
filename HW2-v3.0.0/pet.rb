@@ -331,11 +331,13 @@ class Pet
     @hunger -= 4
     @cleanliness += 4
     @asleep = true
+    time_pass
     2.times do
-      time_pass if @asleep
-      p "#{@name} - солоденько спить .... хррр хррр... хрр.... ." if @asleep
-      p "#{@name} - ... хррр хррр... хрр....хфьююю ." if @asleep
-      p "#{@name} - зіває і далі спить ... хррр хррр... хрр....хфьююю ." if @asleep
+      if @asleep
+        p "#{@name} - солоденько спить .... хррр хррр... хрр.... ."
+        p "#{@name} - ... хррр хррр... хрр....хфьююю ."
+        p "#{@name} - зіває і далі спить ... хррр хррр... хрр....хфьююю ."
+      end
     end
     if @asleep
       @asleep = false
