@@ -21,11 +21,15 @@ class Pet
     @time_create = Time.new
     @lifetime = ''
     @owner = ''
-    load_owner
+    @type = ''
+    load_temp
+    emoji_by_type
   end
 
-  def load_owner
-    @owner = YAML.load(File.read("db/pet.yml")).to_s
+  def load_temp
+    temp = YAML.load(File.read("db/pet.yml"))
+    @owner = temp[0]
+    @type = temp[1]
   end
 
   def save_to_yaml
@@ -187,6 +191,11 @@ class Pet
     p 'Характеристики були змінені на дефолтні'
   end
 
+  def emoji_by_type
+    @emoji_type = '&#128008;' if @type == 'cat'
+    @emoji_type = '&#128021;' if @type == 'dog'
+  end
+
   def push_html(filename = 'index.html')
     lifetime
     content = "
@@ -201,7 +210,7 @@ class Pet
     <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
     <p>Власник  <b>#{@owner.capitalize}</b></p>
     <p>Ви авторизовані як <b>#{check_session.capitalize}</b></p>
-    <p><b>#{@owner.capitalize}</b> назвав мене <b>#{@name}</b> і мій стан - #{@emoji}</p>
+    <p><b>#{@owner.capitalize}</b> назвав мене <b>#{@name} Я #{@emoji_type}</b> і мій стан - #{@emoji}</p>
     <table class=""iksweb"">
 		<tr>
 			<td>Рівень</td>

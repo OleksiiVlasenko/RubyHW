@@ -19,15 +19,24 @@ class User
     loop(&method(:chose_command))
   end
 
+  def write_temp
+    temp = [@owner, @type]
+    File.open("db/pet.yml", "w") { |file| file.write(temp.to_yaml) }
+  end
+
+  def preparatory
+    p 'Напишіть як Ви хочете назвати вашу тваринку ? '
+    @name = gets.chomp
+    p 'Напишіть dog або cat, щоб вибрати ким хочете грати.'
+    @type = gets.chomp.downcase
+    p 'Напишіть як вас називати'
+    @owner = gets.chomp.downcase
+    write_temp
+  end
+
   def new_pet
     until @type == 'dog' || @type == 'cat'
-      p 'Напишіть як Ви хочете назвати вашу тваринку ? '
-      @name = gets.chomp
-      p 'Напишіть dog або cat, щоб вибрати ким хочете грати.'
-      @type = gets.chomp.downcase
-      p 'Напишіть як вас називати'
-      @owner = gets.chomp.downcase
-      File.open("db/pet.yml", "w") { |file| file.write(@owner.to_yaml) }
+      preparatory
       if @type == 'dog'
         @pet = Dog.new(@name)
       else @type == 'cat'
