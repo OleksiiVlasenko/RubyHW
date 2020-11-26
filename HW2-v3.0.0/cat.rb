@@ -1,7 +1,6 @@
 class Cat < Pet
   def initialize(name)
     super
-    @life = 10
     @name = name
   end
 
