@@ -6,6 +6,7 @@ require_relative 'cat'
 
 
 class User
+
   def check_session
     YAML.load(File.read("db/session.yml")).to_s
   end
@@ -72,7 +73,7 @@ class User
       @pet.status
       @pet.push_html
     when 'kill'
-      @pet.kill
+      @pet.kill if check_session == 'super'
       @pet.push_html
     when '11'
       @pet.pet_comand
@@ -90,6 +91,9 @@ class User
     when 'char'
       @pet.super_change_char if check_session == 'super'
       @pet.admin_change_char if check_session == 'admin'
+      @pet.push_html
+    when 'reset'
+      @pet.char_reset if check_session == 'super'
       @pet.push_html
     when '0'
       exit

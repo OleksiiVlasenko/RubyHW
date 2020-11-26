@@ -52,6 +52,7 @@ class Pet
     p '| Введіть номер команди і натисніть Enter (тільки цифру)'
     p '| char Для зміни імені тваринки' if 'super' == check_session || 'admin' == check_session
     p '| kill Вбивти тваринку |' if 'super' == check_session
+    p '| reset обнулити тваринку' if 'super' == check_session
   end
 
   def help
@@ -89,7 +90,8 @@ class Pet
     p '| 14 Інформація по грі'
     p '| char Для зміни імені тваринки' if 'super' == check_session || 'admin' == check_session
     p '| Напишіть html щоб відкрити в браузері'
-    p '| kill Вбити тваринку (cheats)' if 'super' == check_session
+    p '| kill Вбити тваринку' if 'super' == check_session
+    p '| reset обнулити тваринку' if 'super' == check_session
     p 'Введіть номер команди і натисніть enter'
   end
 
