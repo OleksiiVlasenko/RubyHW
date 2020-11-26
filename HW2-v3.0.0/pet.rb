@@ -107,6 +107,7 @@ class Pet
   def status
     lifetime
     p "Власник     : #{@owner}"
+    p "Тип         : #{@type}"
     p "Ім'я        : #{@name}"
     p "Рівень      : #{@lvl}"
     p "Досвід      : #{@exp}"
@@ -121,7 +122,8 @@ class Pet
   end
 
   def super_change_char
-    p 'Ви хочете змінити характеристику'
+    p 'Яку Ви хочете змінити характеристику, виберіть зі списку і напишіть'
+    p 'name, type, lvl, exp, hunger, water, happy, cleanliness, life, money'
     char = gets.strip.downcase
     case char
     when 'name'
@@ -170,11 +172,17 @@ class Pet
   end
 
   def admin_change_char
-    p 'Ви хочете змінити характеристику'
+    p 'Яку Ви хочете змінити характеристику, виберіть зі списку і напишіть'
+    p 'name, type'
     char = gets.strip.downcase
     case char
     when 'name'
       @name = ask_val
+      push_html
+      inform
+    when 'type'
+      @type = ask_val
+      push_html
       inform
     else
       p 'Вибачте, але немає такої команди спробуйте заново (загальний список команд 11)'
