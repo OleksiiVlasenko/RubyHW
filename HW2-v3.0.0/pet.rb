@@ -448,7 +448,6 @@ class Pet
   def die
     if @life.zero? || @happy <= 0
       @emoji = '&#128565;'
-
       push_html
       status
       p "『RɨP』〘#{@name}♔〙"

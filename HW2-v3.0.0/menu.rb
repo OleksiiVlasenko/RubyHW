@@ -9,7 +9,7 @@ class Menu
   end
 
   def init_user
-    users = YAML.load(File.read("db/users.yml"))
+    users = YAML.load(File.read('db/users.yml'))
     until @user == 'guest' || @user == 'admin' || @user == 'super'
       p 'Введіть один із доступних логінів super, admin, guest? '
       @user = gets.chomp
@@ -17,8 +17,8 @@ class Menu
       @pass = gets.chomp.downcase
       users.each do |user, pass|
         login = @user.to_s if @user == user.to_s && @pass == pass
-        File.open("db/session.yml", "w") { |file| file.write(@user.to_yaml) }
-        User.new.start if login == 'admin' || login == 'guest' ||  login == 'super'
+        File.open('db/session.yml', 'w') { |file| file.write(@user.to_yaml) }
+        User.new.start if login == :admin || :guest || :super
       end
     end
   end
