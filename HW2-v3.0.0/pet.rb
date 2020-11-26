@@ -453,7 +453,7 @@ class Pet
       status
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
-      p "@name прожив #{@lifetime}"
+      p "#{@name} прожив #{@lifetime}"
       exit
     end
   end
