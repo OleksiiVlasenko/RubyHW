@@ -26,7 +26,7 @@ class Menu
   def log_in(pass, user)
     login = @user.to_s if @user == user.to_s && @pass == pass
     File.open('db/session.yml', 'w') { |file| file.write(@user.to_yaml) }
-    User.new.start if login == :admin || :guest || :super
+    User.new.start if login == 'admin' || login == 'guest' || login == 'super'
   end
 end
 

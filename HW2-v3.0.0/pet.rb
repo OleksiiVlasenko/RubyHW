@@ -496,6 +496,7 @@ class Pet
     end
     time_pass
   end
-  private :time_pass, :inform, :die, :lifetime, :poop?
+  private :time_pass, :inform, :die, :lifetime, :poop?, :check_session,
+  :ask_val, :lvlup, :lose_life, :set_change, :asleep, :hungry?, :happy?
 
 end
