@@ -1,7 +1,7 @@
 # frozen_string_literal: true
+
 require 'cont_to_html'
 require 'yaml'
-
 
 class Pet
   attr_accessor :name, :hunger, :happy, :asleep, :cleanliness, :life, :water, :money, :lvl, :exp, :emoji
