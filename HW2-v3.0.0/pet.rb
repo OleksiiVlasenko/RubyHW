@@ -59,9 +59,9 @@ class Pet
     p '| 11 список команд | 12 Гра ⒸⒶⓈⒾⓃⓄ | 13 Попестити | 14 Допомога'
     p '| Напишіть html щоб відкрити в браузері'
     p '| Введіть номер команди і натисніть Enter (тільки цифру)'
-    p '| char Для зміни імені тваринки' if 'super' == check_session || 'admin' == check_session
-    p '| kill Вбивти тваринку |' if 'super' == check_session
-    p '| reset обнулити тваринку' if 'super' == check_session
+    p '| char Для зміни імені тваринки' if check_session == 'super' || check_session == 'admin'
+    p '| kill Вбивти тваринку |' if check_session == 'super'
+    p '| reset обнулити тваринку' if check_session == 'super'
   end
 
   def help
@@ -97,10 +97,10 @@ class Pet
     p '| 12 Гра ⒸⒶⓈⒾⓃⓄ'
     p '| 13 Попестити +1 щастя'
     p '| 14 Інформація по грі'
-    p '| char Для зміни імені тваринки' if 'super' == check_session || 'admin' == check_session
+    p '| char Для зміни імені тваринки' if check_session == 'super' || check_session == 'admin'
     p '| Напишіть html щоб відкрити в браузері'
-    p '| kill Вбити тваринку' if 'super' == check_session
-    p '| reset обнулити тваринку' if 'super' == check_session
+    p '| kill Вбити тваринку' if check_session == 'super'
+    p '| reset обнулити тваринку' if check_session == 'super'
     p 'Введіть номер команди і натисніть enter'
   end
 
@@ -249,7 +249,6 @@ class Pet
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content, true, filename) unless File.exist?(filename)
     save_to_yaml
-
   end
 
   def lvl_up
@@ -428,11 +427,11 @@ class Pet
   end
 
   def hungry?
-    @hunger < 3 ? true : false
+    @hunger < 3
   end
 
   def happy?
-    @hunger > 3 ? true : false
+    @hunger > 3
   end
 
   def play
@@ -525,7 +524,7 @@ class Pet
     else
       p '|Щастя| - щось нічого не хочеться!'
     end
-    @happy = set_change(@happy,4)
+    @happy = set_change(@happy, 4)
     time_pass
   end
 
