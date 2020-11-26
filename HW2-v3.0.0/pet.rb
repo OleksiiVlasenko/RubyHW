@@ -205,10 +205,10 @@ class Pet
 		<tr>
 			<td>#{@lvl}</td>
 			<td>#{@exp}</td>
-			<td>#{@hunger}</td>
-			<td>#{@water}</td>
-			<td>#{@happy}</td>
-			<td>#{@cleanliness}</td>
+			<td>#{@hunger}#{@hunger >= 5 ? '&#x1f601;' : '&#128553;'}</td>
+			<td>#{@water}#{@water >= 5 ? '&#x1f601;' : '&#128553;'}</td>
+			<td>#{@happy}#{@happy >= 5 ? '&#x1f601;' : '&#128553;'}</td>
+			<td>#{@cleanliness}#{@hunger <= 5 ? '&#x1f601;' : '&#128553;'}</td>
 			<td>#{@life}</td>
 			<td>#{@money}</td>
 		</tr>
@@ -267,7 +267,7 @@ class Pet
   end
 
   def emoji
-    @emoji = @happy >= 5 ? '&#x1f601;' : '&#128553;'
+    @emoji = @happy >= 5 ? '&#128522' : '&#128561;'
   end
 
   def lose_life
@@ -446,13 +446,15 @@ class Pet
   end
 
   def die
+    if @life.zero? || @happy <= 0
     @emoji = '&#128565;'
     push_html
     p "『RɨP』〘#{@name}♔〙"
     p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
     p "#{@name} прожив #{@lifetime} хв."
     ContenToHtml.new.open_html
-    exit if @life.zero? || @happy <= 0
+    exit
+    end
   end
 
   def kill
