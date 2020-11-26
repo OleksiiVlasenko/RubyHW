@@ -48,6 +48,9 @@ class User
       when '10'
         @pet.status
         @pet.push_html
+      when '11'
+        @pet.kill
+        @pet.push_html
       when '12'
         @pet.pet_comand
       when '13'
@@ -62,8 +65,11 @@ class User
       when 'html'
         ContenToHtml.new.open_html
       when 'char'
-        @pet.super_change_char if 'super' == check_session
-        @pet.admin_change_char if 'admin' == check_session
+        if 'super' == check_session
+          @pet.super_change_char
+          elsif 'admin' == check_session
+            @pet.admin_change_char
+        end
         @pet.push_html
       when '0'
         exit
