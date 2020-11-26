@@ -3,7 +3,6 @@ require 'yaml'
 require_relative 'users/user'
 require_relative 'users/admin'
 require_relative 'users/superadmin'
-require_relative 'yaml_db'
 
 class Menu
 
@@ -14,7 +13,7 @@ class Menu
   def init_user
     users = YAML.load(File.read("db/users.yml"))
     until @user == 'guest' || @user == 'admin' || @user == 'super'
-      p 'Введіть один із доступних логінів super(superadmin), admin, guest? '
+      p 'Введіть один із доступних логінів super, admin, guest? '
       @user = gets.chomp
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
