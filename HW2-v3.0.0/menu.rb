@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require_relative 'users/user'
+require_relative 'user'
 
 class Menu
   def start

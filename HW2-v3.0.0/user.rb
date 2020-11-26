@@ -1,6 +1,6 @@
-require_relative '../pet'
-require_relative '../dog'
-require_relative '../cat'
+require_relative 'pet'
+require_relative 'dog'
+require_relative 'cat'
 
 
 class User
