@@ -2,6 +2,7 @@
 require 'cont_to_html'
 require 'yaml'
 
+
 class Pet
   attr_accessor :name, :hunger, :happy, :asleep, :cleanliness, :life, :water, :money, :lvl, :exp, :emoji
 
@@ -34,6 +35,10 @@ class Pet
                 exp: @exp,
                 emoji: @emoji }
     File.open("db/pet.yml", "w") { |file| file.write(yaml_db.to_yaml) }
+  end
+
+  def check_session
+    YAML.load(File.read("db/session.yml")).to_s
   end
 
   def pet_comand
@@ -76,11 +81,13 @@ class Pet
     p '| 8 сходити в туалет (0 туалет -1 ситності -2 води)'
     p '| 9 проспати цілий день (-4 щастя -4 ситності -4 води +4 туалет)'
     p '| 10 Статус тваринки '
-    p '| 11 Вбити тваринку (cheats)'
+    p '| 11 Вбити тваринку (cheats)' if 'super' == check_session
+    p check_session
     p '| 12 Список команд'
     p '| 13 Гра ⒸⒶⓈⒾⓃⓄ'
     p '| 14 Попестити +1 щастя'
     p '| 15 Інформація по грі'
+    p '| char Для зміни імені тваринки'
     p '| Напишіть html щоб відкрити в браузері'
     p 'Введіть номер команди і натисніть enter'
   end
@@ -216,7 +223,7 @@ class Pet
 
   def lvlup
     if @exp >= 100
-      @lvl = set_change(@lvl, 1)
+      @lvl += 1
       @exp = 0
       p "|Рівень| **#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
     end
@@ -225,8 +232,8 @@ class Pet
   def mining
     gold = rand(1..5)
     p "|Золото| #{@name} заробляє #{gold} золота на майнінгу"
-    @money = set_change(@money, gold)
-    @exp = set_change(@exp, 10)
+    @money += gold
+    @exp += 10
     p 'Введіть команду (загальний список команд 12)'
   end
 
@@ -489,6 +496,6 @@ class Pet
     end
     time_pass
   end
-  private :time_pass
+  private :time_pass, :inform, :die, :lifetime, :poop?
 
 end

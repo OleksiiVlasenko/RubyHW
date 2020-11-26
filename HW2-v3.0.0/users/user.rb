@@ -57,6 +57,10 @@ class User
         @pet.push_html
       when 'html'
         ContenToHtml.new.open_html
+      when 'char'
+        @pet.super_change_char if 'super' == check_session
+        @pet.admin_change_char if 'admin' == check_session
+        @pet.push_html
       when '0'
         exit
       else
