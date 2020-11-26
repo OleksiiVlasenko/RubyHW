@@ -12,22 +12,22 @@ class Menu
   end
 
   def init_user
-    guest = Setting.get_pass('guest')
-    admin = Setting.get_pass('admin')
-    super_admin = Setting.get_pass('super_admin').to_s
+    users = YAML.load(File.read("db/users.yml"))
     until @user == 'guest' || @user == 'admin' || @user == 'super'
       p 'Введіть один із доступних логінів super(superadmin), admin, guest? '
       @user = gets.chomp
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
-      if @user == 'guest' && @pass == guest
-        @guest = User.new.start
-      elsif @user == 'admin' && @pass == admin
-        @super = SuperAdmin.new.start
-      elsif @user == 'super' && @pass == super_admin
-        @super = SuperAdmin.new.start
-      else
-        p 'Вибачте спробуйте ще!'
+      users.each do |user, pass|
+        if @user == user.to_s && @pass == pass
+          @guest = User.new.start
+        elsif user.to_s == @user && pass == @pass
+          @super = SuperAdmin.new.start
+        elsif user.to_s == @user && pass == @pass
+          @super = SuperAdmin.new.start
+        else
+          p 'Вибачте спробуйте ще!'
+        end
       end
     end
   end
