@@ -20,9 +20,7 @@ class Menu
         File.open("db/session.yml", "w") { |file| file.write(@user.to_yaml) }
         User.new.start if login == 'admin' || login == 'guest' ||  login == 'super'
       end
-
     end
-
   end
 end
 

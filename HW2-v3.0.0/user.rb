@@ -48,18 +48,18 @@ class User
       when '10'
         @pet.status
         @pet.push_html
-      when '11'
+      when 'kill'
         @pet.kill
         @pet.push_html
-      when '12'
+      when '11'
         @pet.pet_comand
-      when '13'
+      when '12'
         @pet.casino
         @pet.push_html
-      when '14'
+      when '13'
         @pet.say
         @pet.push_html
-      when '15'
+      when '14'
         @pet.help
         @pet.push_html
       when 'html'
@@ -74,7 +74,7 @@ class User
       when '0'
         exit
       else
-        p 'Вибачте, спробуйте заново команду (загальний список команд 12)'
+        p 'Вибачте, спробуйте заново команду (загальний список команд 11)'
       end
     end
   end
