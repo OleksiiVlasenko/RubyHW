@@ -190,6 +190,7 @@ class Pet
     table.iksweb tr:hover td{color:#354251;cursor:default;}
     </style>
     <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
+    <p>Ви авторизовані як <b>#{check_session.capitalize}</b></p>
     <p>Мене звати <b>#{@name}</b> і мій стан - #{@emoji}</p>
     <table class=""iksweb"">
 		<tr>
@@ -208,9 +209,9 @@ class Pet
 			<td>#{@hunger}#{@hunger >= 5 ? '&#x1f601;' : '&#129314'}</td>
 			<td>#{@water}#{@water >= 5 ? '&#x1f601;' : '&#128545'}</td>
 			<td>#{@happy}#{@happy >= 5 ? '&#x1f601;' : '&#129324;'}</td>
-			<td>#{@cleanliness}#{@hunger <= 5 ? '&#x1f601;' : '&#128553;'}</td>
-			<td>#{@life}</td>
-			<td>#{@money}</td>
+			<td>#{@cleanliness}#{@hunger >= 5 ? '&#x1f601;' : '&#128553;'}</td>
+			<td>#{@life}#{@life >= 1 ? '&#128526' : '&#128128'}</td>
+			<td>#{@money}#{@money >= 2 ? '&#128126' : '&#129396;'}</td>
 		</tr>
     </table>
     <p> Час життя : <b>#{@lifetime}</b> хв</p>
@@ -326,7 +327,8 @@ class Pet
   def feed
     @hunger = set_change(@hunger, 2)
     @water = set_change(@water, 2)
-    @cleanliness = set_change(@cleanliness, 2)
+    # @cleanliness = set_change(@cleanliness, 2)
+    @cleanliness += 2
     toilet if @cleanliness >= 8
     p "|Ситність| #{@name} поїв, ммм, дуже смачно"
     inform
@@ -446,14 +448,14 @@ class Pet
   end
 
   def die
-    if @life.zero? || (@happy <= 0 && @hunger <=0)
-    @emoji = '&#128565;'
-    push_html
-    p "『RɨP』〘#{@name}♔〙"
-    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
-    p "#{@name} прожив #{@lifetime} хв."
-    ContenToHtml.new.open_html
-    exit
+    if @life.zero? || (@happy <= 0 && @hunger <= 0)
+      @emoji = '&#128565;'
+      push_html
+      p "『RɨP』〘#{@name}♔〙"
+      p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
+      p "#{@name} прожив #{@lifetime} хв."
+      ContenToHtml.new.open_html
+      exit
     end
   end
 
@@ -497,6 +499,11 @@ class Pet
     @happy = set_change(@happy,4)
     time_pass
   end
+
+  def check_session
+    YAML.load(File.read("db/session.yml")).to_s
+  end
+
   private :time_pass, :inform, :die, :lifetime, :poop?, :check_session,
           :ask_val, :lvl_up, :lose_life, :set_change, :asleep, :hungry?, :happy?
 end
