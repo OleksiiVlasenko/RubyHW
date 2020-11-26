@@ -16,11 +16,16 @@ class Menu
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
       users.each do |user, pass|
-        login = @user.to_s if @user == user.to_s && @pass == pass
-        File.open('db/session.yml', 'w') { |file| file.write(@user.to_yaml) }
-        User.new.start if login == :admin || :guest || :super
+        log_in(pass, user)
       end
     end
+  end
+
+  private
+
+  def log_in(pass, user)
+    User.new.start if @user == user.to_s && @pass == pass
+    File.open('db/session.yml', 'w') { |file| file.write(@user.to_yaml) }
   end
 end
 
