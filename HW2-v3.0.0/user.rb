@@ -1,16 +1,17 @@
+# frozen_string_literal: true
+
 require_relative 'pet'
 require_relative 'dog'
 require_relative 'cat'
 
 
 class User
-
   def check_session
     YAML.load(File.read("db/session.yml")).to_s
   end
 
   def start
-    p "Welcome, you are loggened as #{check_session.capitalize}"
+    p "Welcome, you are login as #{check_session.capitalize}"
     new_pet
     @pet.emoji
     @pet.push_html
@@ -25,10 +26,8 @@ class User
       @type = gets.chomp.downcase
       if @type == 'dog'
         @pet = Dog.new(@name)
-      elsif @type == 'cat'
-        @pet = Cat.new(@name)
-      else
-        p 'Вибачте але я не знаю такої тваринки, спробуйте ще раз!'
+      else @type == 'cat'
+           @pet = Cat.new(@name)
       end
     end
     p "Привіт друже, я самий найкращий #{@type} і мене звати #{@pet.name}."

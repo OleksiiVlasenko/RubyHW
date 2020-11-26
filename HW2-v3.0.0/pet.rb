@@ -105,7 +105,7 @@ class Pet
     p "Життя       : #{@life}"
     p "Золото      : #{@money}"
     p "Час життя   : #{@lifetime}хв"
-    p 'Введіть команду (загальний список команд 11)'
+    p 'Введіть команду (загальний список команд 11)' if @life != 0 || @happy != 0
   end
 
   def super_change_char
@@ -222,7 +222,7 @@ class Pet
 
   end
 
-  def lvlup
+  def lvl_up
     if @exp >= 100
       @lvl += 1
       @exp = 0
@@ -307,7 +307,7 @@ class Pet
     end
     die
     angry
-    lvlup
+    lvl_up
     love
     toilet if @cleanliness >= 8
     inform
@@ -446,15 +446,13 @@ class Pet
   end
 
   def die
-    if @life.zero? || @happy <= 0
-      @emoji = '&#128565;'
-      push_html
-      status
-      p "『RɨP』〘#{@name}♔〙"
-      p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
-      p "#{@name} прожив #{@lifetime}"
-      exit
-    end
+    @emoji = '&#128565;'
+    push_html
+    p "『RɨP』〘#{@name}♔〙"
+    p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
+    p "#{@name} прожив #{@lifetime} хв."
+    ContenToHtml.new.open_html
+    exit if @life.zero? || @happy <= 0
   end
 
   def kill
@@ -497,6 +495,5 @@ class Pet
     time_pass
   end
   private :time_pass, :inform, :die, :lifetime, :poop?, :check_session,
-  :ask_val, :lvlup, :lose_life, :set_change, :asleep, :hungry?, :happy?
-
+          :ask_val, :lvl_up, :lose_life, :set_change, :asleep, :hungry?, :happy?
 end
