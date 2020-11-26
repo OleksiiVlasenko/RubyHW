@@ -23,7 +23,6 @@ class Pet
     @owner = ''
     @type = ''
     load_temp
-    emoji_by_type
   end
 
   def load_temp
@@ -127,33 +126,43 @@ class Pet
     case char
     when 'name'
       @name = ask_val
+      push_html
       inform
     when 'lvl'
-      @lvl = ask_val
+      @lvl = ask_val.to_i
+      push_html
       inform
     when 'exp'
-      @exp = ask_val
+      @exp = ask_val.to_i
+      push_html
       inform
     when 'hunger'
-      @hunger = ask_val
+      @hunger = ask_val.to_i
+      push_html
       inform
     when 'water'
-      @water = ask_val
+      @water = ask_val.to_i
+      push_html
       inform
     when 'happy'
-      @happy = ask_val
+      @happy = ask_val.to_i
+      push_html
       inform
     when 'cleanliness'
-      @cleanliness = ask_val
+      @cleanliness = ask_val.to_i
+      push_html
       inform
     when 'life'
-      @life = ask_val
+      @life = ask_val.to_i
+      push_html
       inform
     when 'money'
-      @money = ask_val
+      @money = ask_val.to_i
+      push_html
       inform
-    when 'reset'
-      char_reset
+    when 'type'
+      @type = ask_val
+      push_html
       inform
     else
       p 'Вибачте, спробуйте заново команду (загальний список команд 11)'
@@ -198,6 +207,7 @@ class Pet
 
   def push_html(filename = 'index.html')
     lifetime
+    emoji_by_type
     content = "
     <style>
     /* Стили таблицы (IKSWEB) */
