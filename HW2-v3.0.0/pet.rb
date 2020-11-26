@@ -17,6 +17,8 @@ class Pet
     @lvl = 0
     @exp = 0
     @emoji = ''
+    @time_create = Time.new
+    @lifetime = ''
   end
 
   def save_to_yaml
@@ -84,6 +86,7 @@ class Pet
   end
 
   def status
+    lifetime
     p "Статус      : #{@name}"
     p "Рівень      : #{@lvl}"
     p "Досвід      : #{@exp}"
@@ -93,6 +96,7 @@ class Pet
     p "Туалет      : #{@cleanliness}"
     p "Життя       : #{@life}"
     p "Золото      : #{@money}"
+    p "Час життя   : #{@lifetime}хв"
     p 'Введіть команду (загальний список команд 12)'
   end
 
@@ -149,7 +153,7 @@ class Pet
 
   def ask_val
     p 'Введіть значення на яке хочете змінити'
-    val = gets.strip.downcase
+    gets.strip.downcase
   end
 
   def char_reset
@@ -167,6 +171,7 @@ class Pet
   end
 
   def push_html(filename = 'index.html')
+    lifetime
     content = "
     <style>
     /* Стили таблицы (IKSWEB) */
@@ -200,11 +205,13 @@ class Pet
 			<td>#{@money}</td>
 		</tr>
     </table>
+    <p> Час життя : <b>#{@lifetime}</b> хв</p>
     <p> Щоб погратись зі мною виконуй команди в консолі </p>
     <h6> Повністю браузерна версія планується в наступному оновленні :) </h6>"
     ContenToHtml.new.update(content, filename) if File.exist?(filename)
     ContenToHtml.new.create_html(content, true, filename) unless File.exist?(filename)
     save_to_yaml
+
   end
 
   def lvlup
@@ -297,6 +304,7 @@ class Pet
     toilet if @cleanliness >= 8
     inform
     emoji
+    lifetime
   end
 
   def set_change(param, value)
@@ -425,13 +433,19 @@ class Pet
     end
   end
 
+  def lifetime
+    @lifetime = (Time.now-@time_create).round/60
+  end
+
   def die
     if @life.zero? || @happy <= 0
       @emoji = '&#128565;'
+
       push_html
       status
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
+      p "@name прожив #{@lifetime}"
       exit
     end
   end
@@ -476,4 +490,5 @@ class Pet
     time_pass
   end
   private :time_pass
+
 end
