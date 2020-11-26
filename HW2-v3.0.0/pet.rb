@@ -20,6 +20,12 @@ class Pet
     @emoji = ''
     @time_create = Time.new
     @lifetime = ''
+    @owner = ''
+    load_owner
+  end
+
+  def load_owner
+    @owner = YAML.load(File.read("db/pet.yml")).to_s
   end
 
   def save_to_yaml
@@ -97,6 +103,7 @@ class Pet
 
   def status
     lifetime
+    p "Власник     : #{@owner}"
     p "Ім'я        : #{@name}"
     p "Рівень      : #{@lvl}"
     p "Досвід      : #{@exp}"
@@ -192,8 +199,9 @@ class Pet
     table.iksweb tr:hover td{color:#354251;cursor:default;}
     </style>
     <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
+    <p>Власник  <b>#{@owner.capitalize}</b></p>
     <p>Ви авторизовані як <b>#{check_session.capitalize}</b></p>
-    <p>Мене звати <b>#{@name}</b> і мій стан - #{@emoji}</p>
+    <p><b>#{@owner.capitalize}</b> назвав мене <b>#{@name}</b> і мій стан - #{@emoji}</p>
     <table class=""iksweb"">
 		<tr>
 			<td>Рівень</td>

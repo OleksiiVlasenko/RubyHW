@@ -21,10 +21,13 @@ class User
 
   def new_pet
     until @type == 'dog' || @type == 'cat'
-      p 'Як Ви хочете назвати вашу тваринку ? '
+      p 'Напишіть як Ви хочете назвати вашу тваринку ? '
       @name = gets.chomp
       p 'Напишіть dog або cat, щоб вибрати ким хочете грати.'
       @type = gets.chomp.downcase
+      p 'Напишіть як вас називати'
+      @owner = gets.chomp.downcase
+      File.open("db/pet.yml", "w") { |file| file.write(@owner.to_yaml) }
       if @type == 'dog'
         @pet = Dog.new(@name)
       else @type == 'cat'
