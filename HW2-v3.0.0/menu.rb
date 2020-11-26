@@ -18,15 +18,9 @@ class Menu
       p 'Введіть пароль'
       @pass = gets.chomp.downcase
       users.each do |user, pass|
-        if @user == user.to_s && @pass == pass
-          @guest = User.new.start
-        elsif user.to_s == @user && pass == @pass
-          @super = SuperAdmin.new.start
-        elsif user.to_s == @user && pass == @pass
-          @super = SuperAdmin.new.start
-        else
-          p 'Вибачте спробуйте ще!'
-        end
+        @guest = User.new.start if @user == user.to_s && @pass == pass
+        @super = SuperAdmin.new.start if @user == user.to_s && @pass == pass
+        @admin = Admin.new.start if @user == user.to_s && @pass == pass
       end
     end
   end
