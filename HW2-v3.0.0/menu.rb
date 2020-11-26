@@ -2,8 +2,6 @@
 
 require 'yaml'
 require_relative 'users/user'
-require_relative 'users/admin'
-require_relative 'users/superadmin'
 
 class Menu
   def start
@@ -20,9 +18,9 @@ class Menu
       users.each do |user, pass|
         login = @user.to_s if @user == user.to_s && @pass == pass
         File.open("db/session.yml", "w") { |file| file.write(@user.to_yaml) }
-        Admin.new.start if login == 'admin'
+        User.new.start if login == 'admin'
         User.new.start if login == 'guest'
-        SuperAdmin.new.start if login == 'super'
+        User.new.start if login == 'super'
       end
 
     end

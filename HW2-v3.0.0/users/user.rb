@@ -5,8 +5,12 @@ require_relative '../cat'
 
 class User
 
+  def check_session
+    YAML.load(File.read("db/session.yml")).to_s
+  end
+
   def start
-    p "Welcome, you are loggened as Guest"
+    p "Welcome, you are loggened as #{check_session.capitalize}"
     new_pet
     @pet.emoji
     @pet.push_html
