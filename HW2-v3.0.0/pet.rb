@@ -205,9 +205,9 @@ class Pet
 		<tr>
 			<td>#{@lvl}</td>
 			<td>#{@exp}</td>
-			<td>#{@hunger}#{@hunger >= 5 ? '&#x1f601;' : '&#128553;'}</td>
-			<td>#{@water}#{@water >= 5 ? '&#x1f601;' : '&#128553;'}</td>
-			<td>#{@happy}#{@happy >= 5 ? '&#x1f601;' : '&#128553;'}</td>
+			<td>#{@hunger}#{@hunger >= 5 ? '&#x1f601;' : '&#129314'}</td>
+			<td>#{@water}#{@water >= 5 ? '&#x1f601;' : '&#128545'}</td>
+			<td>#{@happy}#{@happy >= 5 ? '&#x1f601;' : '&#129324;'}</td>
 			<td>#{@cleanliness}#{@hunger <= 5 ? '&#x1f601;' : '&#128553;'}</td>
 			<td>#{@life}</td>
 			<td>#{@money}</td>
@@ -446,7 +446,7 @@ class Pet
   end
 
   def die
-    if @life.zero? || @happy <= 0
+    if @life.zero? || (@happy <= 0 && @hunger <=0)
     @emoji = '&#128565;'
     push_html
     p "『RɨP』〘#{@name}♔〙"
@@ -494,6 +494,7 @@ class Pet
     else
       p '|Щастя| - щось нічого не хочеться!'
     end
+    @happy = set_change(@happy,4)
     time_pass
   end
   private :time_pass, :inform, :die, :lifetime, :poop?, :check_session,
