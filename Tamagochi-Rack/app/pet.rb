@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require 'cont_to_html'
+require "erb"
 
 
 class Pet
@@ -13,114 +13,10 @@ class Pet
     @cleanliness = 0  # toilet lvl
     @life = 1         # lives
     @water = 10       # water lvl
-    @money = 0
     @lvl = 0
     @exp = 0
-    @emoji = ''
   end
-
-  def pet_comand
-    p '------------------------------------------------------------------------------'
-    p '| Виберіть команду :'
-    p '| 0 Вийти з гри | 1 майнити | 2 бавитись | 3 їсти | 4 займатись спортом |'
-    p '| 5 гуляти | 6 плавати | 7 нічого не робити | 8 сходити в туалет | '
-    p '| 9 проспати цілий день | 10 Статус тваринки | 11 Вбивти тваринку |'
-    p '| 12 список команд | 13 Гра ⒸⒶⓈⒾⓃⓄ | 14 Попестити | 15 Допомога'
-    p '| Напишіть html щоб відкрити в браузері'
-    p '| Введіть номер команди і натисніть Enter (тільки цифру)'
-  end
-
-  def help
-    p '------------------------------------------------------------------------------'
-    p '| Гра Тамагочі from RubyCops'
-    p "| Для початку задайте і'мя вашої тваринки та її вид"
-    p '| Далі щоб почати грати напишіть номер команди яку ви хочете виконати'
-    p '| Початкові х-ки у вашої тваринки: '
-    p '| 10 ситності'
-    p '| 10 води'
-    p '| 10 щастя'
-    p '| 0 туалет'
-    p "| #{@life} життя(ів)"
-    p '| 0 золота'
-    p '| 0 рівень'
-    p '| 0 досвіду'
-    p '| Після виконання команди, з ліва від неї буде інформація про тип х-ки '
-    p '| з якою проводиться модифікація, будьте уважними, тваринка не постійна...'
-    p '------------------------------------------------------------------------------'
-    p '| Команди:'
-    p '| 0 Вийти з гри'
-    p '| 1 майнити поки хазяїн спить 1..5 золота +10 досвіду'
-    p '| 2 бавитись(+2 щастя -2 бажання поїсти -2 води +2 туалет +10 досвіду)'
-    p '| 3 їсти (+2 ситності +2 туалет +2 води)'
-    p '| 4 займатись різними видами спорту(+2 щастя -2 ситності -2 води +2 туалет +10 досвіду)'
-    p '| 5 прогулюватись(+2 щастя -2 ситності -2 води +2 туалет +10 досвіду)'
-    p '| 6 плавати(+3 щастя -2 ситності -2 води +2 туалет +10 досвіду)'
-    p '| 7 нічого не робити (Поспати годинку -2 щастя -2 ситності -2 води +2 туалет +10 досвіду)'
-    p '| 8 сходити в туалет (0 туалет -1 ситності -2 води)'
-    p '| 9 проспати цілий день (-4 щастя -4 ситності -4 води +4 туалет)'
-    p '| 10 Статус тваринки '
-    p '| 11 Вбити тваринку (cheats)'
-    p '| 12 Список команд'
-    p '| 13 Гра ⒸⒶⓈⒾⓃⓄ'
-    p '| 14 Попестити +1 щастя'
-    p '| 15 Інформація по грі'
-    p '| Напишіть html щоб відкрити в браузері'
-    p 'Введіть номер команди і натисніть enter'
-  end
-
-  def status
-    p "Статус      : #{@name}"
-    p "Рівень      : #{@lvl}"
-    p "Досвід      : #{@exp}"
-    p "Ситність    : #{@hunger}"
-    p "Вода        : #{@water}"
-    p "Щастя       : #{@happy}"
-    p "Туалет      : #{@cleanliness}"
-    p "Життя       : #{@life}"
-    p "Золото      : #{@money}"
-    p 'Введіть команду (загальний список команд 12)'
-  end
-
-  def push_html(filename = 'index.html')
-    content = "
-    <style>
-    /* Стили таблицы (IKSWEB) */
-    table.iksweb{text-decoration: none;border-collapse:collapse;width:100%;text-align:center;}
-    table.iksweb th{font-weight:normal;font-size:14px; color:#ffffff;background-color:#354251;}
-    table.iksweb td{font-size:13px;color:#354251;}
-    table.iksweb td,table.iksweb th{white-space:pre-wrap;padding:10px 5px;line-height:13px;vertical-align: middle;border: 1px solid #910dbd;}	table.iksweb tr:hover{background-color:#e4e685}
-    table.iksweb tr:hover td{color:#354251;cursor:default;}
-    </style>
-    <h1>Гра Тамагочі from RubyCops &#127482;&#127462;</h1>
-    <p>Мене звати <b>#{@name}</b> і мій стан - #{@emoji}</p>
-    <table class=""iksweb"">
-		<tr>
-			<td>Рівень</td>
-			<td>Досвід</td>
-			<td>Ситність</td>
-			<td>Вода</td>
-			<td>Щастя</td>
-			<td>Туалет</td>
-			<td>Життя</td>
-			<td>Золото</td>
-		</tr>
-		<tr>
-			<td>#{@lvl}</td>
-			<td>#{@exp}</td>
-			<td>#{@hunger}</td>
-			<td>#{@water}</td>
-			<td>#{@happy}</td>
-			<td>#{@cleanliness}</td>
-			<td>#{@life}</td>
-			<td>#{@money}</td>
-		</tr>
-    </table>
-    <p> Щоб погратись зі мною виконуй команди в консолі </p>
-    <h6> Повністю браузерна версія планується в наступному оновленні :) </h6>"
-    ContenToHtml.new.update(content, filename) if File.exist?(filename)
-    ContenToHtml.new.create_html(content,true, filename) unless File.exist?(filename)
-  end
-
+  
   def lvlup
     if @exp >= 100
       @lvl += 1
@@ -128,47 +24,7 @@ class Pet
       p "|Рівень| **#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
     end
   end
-
-  def mining
-    gold = rand(1..5)
-    p "|Золото| #{@name} заробляє #{gold} золота на майнінгу"
-    @money += gold
-    @exp += 10
-    p 'Введіть команду (загальний список команд 12)'
-
-  end
-
-  def say
-    "**#{name} привіт як у тебя справи?"
-    @happy += 1
-  end
-
-  def casino
-    p ' - ⒸⒶⓈⒾⓃⓄ - '
-    p "У вас на рахунку : #{@money}"
-    bet = rand(-10..10)
-    if !@money.zero? && !@money.negative?
-      p "Ставка : #{bet}"
-      if bet.positive?
-        p "|Золото| - ⓌⒾⓃ - Ви вийграли #{bet} золота"
-        @money += bet
-        p "У вас на рахунку: #{@money}"
-        p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
-      else
-        p "|Золото| - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
-        @money -= bet.abs
-        p "У вас на рахунку: #{@money}" if @money.positive?
-        p "Ви взяли в кредит: #{@money}" if @money.negative?
-        p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
-      end
-    else
-      p "|Золото| У вас #{@name} немає золота щоб робити ставку"
-    end
-  end
-
-  def emoji
-    @emoji = @happy >= 5 ? '&#x1f601;' : '&#128553;'
-  end
+  
 
   def lose_life
     @life -= 1
@@ -210,8 +66,6 @@ class Pet
     lvlup
     love
     toilet if @cleanliness >= 8
-    inform
-    emoji
   end
 
   def feed
@@ -220,7 +74,6 @@ class Pet
     @cleanliness += 2
     toilet if @cleanliness >= 8
     p "|Ситність| #{@name} поїв, ммм, дуже смачно"
-    inform
   end
 
   def asleep_f
@@ -286,11 +139,11 @@ class Pet
   end
 
   def hungry?
-    @hunger < 3 ? true : false
+    @hunger < 3
   end
 
   def happy?
-    @hunger > 3 ? true : false
+    @hunger > 3
   end
 
   def play
@@ -311,7 +164,6 @@ class Pet
       @exp += 10
     else
       p "|Щастя| #{@name} ще не має бажання гратись"
-      inform
     end
   end
 
@@ -332,22 +184,12 @@ class Pet
 
   def die
     if @life.zero? || @happy <= 0
-      @emoji = '&#128565;'
       push_html
       status
       p "『RɨP』〘#{@name}♔〙"
       p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
       exit
     end
-  end
-
-  def kill
-    @life = 0
-    die
-  end
-
-  def inform
-    p 'Введіть команду (загальний список команд 12)'
   end
 
   def sport
