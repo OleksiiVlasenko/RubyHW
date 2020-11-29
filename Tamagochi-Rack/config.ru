@@ -1,4 +1,6 @@
-require './app'
-use Rack::Reloader
-use MyRackMiddleware
-run MyApp.new
+
+require './app/pet'
+
+use Rack::Reloader, 0
+
+run Pet
