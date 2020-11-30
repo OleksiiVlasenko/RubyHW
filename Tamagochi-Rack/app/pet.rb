@@ -95,7 +95,7 @@ class App
           @sleep = false
           @message += "#{@name} відкрива очі! "
         end
-        @message += "#{@name} біжить в туалет"
+        @message += "#{@name} хоче в туалет"
       end
     end
   end
@@ -113,13 +113,13 @@ class App
 
     case req.path_info
     when /index/
-      @@pet = Pet.new('Cowy')
+      @@pet = Pet.new('Петрович')
       [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930231cateyes2.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
 
 
@@ -135,7 +135,7 @@ class App
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
     when /feed/
       if @@pet.exit_
@@ -149,7 +149,7 @@ class App
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
     when /put_to_bed/
       if @@pet.exit_
@@ -163,7 +163,7 @@ class App
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
     when /go_toilet/
       if @@pet.exit_
@@ -177,7 +177,7 @@ class App
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
     when /push/
       if @@pet.exit_
@@ -191,7 +191,7 @@ class App
                                                 "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                                 "Туалет: #{@@pet.toilet}","<br>",
                                                 "Щастя: #{@@pet.mood}","<br>",
-                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930213catbox2.png' height='150' width='150' alt='тут фотка коровы'>",
                                                 "<br><b>",@@pet.message,"<br><b></center>"]]
       end
 
@@ -202,7 +202,7 @@ class App
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
                                               "Щастя: #{@@pet.mood}","<br>",
-                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150' alt='тут фотка коровы'>",
                                               "<br><b>",@@pet.message,"<br><b></center>"]]
     end
   end
