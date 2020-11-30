@@ -103,18 +103,24 @@ class App
   def call(env)
     req = Rack::Request.new(env)
     links = "<center><meta charset=""utf-8"">
-             <a href='/walk' >Гуляти      </a><br>
-             <a href='/feed' >Кормити      </a><br>
-             <a href='/put_to_bed' >Поспати      </a><br>
-             <a href='/go_toilet' >Сходити в туалет      </a><br>
-             <a href='/push' >Посварити      </a><br>
-             <link rel=""stylesheet"" href=""https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"" integrity=""sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"" crossorigin=""anonymous"">
+<div class=""list-group"">
+  <a href='/walk' class='list-group-item list-group-item-action active'>Гуляти</a>
+  <a href='/feed' class='list-group-item list-group-item-action'>Кормити</a>
+    <a href='/put_to_bed' class=""list-group-item list-group-item-action'>Поспати</a>
+  <a href='/go_toilet' class=""list-group-item list-group-item-action'>Сходити в туалет</a>
+    <a href='/push' class='list-group-item list-group-item-action disabled' tabindex='-1' aria-disabled='true'>Посварити</a>
+</div>
+
+             <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
+<script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
+    <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js' integrity='sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s' crossorigin='anonymous'></script>
 </center>"
 
     case req.path_info
     when /index/
       @@pet = Pet.new('Петрович')
-      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
@@ -130,7 +136,7 @@ class App
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.walk
-      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
@@ -144,7 +150,7 @@ class App
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.feed
-      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
@@ -158,7 +164,7 @@ class App
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.put_to_bed
-      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
@@ -172,7 +178,7 @@ class App
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.go_toilet
-      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
@@ -186,7 +192,7 @@ class App
                                                 "<br><b>", @@pet.message, "<br><b>"]]
       else
         @@pet.push
-        [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+        [200, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                                 "Спати: #{@@pet.sleep}","<br>",
                                                 "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                                 "Туалет: #{@@pet.toilet}","<br>",
@@ -197,7 +203,7 @@ class App
 
     else
       @@pet.message = "#{@@pet.name} не понимает что вы от неё хотите"
-      [404, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+      [404, {"Content-Type" => "text/html"}, [links, "<center>Ім'я тваринки #{@@pet.name} ","<br>",
                                               "Спати: #{@@pet.sleep}","<br>",
                                               "Ситність: #{@@pet.stuff_in_belly}","<br>",
                                               "Туалет: #{@@pet.toilet}","<br>",
