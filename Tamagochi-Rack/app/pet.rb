@@ -104,11 +104,11 @@ class App
     req = Rack::Request.new(env)
     links = "<center><meta charset=""utf-8"">
 <div class=""list-group"">
-  <a href='/walk' class='list-group-item list-group-item-action active'>Гуляти</a>
-  <a href='/feed' class='list-group-item list-group-item-action'>Кормити</a>
-    <a href='/put_to_bed' class=""list-group-item list-group-item-action'>Поспати</a>
-  <a href='/go_toilet' class=""list-group-item list-group-item-action'>Сходити в туалет</a>
-    <a href='/push' class='list-group-item list-group-item-action disabled' tabindex='-1' aria-disabled='true'>Посварити</a>
+  <a href='/walk' class='list-group-item list-group-item-action list-group-item-primary'>Гуляти</a>
+  <a href='/feed' class='list-group-item list-group-item-action list-group-item-success'>Кормити</a>
+    <a href='/put_to_bed' class='list-group-item list-group-item-action list-group-item-dark'>Поспати</a>
+  <a href='/go_toilet' class='list-group-item list-group-item-action list-group-item-warning'>Сходити в туалет</a>
+    <a href='/push' class='list-group-item list-group-item-action list-group-item-danger'>Посварити</a>
 </div>
 
              <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
