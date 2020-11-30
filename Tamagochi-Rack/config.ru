@@ -1,6 +1,8 @@
-
 require './app/pet'
-require './app/app'
+require 'rack'
 
-use Rack::Reloader, 0
-run Pet
+use Rack::Reloader
+
+use Rack::Static
+run App.new
+

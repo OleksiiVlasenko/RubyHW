@@ -1,226 +1,209 @@
-# frozen_string_literal: true
-require "erb"
 
+class App
 
-class Pet
-  attr_accessor :name
+  class Pet
+    attr_reader :name, :stuff_in_belly, :mood, :sleep, :toilet
+    attr_accessor :exit_, :message
 
-  def initialize(name)
-    @name = name      # name
-    @hunger = 10      # hungry lvl
-    @happy = 10       # happy lvl
-    @asleep = false   # asleep status
-    @cleanliness = 0  # toilet lvl
-    @life = 1         # lives
-    @water = 10       # water lvl
-    @lvl = 0
-    @exp = 0
-  end
-  
-  def lvlup
-    if @exp >= 100
-      @lvl += 1
-      @exp = 0
-      p "|Рівень| **#{@name} досяг ще одного рівня. #{@name} тепер #{@lvl} рівня"
+    def initialize name
+      @name = name
+      @sleep = false      #желание сна
+      @count_sleep = 10   #колличество бодрстволвания
+      @stuff_in_belly = 10 #  желудок
+      @toilet = 0
+      @happy = 10 # Настроение
+      @exit_ = false
+      @message = ''
     end
-  end
-  
 
-  def lose_life
-    @life -= 1
-    p "|Життя| #{@name}  втратив одне життя" if @life != 1
-    p "|Життя| #{@name}  треба нагально покормити, бо помре" if @life == 1
-    p "|Життя| #{@name}  втратив останнє життя" if @life.zero?
-  end
 
-  def time_pass
-    if @hunger >= 0
-      @hunger -= 2
-      @happy -= 2
-      @water -= 2
-      @cleanliness += 2
-    else
-      asleep_f if @asleep
-      lose_life
-    end
-    if @cleanliness >= 10
-      @cleanliness = 0
-      p "|Туалет| #{@name}  раптово сходив в туалет на любиму ковдру, треба частіше вигулювати"
-    end
-    if hungry?
-      asleep_f
-      rnd = rand(3)
-      case rnd
-      when 0
-        p "|Ситність| #{@name} я хочу їсти" if @life != 0
-      when 1
-        p "|Ситність| #{@name}  накорми мене, пюрешечки да с котлеткой би ...." if @life != 0
-      when 2
-        p "|Ситність| #{@name}  накорми мене, бо з'їм тебе в ночі..." if @life != 0
-      else
-        p '|Ситність| - я скоро захочу їсти!'
-      end
-    end
-    die
-    angry
-    lvlup
-    love
-    toilet if @cleanliness >= 8
-  end
-
-  def feed
-    @hunger += 2
-    @water += 2
-    @cleanliness += 2
-    toilet if @cleanliness >= 8
-    p "|Ситність| #{@name} поїв, ммм, дуже смачно"
-  end
-
-  def asleep_f
-    @asleep = false
-    rnd = rand(3)
-    case rnd
-    when 0
-      p "** #{@name} невпинно дивиться на вас" if @life != 0
-    when 1
-      p "** #{@name} підійшов по ближче і дивиться вам в очі" if @life != 0
-    when 2
-      p "** #{@name} сидить сумує ... " if @life != 0
-    else
-      @asleep = true
-    end
-  end
-
-  def timetosleep
-    p "** #{@name} солодко засипа у вас на руках ..."
-    @water -= 4
-    @happy -= 4
-    @hunger -= 4
-    @cleanliness += 4
-    @asleep = true
-    2.times do
-      time_pass if @asleep
-      p "#{@name} - солоденько спить .... хррр хррр... хрр.... ." if @asleep
-      p "#{@name} - ... хррр хррр... хрр....хфьююю ." if @asleep
-      p "#{@name} - зіває і далі спить ... хррр хррр... хрр....хфьююю ." if @asleep
-    end
-    if @asleep
-      @asleep = false
-      p "** #{@name} повільно відкрива оч відкрива очі ."
-    end
-  end
-
-  def love
-    rnd = rand(5)
-    case rnd
-    when 0
-      p "|Щастя| #{@name} дуже щасливий і обнімає вас" if @happy > 8
-    when 1
-      p "|Щастя| #{@name}  дуже щасливий і любить вас " if @happy > 9
-    when 2
-      p "|Щастя| #{@name} душі в вас нечаїть" if @happy > 10
-    else
-      @asleep = false
-    end
-  end
-
-  def angry
-    rnd = rand(6)
-    case rnd
-    when 0
-      p "|Щастя| #{@name} розізлився на вас" if @happy < 5
-    when 1
-      p "|Щастя| #{@name} вкусив вас " if @happy < 3
-    when 2
-      p "|Щастя| #{@name} спробував на вас напасти" if @happy < 2
-    else
-      @asleep = false
-    end
-  end
-
-  def hungry?
-    @hunger < 3
-  end
-
-  def happy?
-    @hunger > 3
-  end
-
-  def play
-    if happy?
-      rnd = rand(3)
-      case rnd
-      when 0
-        p "|Щастя| #{@name} |грається з м'ячиком"
-      when 1
-        p "|Щастя| #{@name} став пілотом справжнього літака"
-      when 2
-        p "|Щастя| #{@name} покоряє вершину гори на подвір'ї"
-      else
-        p ' - Я трохи хочу відпочити!'
-      end
+    def feed
+      @stuff_in_belly += 5
+      @toilet += 5
       time_pass
-      @happy += 4
-      @exp += 10
+    end
+
+    def walk
+      @happy = 10
+      time_pass
+    end
+
+    def put_to_bed
+      @sleep = false
+      3.times { time_pass }
+    end
+
+    def go_toilet
+      time_pass
+      @toilet = 0
+    end
+
+    def push
+      @happy -= 1
+      time_pass
+    end
+
+
+    private
+
+
+    def hungry?
+      @stuff_in_belly <= 2
+    end
+
+    def mood?
+      @happy == 0
+    end
+
+    def toilet?
+      @toilet >= 8
+    end
+
+    def time_pass
+      @message = ''
+
+      if @stuff_in_belly > 0
+        @stuff_in_belly -= 1
+        @toilet += 1
+      else
+      @sleep = false if @sleep
+      @message += "#{@name} дуже голодний"
+      @exit_ = true
+      end
+
+      if @toilet >= 20
+        @toilet = 0
+        @message += "О!  #{@name} наклав велику кучу..."
+      end
+
+      if hungry?
+        if @sleep
+          @sleep = false
+          @message += "#{@name} швидко відкрив очі!"
+        end
+        @message += "#{@name} ну прям дуже хочу їсти..."
+      end
+
+      if mood?
+        @happy -= 1
+        @message += "#{@name} дуже злий"
+        @exit_ = true
+      end
+
+      if toilet?
+        if @sleep
+          @sleep = false
+          @message += "#{@name} відкрива очі! "
+        end
+        @message += "#{@name} біжить в туалет"
+      end
+    end
+  end
+
+  def call(env)
+    req = Rack::Request.new(env)
+    links = "<center><meta charset=""utf-8"">
+             <a href='/walk' >Гуляти      </a><br>
+             <a href='/feed' >Кормити      </a><br>
+             <a href='/put_to_bed' >Поспати      </a><br>
+             <a href='/go_toilet' >Сходити в туалет      </a><br>
+             <a href='/push' >Посварити      </a><br>
+             <link rel=""stylesheet"" href=""https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"" integrity=""sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"" crossorigin=""anonymous"">
+</center>"
+
+    case req.path_info
+    when /index/
+      @@pet = Pet.new('Cowy')
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
+
+
+    when /walk/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить новую коровку      </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622365catacrobat.png' height='150' width='150' alt='тут фотка коровы'' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<br><b>",@@pet.message,"<br><b>"]]
+      end
+      @@pet.walk
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
+    when /feed/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить новую коровку      </a>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<br><b>",@@pet.message,"<br><b>"]]
+      end
+      @@pet.feed
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
+    when /put_to_bed/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить новую коровку      </a>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<br><b>",@@pet.message,"<br><b>"]]
+      end
+      @@pet.put_to_bed
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
+    when /go_toilet/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить новую коровку      </a>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<br><b>",@@pet.message,"<br><b>"]]
+      end
+      @@pet.go_toilet
+      [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
+    when /push/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить нового питомца </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b>"]]
+      else
+        @@pet.push
+        [200, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                                "Спати: #{@@pet.sleep}","<br>",
+                                                "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                                "Туалет: #{@@pet.toilet}","<br>",
+                                                "Щастя: #{@@pet.mood}","<br>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                                "<br><b>",@@pet.message,"<br><b></center>"]]
+      end
+
     else
-      p "|Щастя| #{@name} ще не має бажання гратись"
+      @@pet.message = "#{@@pet.name} не понимает что вы от неё хотите"
+      [404, {"Content-Type" => "text/html"}, [links, "<center>Імя тваринки_#{@@pet.name}_","<br>",
+                                              "Спати: #{@@pet.sleep}","<br>",
+                                              "Ситність: #{@@pet.stuff_in_belly}","<br>",
+                                              "Туалет: #{@@pet.toilet}","<br>",
+                                              "Щастя: #{@@pet.mood}","<br>",
+                                              "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622493catupsidedown.png' height='150' width='150' alt='тут фотка коровы'>",
+                                              "<br><b>",@@pet.message,"<br><b></center>"]]
     end
   end
-
-  def poop?
-    @cleanliness >= 6
-  end
-
-  def toilet
-    if poop?
-      p "|Туалет| #{@name} упс, сходив в куточку в туалет"
-      @cleanliness = 0
-      @hunger -= 1
-      @water -= 1
-    else
-      p "|Туалет| #{@name} скоро захоче в туалет ..."
-    end
-  end
-
-  def die
-    if @life.zero? || @happy <= 0
-      push_html
-      status
-      p "『RɨP』〘#{@name}♔〙"
-      p "✝✝✝ #{@name} помер, його смерть на вашій совісті ✝✝✝"
-      exit
-    end
-  end
-
-  def sport
-    p "|Щастя| #{@name} займається спортом"
-    @happy += 4
-    @exp += 10
-    time_pass
-  end
-
-  def swim
-    p "|Щастя| #{@name} плаває в басейні"
-    @happy += 5
-    @exp += 10
-    time_pass
-  end
-
-  def walk
-    @exp += 10
-    rnd = rand(3)
-    p "|Щастя| #{@name} пішов гуляти на вулицю ..."
-    case rnd
-    when 0
-      p '|Інформація| - З тобою гуляти саме заловолення!'
-    when 1
-      p '|Інформація| - Як сьогодні гарно на вулиці :)'
-    when 2
-      p '|Інформація| - А вчора ми гуляли довше!'
-    else
-      p '|Щастя| - щось нічого не хочеться!'
-    end
-    time_pass
-  end
-  private :time_pass
 end
