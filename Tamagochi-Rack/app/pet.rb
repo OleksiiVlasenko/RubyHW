@@ -63,11 +63,13 @@ class App
       @stuff_in_belly = set_change(@stuff_in_belly, 5)
       @toilet += 5
       @message = '| Хрум хрум, вкуснятина '
+      @reaction = '| ням '
       time_pass
     end
 
     def walk
       @happy += 2
+      @reaction = '| Рум пурум пум пум'
       @message = "| Куди я йду, а з п'ятачком, великий.... "
       time_pass
       die
@@ -75,13 +77,14 @@ class App
 
     def put_to_bed
       @sleep = false
-
+      @reaction = '| пішов я спати '
       @message = '| Хррр хррр хррр.... '
       3.times { time_pass }
     end
 
     def go_toilet
       @message = '| Дзюр дзюр дзюр.... '
+      @reaction = '| ой як добре '
       @toilet = 0
       time_pass
     end
@@ -94,6 +97,7 @@ class App
     end
 
     def push
+      @reaction = ' :('
       @message = '| Я більше так не буду '
       @happy = set_change(@happy, -1)
     end
@@ -159,11 +163,12 @@ class App
               <div class='container'>
               <div class='row'>
               <div class='col-sm'>
+              <h3>Тамагочі від RUBOCOPS</h3>
               </div>
               <div class='col-sm'>
                 <div class='dropdown mr-1'>
                         <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='260,20'>
-                        ----------- Почати гру -----------
+                        &#10084;&#10084;&#10084;&#10084; Почати гру &#10084;&#10084;&#10084;&#10084;
                         </button>
               <div class='dropdown-menu' aria-labelledby='dropdownMenuOffset'>
               <a href='/walk' class='dropdown-item'>Гуляти</a>
@@ -177,6 +182,7 @@ class App
                       </div>
               </div>
               <div class='col-sm'>
+              <img src='https://cdn.icon-icons.com/icons2/2148/PNG/512/rubocop_icon_132023.png' height='50' width='50' class='rounded-circle'>
               </div>
             </div>
               </div>
