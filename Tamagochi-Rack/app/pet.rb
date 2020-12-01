@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 class App
 
@@ -7,11 +8,11 @@ class App
 
     def initialize name
       @name = name
-      @sleep = false      #желание сна
-      @count_sleep = 10   #колличество бодрстволвания
-      @stuff_in_belly = 10 #  желудок
+      @sleep = false
+      @count_sleep = 10
+      @stuff_in_belly = 10
       @toilet = 0
-      @happy = 10 # Настроение
+      @happy = 10
       @exit_ = false
       @money = 1
       @message = ''
@@ -146,20 +147,41 @@ class App
 
   def call(env)
     req = Rack::Request.new(env)
-    links = "<center><meta charset='utf-8'>
-              <div class='list-group'>
-                <a href='/walk' class='list-group-item list-group-item-action list-group-item-primary'>Гуляти</a>
-                <a href='/feed' class='list-group-item list-group-item-action list-group-item-success'>Кормити</a>
-                <a href='/put_to_bed' class='list-group-item list-group-item-action list-group-item-dark'>Поспати</a>
-                <a href='/go_toilet' class='list-group-item list-group-item-action list-group-item-warning'>Сходити в туалет</a>
-                <a href='/push' class='list-group-item list-group-item-action list-group-item-danger'>Посварити</a>
-                <a href='/get_money' class='list-group-item list-group-item-action list-group-item-danger'>Колядувати</a>
+
+
+    links = "<meta charset='utf-8'>
+              <div class='container'>
+    <div class='row'>
+    <div class='col-sm'>
+
+    </div>
+    <div class='col-sm'>
+      <div class='dropdown mr-1'>
+              <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='-60,60'>
+              ----------- Почати гру -----------
+              </button>
+    <div class='dropdown-menu' aria-labelledby='dropdownMenuOffset'>
+    <a href='/walk' class='dropdown-item'>Гуляти</a>
+                <a href='/feed' class='dropdown-item'>Кормити</a>
+                <a href='/put_to_bed' class='dropdown-item'>Поспати</a>
+                <a href='/go_toilet' class='dropdown-item'>Сходити в туалет</a>
+                <a href='/push' class='dropdown-item'>Посварити</a>
+                <a href='/get_money' class='dropdown-item'>Колядувати</a>
               </div>
+            </div>
+    </div>
+    <div class='col-sm'>
+
+    </div>
+  </div>
+    </div>
+
+
+
                 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
                 <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
                 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
-                <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js' integrity='sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s' crossorigin='anonymous'></script>
-              </center>"
+                <script src='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js' integrity='sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s' crossorigin='anonymous'></script>"
 
     case req.path_info
     when /index/
