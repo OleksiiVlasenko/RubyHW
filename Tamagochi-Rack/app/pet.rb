@@ -21,26 +21,31 @@ class App
       @stuff_in_belly += 5
       @toilet += 5
       time_pass
+      @message = 'Хрум хрум, вкуснятина'
     end
 
     def walk
       @happy = 10
       time_pass
+      @message = 'Куди я йду, а з пятачком, великий....'
     end
 
     def put_to_bed
       @sleep = false
       3.times { time_pass }
+      @message = 'Хррр хррр хррр....'
     end
 
     def go_toilet
       time_pass
       @toilet = 0
+      @message = 'Дзюр дзюр дзюр....'
     end
 
     def push
       @happy -= 1
       time_pass
+      @message = 'Я більше так не буду'
     end
 
 
@@ -60,7 +65,6 @@ class App
     end
 
     def time_pass
-      @message = ''
 
       if @stuff_in_belly > 0
         @stuff_in_belly -= 1
@@ -125,13 +129,13 @@ class App
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930231cateyes2.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930231cateyes2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
 
     when /walk/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622365catacrobat.png' height='150' width='150' alt='тут фотка коровы'' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622365catacrobat.png' height='150' width='150'  ' height='150' width='150'>","<br>",
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.walk
@@ -140,12 +144,12 @@ class App
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /feed/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.feed
@@ -154,12 +158,12 @@ class App
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /put_to_bed/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.put_to_bed
@@ -168,12 +172,12 @@ class App
                                                "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                                "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                                "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150'>#{@@pet.message}</li>",
+                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /go_toilet/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
                                                 "<br><b>",@@pet.message,"<br><b>"]]
       end
       @@pet.go_toilet
@@ -182,12 +186,12 @@ class App
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150'>",
+                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></li></ul></center>"]]
     when /push/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Вырастить нового питомца </a>",
-                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150' alt='тут фотка коровы'>","<br>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
                                                 "<br><b>", @@pet.message, "<br><b>"]]
       else
         @@pet.push
@@ -196,8 +200,8 @@ class App
                                                 "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                                 "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                                 "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                                "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930213catbox2.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                                "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                                "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930213catbox2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                                "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
       end
 
     else
@@ -207,8 +211,8 @@ class App
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.mood}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150' alt='тут фотка коровы'></li></ul></center>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li>"]]
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     end
   end
 end
