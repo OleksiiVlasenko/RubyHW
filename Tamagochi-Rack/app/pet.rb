@@ -158,12 +158,11 @@ class App
 
   def call(env)
     req = Rack::Request.new(env)
-
     links = "<meta charset='utf-8'>
               <div class='container'>
               <div class='row'>
               <div class='col-sm'>
-              <h3>Тамагочі від RUBOCOPS</h3>
+              <h4>Тамагочі від RUBOCOPS &#128293;</h4>
               </div>
               <div class='col-sm'>
                 <div class='dropdown mr-1'>
