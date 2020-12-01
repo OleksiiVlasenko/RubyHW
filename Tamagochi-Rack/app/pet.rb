@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 class App
 
   class Pet
@@ -301,15 +300,11 @@ class App
       end
 
     else
-      @@pet.message = "#{@@pet.name} не понимает что вы от неё хотите"
-      [404, {"Content-Type" => "text/html"}, [links, "<center><ul class='list-group'>",
-                                              "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
-                                              "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
-                                              "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
-                                              "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
+      @@pet = Pet.new('rnd')
+      [404, {"Content-Type" => "text/html"}, ["<meta charset='utf-8'><center><ul class='list-group'>",
+                                              "<h1><b>В readme ж написано перейти за посиланням!!!!!!</h1></b>",
                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150'>#{@@pet.reaction}</li>",
-                                              "<li class='list-group-item'> #{@@pet.message} </li>",
-                                              "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
+                                              "<li class='list-group-item'> <a href='/index' >http://localhost:9292/index</a></li></ul></center>"]]
 
     end
   end
