@@ -5,7 +5,7 @@ class App
     attr_reader :name, :stuff_in_belly, :happy, :sleep, :toilet
     attr_accessor :exit_, :message, :money, :reaction, :asd
 
-    def initialize name
+    def initialize(name = 'Петрович')
       @name = name
       @sleep = false
       @count_sleep = 10
@@ -18,34 +18,33 @@ class App
       @reaction = ''
     end
 
-    def get_money
+    def take_money
       time_pass
       gold = rand(1..5)
-      @message += " #{@name} наколядував #{gold} золота"
+      @message += "| #{@name} наколядував #{gold} золота "
       @money += gold
       @happy += 2
     end
 
     def casino
       time_pass
-      @message += "У вас на рахунку : #{@money}"
+      @message += "| У вас на рахунку : #{@money}"
       bet = rand(-10..10)
       if !@money.zero? && !@money.negative?
-        p "Ставка : #{bet}"
         if bet.positive?
-          @message += "  ⓌⒾⓃ - Ви вийграли #{bet} золота "
+          @message += "| ⓌⒾⓃ - Ви вийграли #{bet} золота "
           @money += bet
           @happy = set_change(@happy, 2)
-          @message += " У вас на рахунку: #{@money} "
+          @message += "| У вас на рахунку: #{@money} "
         else
-          @message += " - ⓁⓄⓈⒺ - Ви програли #{bet} золота "
+          @message += "| ⓁⓄⓈⒺ - Ви програли #{bet} золота "
           @money -= bet.abs
           @happy = set_change(@happy, -2)
-          @message += " У вас на рахунку: #{@money} " if @money.positive?
-          @message += " Ви взяли в кредит: #{@money} " if @money.negative?
+          @message += "| У вас на рахунку: #{@money} " if @money.positive?
+          @message += "| Ви взяли в кредит: #{@money} " if @money.negative?
         end
       else
-        @message += " У вас #{@name} немає золота щоб робити ставку "
+        @message += "| У вас #{@name} немає золота щоб робити ставку "
       end
     end
 
@@ -60,13 +59,13 @@ class App
     def feed
       @stuff_in_belly = set_change(@stuff_in_belly, 5)
       @toilet += 5
-      @message = ' Хрум хрум, вкуснятина '
+      @message = '| Хрум хрум, вкуснятина '
       time_pass
     end
 
     def walk
       @happy += 2
-      @message = " Куди я йду, а з п'ятачком, великий.... "
+      @message = "| Куди я йду, а з п'ятачком, великий.... "
       time_pass
       die
     end
@@ -74,26 +73,26 @@ class App
     def put_to_bed
       @sleep = false
 
-      @message = ' Хррр хррр хррр.... '
+      @message = '| Хррр хррр хррр.... '
       3.times { time_pass }
     end
 
     def go_toilet
 
-      @message = ' Дзюр дзюр дзюр.... '
+      @message = '| Дзюр дзюр дзюр.... '
       @toilet = 0
       time_pass
     end
 
     def die
       if @happy == 0 || @stuff_in_belly == 0
-        @message = " Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
+        @message = "| Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
         @exit_ = true
       end
     end
 
     def push
-      @message = ' Я більше так не буду '
+      @message = '| Я більше так не буду '
       @happy = set_change(@happy, -1)
     end
 
@@ -115,37 +114,37 @@ class App
         @stuff_in_belly = set_change(@stuff_in_belly, -1)
       else
         @sleep = false if @sleep
-        @reaction = " #{@name} дуже голодний "
+        @reaction = "| #{@name} дуже голодний "
         @exit_ = true
       end
       if @happy >= 0
         @happy = set_change(@happy, -1) if @happy >= 0
       else
         @sleep = false if @sleep
-        @reaction = " #{@name} дуже засмучений "
+        @reaction = "| #{@name} дуже засмучений "
         @happy = 0
       end
       if @toilet >= 20
         @toilet = 0
-        @reaction = " О!  #{@name} наклав велику кучу... "
+        @reaction = "| О!  #{@name} наклав велику кучу... "
       end
 
       if hungry?
         if @sleep
           @sleep = false
-          @reaction = " #{@name} швидко відкрив очі! "
+          @reaction = "| #{@name} швидко відкрив очі! "
         end
-        @reaction = " #{@name} ну прям дуже хочу їсти... "
+        @reaction = "| #{@name} ну прям дуже хочу їсти... "
       end
 
       if mood?
         @happy = set_change(@happy, -1)
-        @reaction = " #{@name} дуже злий і може скоро померти "
+        @reaction = "| #{@name} дуже злий і може скоро померти "
         @exit_ = true
       end
 
       if toilet?
-        @reaction = " #{@name} хоче в туалет "
+        @reaction = "| #{@name} хоче в туалет "
       end
       die
     end
@@ -186,7 +185,7 @@ class App
 
     case req.path_info
     when /index/
-      @@pet = Pet.new('Петрович')
+      @@pet = Pet.new()
       @@pet.message = "Привіт, мене звати #{@@pet.name}"
       [200, { "Content-Type" => "text/html" }, [links, "<h10><center><ul class='list-group'>",
                                                 "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -282,7 +281,7 @@ class App
                                                   "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>", "<br>",
                                                   "<br><b>", @@pet.message, "<br><b></center>"]]
       else
-        @@pet.get_money
+        @@pet.take_money
         [200, { "Content-Type" => "text/html" }, [links, "<center><ul class='list-group'>",
                                                   "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                                   "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
