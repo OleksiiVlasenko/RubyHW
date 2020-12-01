@@ -130,7 +130,7 @@ class App
 
       if mood?
         @happy -= 1
-        @reaction = " #{@name} дуже злий "
+        @reaction = " #{@name} дуже злий і може скоро померти "
         @exit_ = true
       end
 
@@ -178,6 +178,7 @@ class App
     case req.path_info
     when /index/
       @@pet = Pet.new('Петрович')
+      @@pet.message = "Привіт, мене звати #{@@pet.name}"
       [200, {"Content-Type" => "text/html"}, [links, "<h10><center><ul class='list-group'>",
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
