@@ -4,7 +4,7 @@ class App
 
   class Pet
     attr_reader :name, :stuff_in_belly, :happy, :sleep, :toilet
-    attr_accessor :exit_, :message, :money
+    attr_accessor :exit_, :message, :money, :reaction
 
     def initialize name
       @name = name
@@ -14,38 +14,38 @@ class App
       @toilet = 0
       @happy = 10
       @exit_ = false
-      @money = 1
+      @money = 0
       @message = ''
+      @reaction = ''
     end
 
     def get_money
+      time_pass
       gold = rand(1..5)
       @message = " #{@name} наколядував #{gold} золота"
       @money += gold
       @happy += 2
-      time_pass
+
     end
 
     def casino
-      p ' - ⒸⒶⓈⒾⓃⓄ - '
-      p "У вас на рахунку : #{@money}"
+      time_pass
+      @message += "У вас на рахунку : #{@money}"
       bet = rand(-10..10)
       if !@money.zero? && !@money.negative?
         p "Ставка : #{bet}"
         if bet.positive?
-          p "|Золото| - ⓌⒾⓃ - Ви вийграли #{bet} золота"
+          @message += "  ⓌⒾⓃ - Ви вийграли #{bet} золота "
           @money += bet
-          p "У вас на рахунку: #{@money}"
-          p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
+          @message += " У вас на рахунку: #{@money} "
         else
-          p "|Золото| - ⓁⓄⓈⒺ - Ви програли #{bet} золота"
+          @message += " - ⓁⓄⓈⒺ - Ви програли #{bet} золота "
           @money -= bet.abs
-          p "У вас на рахунку: #{@money}" if @money.positive?
-          p "Ви взяли в кредит: #{@money}" if @money.negative?
-          p 'Щоб продовжити грати напишіть 13, загальний список команд 12'
+          @message += " У вас на рахунку: #{@money} " if @money.positive?
+          @message += " Ви взяли в кредит: #{@money} " if @money.negative?
         end
       else
-        p "|Золото| У вас #{@name} немає золота щоб робити ставку"
+        @message += " У вас #{@name} немає золота щоб робити ставку "
       end
     end
 
@@ -94,52 +94,46 @@ class App
     end
 
     def toilet?
-      @toilet >= 8
+      @toilet >= 12
     end
 
     def time_pass
+      @message = ''
       if @stuff_in_belly > 0
         @stuff_in_belly -= 1
-        @toilet += 1 if @stuff_in_belly >= 0
       else
       @sleep = false if @sleep
-      @message += " #{@name} дуже голодний "
+      @reaction = " #{@name} дуже голодний "
       @exit_ = true
       end
-      if @happy > 0
-        @happy -= 1
-        @toilet += 1
+      if @happy >= 0
+        @happy -= 1 if @happy >= 0
       else
         @sleep = false if @sleep
-        @message += " #{@name} дуже засмучений "
-        @exit_ = true
+        @reaction = " #{@name} дуже засмучений "
+        @happy = 0
       end
       if @toilet >= 20
         @toilet = 0
-        @message += " О!  #{@name} наклав велику кучу... "
+        @reaction = " О!  #{@name} наклав велику кучу... "
       end
 
       if hungry?
         if @sleep
           @sleep = false
-          @message += " #{@name} швидко відкрив очі! "
+          @reaction = " #{@name} швидко відкрив очі! "
         end
-        @message += " #{@name} ну прям дуже хочу їсти... "
+        @reaction = " #{@name} ну прям дуже хочу їсти... "
       end
 
       if mood?
         @happy -= 1
-        @message += " #{@name} дуже злий "
+        @reaction = " #{@name} дуже злий "
         @exit_ = true
       end
 
       if toilet?
-        if @sleep
-          @sleep = false
-          @message += " #{@name} відкрива очі! "
-        end
-        @message += " #{@name} хоче в туалет "
-        @message += " #{@name} хоче в туалет "
+        @reaction = " #{@name} хоче в туалет "
       end
       die
     end
@@ -167,6 +161,7 @@ class App
                 <a href='/go_toilet' class='dropdown-item'>Сходити в туалет</a>
                 <a href='/push' class='dropdown-item'>Посварити</a>
                 <a href='/get_money' class='dropdown-item'>Колядувати</a>
+                <a href='/casino' class='dropdown-item'>Грати в казино</a>
               </div>
             </div>
     </div>
@@ -191,7 +186,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930231cateyes2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930231cateyes2.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center></h10>"]]
 
     when /walk/
@@ -206,7 +202,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /feed/
       if @@pet.exit_
@@ -220,7 +217,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /put_to_bed/
       if @@pet.exit_
@@ -234,7 +232,23 @@ class App
                                                "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                                "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                                "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150'>#{@@pet.message}</li>",
+                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                               "<li class='list-group-item'> #{@@pet.message} </li>",
+                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
+    when /casino/
+      if @@pet.exit_
+        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
+                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
+                                                "<br><b>",@@pet.message,"<br><b>"]]
+      end
+      @@pet.casino
+      [200, {"Content-Type" => "text/html"},  [links, "<center><ul class='list-group'>",
+                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
+                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
+                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
+                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
+                                               "<li class='list-group-item'> <img src='https://thumbs.dreamstime.com/b/%D0%BA%D0%BE%D1%82-%D0%B8%D0%B3%D1%80%D0%B0%D1%8F-%D0%BF%D0%BE%D0%BA%D0%B5%D1%80-90516704.jpg' height='150' width='150'>#{@@pet.reaction}</li>",
+                                               "<li class='list-group-item'> #{@@pet.message} </li>",
                                                "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /go_toilet/
       if @@pet.exit_
@@ -248,7 +262,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></li></ul></center>"]]
     when /get_money/
       if @@pet.exit_
@@ -262,7 +277,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622468catsing.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622468catsing.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></li></ul></center>"]]
     when /push/
       if @@pet.exit_
@@ -276,7 +292,8 @@ class App
                                                 "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                                 "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                                 "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                                "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930213catbox2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                                "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930213catbox2.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                                "<li class='list-group-item'> #{@@pet.message} </li>",
                                                 "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
       end
 
@@ -287,7 +304,8 @@ class App
                                               "<li class='list-group-item'> Туалет: #{@@pet.toilet}</li>",
                                               "<li class='list-group-item'> Щастя: #{@@pet.happy}</li>",
                                               "<li class='list-group-item'> Золото: #{@@pet.money}</li>",
-                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150'>#{@@pet.message}</li>",
+                                              "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150'>#{@@pet.reaction}</li>",
+                                              "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
 
     end
