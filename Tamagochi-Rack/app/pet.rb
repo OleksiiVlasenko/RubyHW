@@ -22,6 +22,7 @@ class App
       time_pass
       gold = rand(1..5)
       @message += "| #{@name} наколядував #{gold} золота "
+      @reaction = 'Ой вийшла Галя по водицю'
       @money += gold
       @happy += 2
     end
@@ -34,12 +35,14 @@ class App
         if bet.positive?
           @message += "| ⓌⒾⓃ - Ви вийграли #{bet} золота "
           @money += bet
+          @reaction = '| Вухуху, я виграв'
           @happy = set_change(@happy, 2)
           @message += "| У вас на рахунку: #{@money} "
         else
           @message += "| ⓁⓄⓈⒺ - Ви програли #{bet} золота "
           @money -= bet.abs
           @happy = set_change(@happy, -2)
+          @reaction = '| Сумно я програв'
           @message += "| У вас на рахунку: #{@money} " if @money.positive?
           @message += "| Ви взяли в кредит: #{@money} " if @money.negative?
         end
@@ -78,14 +81,13 @@ class App
     end
 
     def go_toilet
-
       @message = '| Дзюр дзюр дзюр.... '
       @toilet = 0
       time_pass
     end
 
     def die
-      if @happy == 0 || @stuff_in_belly == 0
+      if (@happy.zero? || @stuff_in_belly.zero?)
         @message = "| Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
         @exit_ = true
       end
@@ -101,7 +103,7 @@ class App
     end
 
     def mood?
-      @happy == 0
+      @happy.zero?
     end
 
     def toilet?
@@ -110,7 +112,7 @@ class App
 
     def time_pass
       # @message = ''
-      if @stuff_in_belly > 0
+      if @stuff_in_belly.positive?
         @stuff_in_belly = set_change(@stuff_in_belly, -1)
       else
         @sleep = false if @sleep
@@ -155,29 +157,29 @@ class App
 
     links = "<meta charset='utf-8'>
               <div class='container'>
-    <div class='row'>
-    <div class='col-sm'>
-    </div>
-    <div class='col-sm'>
-      <div class='dropdown mr-1'>
-              <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='260,20'>
-              ----------- Почати гру -----------
-              </button>
-    <div class='dropdown-menu' aria-labelledby='dropdownMenuOffset'>
-    <a href='/walk' class='dropdown-item'>Гуляти</a>
-                <a href='/feed' class='dropdown-item'>Кормити</a>
-                <a href='/put_to_bed' class='dropdown-item'>Поспати</a>
-                <a href='/go_toilet' class='dropdown-item'>Сходити в туалет</a>
-                <a href='/push' class='dropdown-item'>Посварити</a>
-                <a href='/get_money' class='dropdown-item'>Колядувати</a>
-                <a href='/casino' class='dropdown-item'>Грати в казино</a>
+              <div class='row'>
+              <div class='col-sm'>
+              </div>
+              <div class='col-sm'>
+                <div class='dropdown mr-1'>
+                        <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='260,20'>
+                        ----------- Почати гру -----------
+                        </button>
+              <div class='dropdown-menu' aria-labelledby='dropdownMenuOffset'>
+              <a href='/walk' class='dropdown-item'>Гуляти</a>
+                          <a href='/feed' class='dropdown-item'>Кормити</a>
+                          <a href='/put_to_bed' class='dropdown-item'>Поспати</a>
+                          <a href='/go_toilet' class='dropdown-item'>Сходити в туалет</a>
+                          <a href='/push' class='dropdown-item'>Посварити</a>
+                          <a href='/get_money' class='dropdown-item'>Колядувати</a>
+                          <a href='/casino' class='dropdown-item'>Грати в казино</a>
+                        </div>
+                      </div>
+              </div>
+              <div class='col-sm'>
               </div>
             </div>
-    </div>
-    <div class='col-sm'>
-    </div>
-  </div>
-    </div>
+              </div>
                 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
                 <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
                 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
@@ -185,7 +187,7 @@ class App
 
     case req.path_info
     when /index/
-      @@pet = Pet.new()
+      @@pet = Pet.new
       @@pet.message = "Привіт, мене звати #{@@pet.name}"
       [200, { "Content-Type" => "text/html" }, [links, "<h10><center><ul class='list-group'>",
                                                 "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -308,7 +310,7 @@ class App
                                                   "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
       end
     else
-      @@pet = Pet.new('rnd')
+      @@pet = Pet.new()
       [404, { "Content-Type" => "text/html" }, ["<meta charset='utf-8'><center><ul class='list-group'>",
                                                 "<h1><b>В readme ж написано перейти за посиланням!!!!!!</h1></b>",
                                                 "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930250cathiss2.png' height='150' width='150'>#{@@pet.reaction}</li>",
