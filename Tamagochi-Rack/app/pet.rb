@@ -75,7 +75,10 @@ class App
     end
 
     def die
-      @message = " Вибачте, але ви програли, ваш </b>#{@name}</b> помер " if @happy <= 5 && @stuff_in_belly <= 0
+      if @happy <= 5 && @stuff_in_belly <= 0
+      @message = " Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
+      @exit_ = true
+      end
     end
 
     def push
@@ -102,9 +105,9 @@ class App
       if @stuff_in_belly > 0
         @stuff_in_belly -= 1
       else
-      @sleep = false if @sleep
-      @reaction = " #{@name} дуже голодний "
-      @exit_ = true
+        @sleep = false if @sleep
+        @reaction = " #{@name} дуже голодний "
+        @exit_ = true
       end
       if @happy >= 0
         @happy -= 1 if @happy >= 0
@@ -147,11 +150,10 @@ class App
               <div class='container'>
     <div class='row'>
     <div class='col-sm'>
-
     </div>
     <div class='col-sm'>
       <div class='dropdown mr-1'>
-              <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='-60,60'>
+              <button type='button' class='btn btn-secondary btn-lg' id='dropdownMenuOffset' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' data-offset='260,20'>
               ----------- Почати гру -----------
               </button>
     <div class='dropdown-menu' aria-labelledby='dropdownMenuOffset'>
@@ -166,13 +168,9 @@ class App
             </div>
     </div>
     <div class='col-sm'>
-
     </div>
   </div>
     </div>
-
-
-
                 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css' integrity='sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2' crossorigin='anonymous'>
                 <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
                 <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
@@ -191,10 +189,10 @@ class App
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center></h10>"]]
 
     when /walk/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622365catacrobat.png' height='150' width='150'  ' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
       end
       @@pet.walk
       [200, {"Content-Type" => "text/html"}, [links, "<center><ul class='list-group'>",
@@ -206,11 +204,11 @@ class App
                                               "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
     when /feed/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
-      end
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
+        else
       @@pet.feed
       [200, {"Content-Type" => "text/html"}, [links, "<center><ul class='list-group'>",
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -220,12 +218,13 @@ class App
                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930238catfish2.png' height='150' width='150'>#{@@pet.reaction}</li>",
                                               "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
-    when /put_to_bed/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
       end
+    when /put_to_bed/
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
+      else
       @@pet.put_to_bed
       [200, {"Content-Type" => "text/html"},  [links, "<center><ul class='list-group'>",
                                                "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -235,12 +234,13 @@ class App
                                                "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622418catlaptop.png' height='150' width='150'>#{@@pet.reaction}</li>",
                                                "<li class='list-group-item'> #{@@pet.message} </li>",
                                                "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
-    when /casino/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
       end
+    when /casino/
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
+      else
       @@pet.casino
       [200, {"Content-Type" => "text/html"},  [links, "<center><ul class='list-group'>",
                                                "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -250,12 +250,13 @@ class App
                                                "<li class='list-group-item'> <img src='https://thumbs.dreamstime.com/b/%D0%BA%D0%BE%D1%82-%D0%B8%D0%B3%D1%80%D0%B0%D1%8F-%D0%BF%D0%BE%D0%BA%D0%B5%D1%80-90516704.jpg' height='150' width='150'>#{@@pet.reaction}</li>",
                                                "<li class='list-group-item'> #{@@pet.message} </li>",
                                                "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
-    when /go_toilet/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
       end
+    when /go_toilet/
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
+      else
       @@pet.go_toilet
       [200, {"Content-Type" => "text/html"}, [links, "<center><ul class='list-group'>",
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -265,12 +266,13 @@ class App
                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622430catpaper.png' height='150' width='150'>#{@@pet.reaction}</li>",
                                               "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></li></ul></center>"]]
-    when /get_money/
-      if @@pet.exit_
-        [404, {"Content-Type" => "text/html"}, ["<a href='/index' >Новий тамагочі     </a>",
-                                                "<img src='/media/go_to_les.jpg' height='150' width='150'>","<br>",
-                                                "<br><b>",@@pet.message,"<br><b>"]]
       end
+    when /get_money/
+      if @@pet.exit_ == true
+        [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
+                                                "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>","<br>",
+                                                "<br><b>", @@pet.message, "<br><b></center>"]]
+      else
       @@pet.get_money
       [200, {"Content-Type" => "text/html"}, [links, "<center><ul class='list-group'>",
                                               "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -280,6 +282,7 @@ class App
                                               "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622468catsing.png' height='150' width='150'>#{@@pet.reaction}</li>",
                                               "<li class='list-group-item'> #{@@pet.message} </li>",
                                               "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></li></ul></center>"]]
+      end
     when /push/
       if @@pet.exit_
         [404, {"Content-Type" => "text/html"}, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
