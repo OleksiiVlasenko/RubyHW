@@ -7,7 +7,6 @@ class App
 
     def initialize name
       @name = name
-      @asd
       @sleep = false
       @count_sleep = 10
       @stuff_in_belly = 10
@@ -22,7 +21,7 @@ class App
     def get_money
       time_pass
       gold = rand(1..5)
-      @message = " #{@name} наколядував #{gold} золота"
+      @message += " #{@name} наколядував #{gold} золота"
       @money += gold
       @happy += 2
     end
@@ -36,10 +35,12 @@ class App
         if bet.positive?
           @message += "  ⓌⒾⓃ - Ви вийграли #{bet} золота "
           @money += bet
+          @happy = set_change(@happy, 2)
           @message += " У вас на рахунку: #{@money} "
         else
           @message += " - ⓁⓄⓈⒺ - Ви програли #{bet} золота "
           @money -= bet.abs
+          @happy = set_change(@happy, -2)
           @message += " У вас на рахунку: #{@money} " if @money.positive?
           @message += " Ви взяли в кредит: #{@money} " if @money.negative?
         end
@@ -57,32 +58,35 @@ class App
     end
 
     def feed
-      @stuff_in_belly = set_change(@stuff_in_belly,5)
-      @toilet = set_change(@toilet,5)
-      time_pass
+      @stuff_in_belly = set_change(@stuff_in_belly, 5)
+      @toilet += 5
       @message = ' Хрум хрум, вкуснятина '
+      time_pass
     end
 
     def walk
       @happy += 2
-      time_pass
       @message = " Куди я йду, а з п'ятачком, великий.... "
+      time_pass
+      die
     end
 
     def put_to_bed
       @sleep = false
-      3.times { time_pass }
+
       @message = ' Хррр хррр хррр.... '
+      3.times { time_pass }
     end
 
     def go_toilet
-      time_pass
+
       @message = ' Дзюр дзюр дзюр.... '
       @toilet = 0
+      time_pass
     end
 
     def die
-      if @happy <= 5 && @stuff_in_belly <= 0
+      if @happy == 0 || @stuff_in_belly == 0
         @message = " Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
         @exit_ = true
       end
@@ -90,8 +94,7 @@ class App
 
     def push
       @message = ' Я більше так не буду '
-      @happy -= 1
-      time_pass
+      @happy = set_change(@happy, -1)
     end
 
     def hungry?
@@ -198,7 +201,7 @@ class App
         [404, { "Content-Type" => "text/html" }, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
                                                   "<img src='http://s1.iconbird.com/ico/2013/9/430/w128h1281378622441catpirate.png' height='150' width='150'>", "<br>",
                                                   "<br><b>", @@pet.message, "<br><b></center>"]]
-      end
+        else
       @@pet.walk
       [200, { "Content-Type" => "text/html" }, [links, "<center><ul class='list-group'>",
                                                 "<li class='list-group-item'> Ситність: #{@@pet.stuff_in_belly}</li>",
@@ -208,6 +211,7 @@ class App
                                                 "<li class='list-group-item'> <img src='http://s1.iconbird.com/ico/2013/8/428/w128h1281377930286catslippers2.png' height='150' width='150'>#{@@pet.reaction}</li>",
                                                 "<li class='list-group-item'> #{@@pet.message} </li>",
                                                 "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
+      end
     when /feed/
       if @@pet.exit_ == true
         [404, { "Content-Type" => "text/html" }, ["<center><meta charset='utf-8'><a href='/index'>Створити нового </a>",
@@ -304,7 +308,6 @@ class App
                                                   "<li class='list-group-item'> #{@@pet.message} </li>",
                                                   "<li class='list-group-item'> <a href='/index' >Нова гра</a></li></ul></center>"]]
       end
-
     else
       @@pet = Pet.new('rnd')
       [404, { "Content-Type" => "text/html" }, ["<meta charset='utf-8'><center><ul class='list-group'>",
