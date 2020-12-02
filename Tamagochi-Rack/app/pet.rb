@@ -3,7 +3,7 @@
 class App
   class Pet
     attr_reader :name, :stuff_in_belly, :happy, :sleep, :toilet
-    attr_accessor :exit_, :message, :money, :reaction, :asd
+    attr_accessor :exit_, :message, :money, :reaction
 
     def initialize(name = 'Петрович')
       @name = name
