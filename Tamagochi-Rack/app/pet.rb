@@ -90,7 +90,7 @@ class App
     end
 
     def die
-      if (@happy.zero? || @stuff_in_belly.zero?)
+      if @happy.zero? || @stuff_in_belly.zero
         @message = "| Вибачте, але ви програли, ваш </b>#{@name}</b> помер "
         @exit_ = true
       end
